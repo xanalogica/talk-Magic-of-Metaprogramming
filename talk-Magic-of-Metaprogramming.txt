@@ -1,0 +1,273 @@
+.. include:: <s5defs.txt>
+
+==============================
+ The Magic of Metaprogramming
+==============================
+
+:Author: Jeff Rush <jeff@taupro.com>
+:Copyright: 2011 Tau Productions Inc.
+:License: Creative Commons Attribution-ShareAlike 3.0
+:Date: August 27, 2011
+:Duration: 45-minutes
+:Difficulty: Advanced
+:Keywords: metaprogramming, data structures, language, techniques
+
+Learn the magic of writing programs that monitor, alter and react to the
+execution of program code by responding to imports, changes to variables,
+calls to functions and invocations of the builtins. This talk goes beyond the
+static world of metaclasses and class decorators into the dynamics of
+tracepoints.
+
+.. |bullet| unicode:: U+02022
+.. footer:: PyTexas 2011 |bullet| College Station
+
+.. role:: altway
+   :class: altway
+
+About This Talk
+===============
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + ???
+
+      (photo of a logic analyzer)
+
+What is Metaprogramming?
+========================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + the writing of programs that
+        + write, analyze or adjust other 'programs',
+        + using that other program's structure
+        + as their data
+
+      + such manipulation can come from
+        + the inside
+          + decorators are internal; they appear inside the code being adjusted
+          + stays in production
+        + the outside
+          + monkeypatching can be considered external
+          + not intended to stay in production
+
+      + and it can be
+        + active/static in nature, occurring at import/definition time
+        + reactive/dynamic, occurring in response to runtime events
+
+An Example of a Problem Solved by Metaprogramming
+=================================================
+
+
+
+What are Some Examples of Metaprogramming?
+==========================================
+
+ + protocol negotiation
+ + ORMs ala SQLAlchemyDA
+
+
+What are the Benefits of Metaprogramming?
+=========================================
+
+ + adopting a more declarative style
+   + less programmer work, less human error
+   + hiding necessary magic
+ + adapting to negotiated protocols
+   + XML-based
+   + capability-adjusted for security, performance
+ + better control of unchangable legacy programs
+   + monkeypatching, hooking into control flows
+ + tracking down difficult runtime problems
+   + protecting readonly, private attributes
+   + capturing changes in state
+   + limiting the quantity of logging needed (just-in-time)
+ + testing your knowledge of a complex system
+   + what modules or files are used?
+   + probing for expensive operations
+ + trying out experimental changes
+   + new caching algorithms
+
+What are the Drawbacks of Metaprogramming?
+==========================================
+
+ + influences not visible in code, hard to understand
+ + requires a different perspective on programming
+ + can interfere with pgm performance, correctness
+
+What are the Runtime Events to Which Metaprograms Can React?
+============================================================
+
+ + class initialization
+ + function definition
+ + module import
+ + modification of a dotted name
+ + retrieval of a dotted name
+ + calling something
+
+ + can be specific to a particular module or class
+
+What are the Mechanisms at our Disposal?
+========================================
+
+ + metaclasses
+ + decorators (class and function)
+ + descriptors (and properties)
+
+How Do Metaclasses Work?
+========================
+
+(diagram of classes)
+
+How Do Decorators Work?
+=======================
+
+(the three things a decorator can do)
+
+Data descriptors have both a __get__ and a __set__ attribute. Examples are
+properties (defined in Python), getsets, and members. The latter two are
+defined in C and there are more specific tests available for those types,
+which is robust across Python implementations. Typically, data descriptors
+will also have __name__ and __doc__ attributes (properties, getsets, and
+members have both of these attributes), but this is not guaranteed.
+
+Contrasting Metaclasses versus Class Decorators
+===============================================
+
+metaclasses?  class decorators?
+  the latter are much simpler
+  anything you can do with the latter you can do with the former
+  only a metaclass can add methods to the class itself
+  @classmethods provide class-level services -to- instances
+  metaclass methods provide class-services to the class itself
+
+How Do Descriptors Work?
+========================
+
+ + intercept the 'dot' operator of attribute lookup
+ + come in two flavors
+   + data descriptor?
+   + method descriptor?
+
+A Need for Catching an Import: The Problem
+==========================================
+
+  1) catching specific imports so we can alter its namespace
+     - want to rewire a pvt class also used in a module (like Request and HTTPServer)
+     (should have used a factory, but didn't)
+     (should have imported fm elsewhere but didn't)
+     (should have taken as a parameter the name of the Request class, but didn't)
+
+Receiving Notification When an Import Occurs (the 1st time)
+===========================================================
+
+putting non-module stuff on sys.path
+- control search of imports
+- caching imports from a prior run to specific place
+- using this to monitor what gets imported, even the Nth time?
+
+
+
+Modification to a Module's Namespace: What Can We Do?
+=====================================================
+
+ + (first teach descriptors)
+ + record creation of instances
+ + make attributes private or readonly
+
+
+Receiving Notification When an Import Occurs (the Nth time)
+===========================================================
+
+
+
+  the metaprogramming we do consider often focuses on static initialization of pgms
+  - like decorators and metaclasses
+  let's look at how
+
+
+applying function decorators from outside
+applying class decorators from outside
+
+
+
+
+metaprogramming
+  how do we get our metapgm wrapped around another pgm?
+  - run 2nd as arg to 1st?
+  - change site.py
+  - use -m <module>?
+
+  3) more descriptors; using get-overrides to catch file opens, in order to understand a complex pgm
+     but maybe just for opens of files in a specific directory or a particular name
+     (talk about fstozodb.log or fax/ directory that keeps popping up; show traceback)
+     (talk about *changing* the name or directory of a file being opened)
+
+  4) in-out phase checking
+     (use it to measure time for a call)
+     (use it to toggle logging on/off)
+
+  5) sliding a delegate in
+     (replace a method that takes a self, with a delegate that has its own self)
+     (and maybe a closure arg of the prior method that was replaced)
+
+
+patching functions
+- in the class space
+- in the instance space
+
+use Ctrl-C trick to drop into a running pgm
+- and import a metapgm that logs only the IP addr of a problem browser
+
+detect in SQL if any inserts took place; and the slowest 10 operations
+
+detect the most number of threads running concurrently
+
+
+
+1) subclassing can be treated as a registration
+of an object with the parent class, and the body of the cubslclass being the
+particular registration data.  Think media handlers.
+
+2) attach a special meaning to certain attributes; when they are present, do
+something with them.
+
+
+
+>>> int.__subclasses__()
+[<type 'bool'>]
+
+
+
+AOP?
+delegation?
+likeness to plugboard logic analyzer
+
+can filter on details of events, not just the overall event
+- import of a specific module
+- call to a function -from- a specific module
+- make attrs read-only or invisible outside their creator
+- record their performance
+
+catch file opens, in a specific directory
+toggle logging on/off only within a specific section of code or when something looks wrong
+
+
+Questions?
+==========
+
+.. container:: slide-display
+
+   .. class:: huge
+
+      `Questions?`
+
+..
+   XXLocal Variables:
+   mode: rst
+   mode: outline-minor
+   End:
