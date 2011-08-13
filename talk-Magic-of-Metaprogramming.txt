@@ -12,28 +12,34 @@
 :Difficulty: Advanced
 :Keywords: metaprogramming, data structures, language, techniques
 
-Learn the magic of writing programs that monitor, alter and react to the
-execution of program code by responding to imports, changes to variables,
-calls to functions and invocations of the builtins. This talk goes beyond the
-static world of metaclasses and class decorators into the dynamics of
-tracepoints.
+Learn the magic of writing Python code that monitors, alters and reacts to
+module imports, changes to variables, calls to functions and invocations of
+the builtins.  Learn out to slide a class underneath a module to intercept
+reads/writes, place automatic type checking over your object attributes and
+use stack peeking to make selected attributes private to their owning class.
+We'll cover import hacking, metaclasses, descriptors and decorators and how
+they work internally.
+
+(photo of a logic analyzer)
 
 .. |bullet| unicode:: U+02022
-.. footer:: PyTexas 2011 |bullet| College Station
+.. footer:: Kiwi PyCon 2011 |bullet| Wellington
 
 .. role:: altway
    :class: altway
 
-About This Talk
-===============
+Who Am I?
+=========
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + ???
-
-      (photo of a logic analyzer)
+      + one who (really) loves to program (and teach)
+      + programming since 1971, in Python since 1996
+      + organizer (PyCon US, PSF, ZF, DFW Pythoneers)
+      + self-employed developer and trainer
+      + author of many screencasts on showmedo.com
 
 What is Metaprogramming?
 ========================
@@ -42,220 +48,916 @@ What is Metaprogramming?
 
    .. class:: incremental
 
-      + the writing of programs that
-        + write, analyze or adjust other 'programs',
-        + using that other program's structure
-        + as their data
+      `the writing of programming code that`
+      `writes, analyzes or adjusts other code,`
+      `using that other code's structure`
+      `as its data.`
 
-      + such manipulation can come from
-        + the inside
-          + decorators are internal; they appear inside the code being adjusted
-          + stays in production
-        + the outside
-          + monkeypatching can be considered external
-          + not intended to stay in production
+      ..
 
-      + and it can be
-        + active/static in nature, occurring at import/definition time
-        + reactive/dynamic, occurring in response to runtime events
+      + two general forms: manipulation from
 
-An Example of a Problem Solved by Metaprogramming
-=================================================
+        .. class:: incremental
 
+           + inside
 
+             + stays in production
+             + reduces developer workload
 
-What are Some Examples of Metaprogramming?
-==========================================
+           + outside
 
- + protocol negotiation
- + ORMs ala SQLAlchemyDA
+             + for debugging, testing
 
+Tools At Our Disposal
+=====================
 
-What are the Benefits of Metaprogramming?
-=========================================
+.. container:: slide-display
 
- + adopting a more declarative style
-   + less programmer work, less human error
-   + hiding necessary magic
- + adapting to negotiated protocols
-   + XML-based
-   + capability-adjusted for security, performance
- + better control of unchangable legacy programs
-   + monkeypatching, hooking into control flows
- + tracking down difficult runtime problems
-   + protecting readonly, private attributes
-   + capturing changes in state
-   + limiting the quantity of logging needed (just-in-time)
- + testing your knowledge of a complex system
-   + what modules or files are used?
-   + probing for expensive operations
- + trying out experimental changes
-   + new caching algorithms
+   .. class:: incremental
 
-What are the Drawbacks of Metaprogramming?
-==========================================
+      + makes use of
 
- + influences not visible in code, hard to understand
- + requires a different perspective on programming
- + can interfere with pgm performance, correctness
+        .. class:: incremental
 
-What are the Runtime Events to Which Metaprograms Can React?
-============================================================
+           + metaclasses
+           + decorators (class and function)
+           + attribute lookups special functions
+           + descriptors (and properties)
 
- + class initialization
- + function definition
- + module import
- + modification of a dotted name
- + retrieval of a dotted name
- + calling something
+      ..
 
- + can be specific to a particular module or class
+      + I cover only Python 2.x, new-style classes.
 
-What are the Mechanisms at our Disposal?
+The Big Picture
+===============
+
+.. container:: slide-display animation
+
+   .. class:: incremental
+
+      .. container:: handout
+
+         seq-mp-code-data-X   (walk 'Code' and 'Data' blocks onto screen-center)
+         seq-mp-datacomp-X    (add dnarrow and 'Data Computation' box from left)
+         seq-mp-uievents-X    (add uparrow and 'UI Events' box from right)
+         seq-mp-convpgm-X     (slide shade over system and add label along bottom)
+         seq-mp-metacode-X    (slide entire arrangement down, and walk 'Metacode' box onto screen-center)
+         seq-mp-plumbing-X    (add dnarrow and 'Plumbing Adjustments' box from left)
+         seq-mp-addattrs-X    (walk out "add/adjust attributes")
+         seq-mp-register-X    (walk out "register elements")
+         seq-mp-tagstuff-X    (walk out "tag elements")
+         seq-mp-codeevents-X  (add uparrow and "Code Events")
+         seq-mp-modimport-X   (walk out "import of a module")
+         seq-mp-classdef-X    (walk out "definition of a class/function")
+         seq-mp-dotted-rdwr-X (walk out "write to a dotted name")
+         seq-mp-callnret-X    (walk out "call and return")
+         seq-mp-metapgm-X     (slide shade over upper system and add label along top)
+
+      .. image:: graphics/mp-code-data.gif
+      .. image:: graphics/mp-datacomp.gif
+      .. image:: graphics/mp-uievents.gif
+      .. image:: graphics/mp-convpgm.gif
+      .. image:: graphics/mp-metacode.gif
+      .. image:: graphics/mp-plumbing.gif
+      .. image:: graphics/mp-addattrs.gif
+      .. image:: graphics/mp-register.gif
+      .. image:: graphics/mp-tagstuff.gif
+      .. image:: graphics/mp-codeevents.gif
+      .. image:: graphics/mp-modimport.gif
+      .. image:: graphics/mp-classdef.gif
+      .. image:: graphics/mp-dotted-rdwr.gif
+      .. image:: graphics/mp-callnret.gif
+      .. image:: graphics/mp-metapgm.gif
+
+   .. class:: handout
+
+      + Diagram - data <-> code <-> metacode, app-events versus code-events
+
+      + Runtime Events
+
+        + class initialization
+        + function definition
+        + module import
+        + modification of a dotted name
+        + retrieval of a dotted name
+        + calling something
+
+        ..
+
+        + can be specific to a particular module or class
+
+        + execution events
+          1) initialization of a class definition
+             - read class attrs and act on them
+             - add/adjust methods
+               - descriptors to control access to instance attrs
+               - wrappers to hear about calls to both instance and class methods
+                 - add a new instance to a registry
+             - add the new class to a registry
+
+Sample Problem #1: Subclassing an Embedded Class
+================================================
+
+.. container:: slide-display
+
+   .. class:: sidebox boxed incremental
+
+      | class Request(object):
+      |     ...
+      | class HTTPServer(object):
+      |     def handle_request(self, ...):
+      |         req = Request(...)
+      |     ...
+
+   .. class:: incremental
+
+      + Objective
+
+        + subclass a class deep inside a module
+
+      ..
+
+      + Challenges: They didn't
+
+        .. class:: incremental
+
+           + use a public factory
+           + import from elsewhere
+           + take the class as a parameter
+
+      ..
+
+      + A Metaprogramming Solution:
+
+        .. class:: incremental
+
+           + catch a specific import, so we can
+           + redefine "Request" to be a subclass
+
+A Solution to #1: Post-Import Hooking
+=====================================
+
+.. container:: slide-display
+
+   *After import, rearrange content of module before others use it.*
+
+   .. class:: incremental
+
+      | old__import__ = sys.modules['__builtin__']
+      | sys.modules['__builtin__'].__import__ = self.__import__
+
+      | def __import__(modname):
+      |
+      |     m = old__import__(modname)
+      |
+      |     if modname == 'webserver':
+      |         `frame = sys._getframe(1)`
+      |         `importing_file = inspect.getsourcefile(frame) or inspect.getfile(frame)`
+      |         `if fnmatch.fnmatch(importing_file, "*startup*"):`
+      |             rearrange(m)
+      |     return m
+
+A Solution to #1 (Packaged Up)
+==============================
+
+.. container:: slide-display
+
+   *After import, rearrange content of module before others use it.*
+
+   .. class:: sidebox boxed
+
+      | class Request(object):
+      |     ...
+      | class HTTPServer(object):
+      |     def handle_request(self, ...):
+      |         req = Request(...)
+      |     ...
+
+   .. class:: incremental
+
+      | from tau.metaservices import MetaServices
+
+      | def adjust(mod):
+      |     from replacements import Request
+      |     mod.Request = Request
+      |
+
+      | ms = MetaServices()
+      | ms.call_after_import_of(
+      |     'webserver', adjust `, from_filepatt='*startup*'`)
+
+      | from webapp import main
+      | main()
+
+Alternate Solution: Pre-Import Hooking
+======================================
+
+.. container:: slide-display
+
+   *Just before import, slip in a subclassed module object.*
+
+   .. class:: incremental
+
+      | def __import__(modname):
+      |
+      |     if modname == 'webserver':
+      |
+      |         `class SubclassingHooks(ihooks.Hooks):`
+      |             `def new_module(self, modname):`
+      |                 `return YourModuleFixer(modname)   # <--- your class`
+      |
+      |         `loader = ihooks.FancyModuleLoader(hooks=SubclassingHooks())`
+      |         `importer = ihooks.ModuleImporter(loader)`
+      |     else:
+      |         importer = old__import__
+      |
+      |     return importer(modname)
+
+What Does a Subclassed Module Look Like?
 ========================================
 
- + metaclasses
- + decorators (class and function)
- + descriptors (and properties)
+.. container:: slide-display
 
-How Do Metaclasses Work?
-========================
+   .. class:: incremental
 
-(diagram of classes)
+      | from types import ModuleType
+      | class ModuleWatcher(ModuleType):
+      |
+      |     def __init__(self, modname):
+      |         Moduletype.__init__(self, modname)
+      |
+      |     def __getattribute__(self, attrname):
+      |
+      |         `modname = ModuleType.__getattribute__(self, '__name__')  # self.__name__`
+      |         `print "__getattribute__ fetching %r of %r" % (attrname, self)`
+      |
+      |         `if modname == 'webserver' and attrname == 'Request':`
+      |             `from replacements import Request`
+      |             `return Request`
+      |
+      |         return ModuleType.__getattribute__(self, attrname)
 
-How Do Decorators Work?
-=======================
+Some Benefits of Subclassing Modules
+====================================
 
-(the three things a decorator can do)
+.. container:: slide-display
 
-Data descriptors have both a __get__ and a __set__ attribute. Examples are
-properties (defined in Python), getsets, and members. The latter two are
-defined in C and there are more specific tests available for those types,
-which is robust across Python implementations. Typically, data descriptors
-will also have __name__ and __doc__ attributes (properties, getsets, and
-members have both of these attributes), but this is not guaranteed.
+   .. class:: incremental
 
-Contrasting Metaclasses versus Class Decorators
-===============================================
+      + intercept attribute reads/writes
+      + prevent/log writes
+      + log timestamps and caller locations
+      + return different values to different callers
 
-metaclasses?  class decorators?
-  the latter are much simpler
-  anything you can do with the latter you can do with the former
-  only a metaclass can add methods to the class itself
-  @classmethods provide class-level services -to- instances
-  metaclass methods provide class-services to the class itself
+      ..
 
-How Do Descriptors Work?
-========================
+      + tip: you can put non-module stuff on sys.path
 
- + intercept the 'dot' operator of attribute lookup
- + come in two flavors
-   + data descriptor?
-   + method descriptor?
+      >>> import sys
+      >>> sys.modules['TheAnswer'] = 42
+      >>> import TheAnswer
+      >>> TheAnswer
+      42
 
-A Need for Catching an Import: The Problem
-==========================================
+Orientation Diagram -- Instances, Classes and Metaclasses
+=========================================================
 
-  1) catching specific imports so we can alter its namespace
-     - want to rewire a pvt class also used in a module (like Request and HTTPServer)
-     (should have used a factory, but didn't)
-     (should have imported fm elsewhere but didn't)
-     (should have taken as a parameter the name of the Request class, but didn't)
+.. container:: slide-display
 
-Receiving Notification When an Import Occurs (the 1st time)
-===========================================================
+   .. class:: incremental
 
-putting non-module stuff on sys.path
-- control search of imports
-- caching imports from a prior run to specific place
-- using this to monitor what gets imported, even the Nth time?
+      + ??? big diagram ???
+
+About Metaclasses
+=================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + metaclasses enable new programming metaphors
+        + aspect-oriented
+        + interface-oriented
+        + prototype-based
+      + a way of wrapping complexity for use other programmers more focused on a problem domain
+        + defining a domain-specific language
+      + the uses of metaclasses can be replaced by
+        + factory classes
+        + client classes ...
+        + function calls to postprocess classes after they are created
+        + additional function calls to register features with the system
+      + but two things ONLY metaclasses can do are
+        + meta-methods
+        + meta-properties
+
+        + metamethods    -- class descriptor for applying a function to the target (a *class*)
+        + classmethods   -- instance descriptors for applying a function to the target (a *class*)
+        + staticmethods
+        + methods        -- instance descriptors for applying a function to the target (an *instance*)
+
+      + classes/types are not particulary active things
+
+      + the inheritance pattern is a programmer labor-saving mechanism that seeks to
+        minimize code duplication among object-types
+
+      + metaclasses do not
+        + affect namespace lookup
+        + affect method-resolution order
+        + affect descriptor retrieval
+
+Sample Problem #2: ??? validation of class definitions and attribute types
+==========================================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      +  ??? validation of class definitions and attribute types
+      + attach a special meaning to certain attributes; when they are present, do something with them.
+      + tagging attrs with type/value constraints
+
+      + final classes are a form of definition constraint
+      + check classes for conformance to your requirements
+        find all classes using object.__subclasses__()
+      + defer such checking to unit tests?  something at import time
+
+A Solution to #2: ??? metaclasses
+=================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + the metaprogramming we do consider often focuses on static initialization of pgms
+      + like decorators and metaclasses
+
+      + instance.__class__.__class__     (a metaclass)
+      + named 'type'
+      + a class is a factory for instances
+      + a metaclass is a factory for classes
+
+      + a class captures common functionality among a group of instances
+        + shared (instance) methods
+        + default attributes
+        + shared storage
+      + a metaclass captures common functionality among a group of classes
+        + shared (class) methods
+        + ???
+
+      + an instance knows its class solely by __class__, which can be changed.
+
+      + "the interpreter asks questions about the class to answer questions about the instance"
+
+      + metaclass hooks for attribute access ONLY intercept class-object lookups, NOT instance-object lookups.
+
+      + the API for a class:
+        __name__, __bases__, __module__, __dict__, __mro__, etc.
+
+      + metaclass execution focuses on initialization of the class; runs at import time.
+
+      + metaclasses intercepts statement completion:
+      +   cls = metaclass(name, bases, dict)
+      + metaclass's __call__ is invoked, which itself then calls __new__ and __init__
+
+      + extending the language with new "types of classes"
+
+      + "This conforms to/implements one of those."
+      + "This is persistent."
+      + "This is thread-sensitive."
+
+      + Find all classes representing storable elements and use them during I/O.
+      + Find all caches in system.
+
+      + enforce coding standards
+        + must have docstring
+        + method names
+        + inheritance depth
+        + complain about missing security declarations
+        + ensure all abstract methods of the parent are defined in the child class
+      +  (beware of middle abstract classes)
+
+      + "process human-friendly declarative structures (security) into machine-friendly structures)
+
+      + create classes/methods from:
+        + XML DTDs
+        + VRML PROTOs
+        + DB Connections
+        + IDL
+
+Solution 2a: (scenario: each class wraps one SQL table; set up the attributes from the DB)
+==========================================================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + someone declares their class wraps an SQL table; introspect the columns of
+        that table and provide descriptors for each one, including type contraints.
+
+      + class/instance  ::  table/row     a shared context
+        a useful example of class methods and instance methods i.e. Members
+          nrecs = len(Members)
+          m = Members.load(...)
+          m = Members(...)
+          m.save()
+
+Contrasting Metaclasses with Class Decorators (briefly) and their benefits
+==========================================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + metaclasses?  class decorators?
+        + the latter are much simpler
+        + anything you can do with the latter you can do with the former
+        + only a metaclass can add methods to the class itself
+        + @classmethods provide class-level services -to- instances
+        + metaclass methods provide class-services to the class itself
+
+      + class decorators are NOT inherited, metaclasses are.
+      + class decorators can be (easily) stacked, metaclasses are more difficult to stack.
+
+      + class decorators can be used for:
+        - interface/definition verification
+        - transform methods (remove docstrings)
+        - register class
+        - decorate methods for logging, authorization
+        - add new methods, e.e. for rich comparison
+
+      + meta-properties
+        properties of class objects accessed via class.name
+        - let you attach stuff to classes without cluttering the instance namespace
+
+      + meta-methods
+        methods which can be called on the class object but are NOT visible to instances
+
+treating classes as more than containers of methods
+===================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + about __subclasses__(); use to tell a metaclass to flush each caching class?
+      + at unittest time, tell metaclasses to verify each of their classes
+      + how to walk all classes in a program, in order to validate things about them
+      + can I find all nested classes?  are they missing a __module__ or __file__?
+
+      + metaclasses let you share code among multiple meta*classes*.  Treats classes
+        more like objects -- they come and go, are duplicated, collected, iterated
+        over.  A custom class appears for each domain object found.
+
+        Good for modeling systems with class-like behavior?
+
+        Domain objects show up in pgms as classes and instances.
+
+Diagram - The Mechanism of Attribute Lookup (the call chain)
+============================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      #. data descriptors
+      #. instance variables via __dict__
+      #. non-data descriptors
+      #. __getattr__ method
+
+      + But What About The Old Way?
+
+        + __getattr__(name) -> value
+        +   still there in new-style classes
+
+        + __getattribute__(name) -> value
+        +   added for new-style classes
+
+        + __getattribute__ is **always** called; __getattr__ is only called if the name
+        + is not found in the instance dictionary.
+
+      + Making a Read-Only Data Descriptor
+
+        + define both __get__ and __set_
+        + have __set__ raise an AttributeError
+
+      + differs between classes, instances and super()
+      + search the instance __dict__
+      + then the class's __dict__
+      + then each base class __dict__
+      + *excludes* metaclasses
+      + overriding __getattribute__ breaks descriptors
+
+      + __getattr__ is perfect for delegation, since it only gets called if not found elsewhere!
+
+How Descriptors Work
+====================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + a thing you place into an object __dict__
+      + that intercepts the dot-attribute mechanism
+      + ? there is one per attribute you override
+      + ? wait, how does it tell whether the value is to be returned or is a desc
+        (answer: if the thing has __get__)
+      + creating one of these is expensive in time, and takes up space in each instance
+      + ! therefore it goes into the class __dict__, not the instance __dict__
+      + ! which means, since it is shared across all instances, the desc has to be passed a ref to the instance __dict__
+      + ? where does a descriptor store the actual value then?  if it doesn't compute it of course.
+
+      + a descriptor does NOT know the name of the attribute it sits on!
+      + a descriptor is SHARED across all instances of the class to which it is attached!
+
+      + intercept the 'dot' operator of attribute lookup
+      + come in two flavors
+
+        + data descriptor?
+        + method descriptor?
+
+      + Data descriptors have both a __get__ and a __set__ attribute. Examples are
+        properties (defined in Python), getsets, and members. The latter two are
+        defined in C and there are more specific tests available for those types,
+        which is robust across Python implementations. Typically, data descriptors
+        will also have __name__ and __doc__ attributes (properties, getsets, and
+        members have both of these attributes), but this is not guaranteed.
+
+      ::
+        __name__   # attribute's name
+        __doc__    # attribute's docstring
+        [descriptor].__get__(self, obj, type=None) -> value
+        [descriptor].__set__(self, obj, value) -> None
+        [descriptor].__delete__(self, obj) -> None
+
+        If both __get__ and __set__ are defined
+          then it is a **data descriptor** (like simple attributes)
+
+        If just __get__ are defined
+          then it is a **non-data-descriptor** (like methods)
+
+      1. Properties normally store their data in their instance dict.
+      2. For classes, the dict of their properties is the dict of the class.
+      3. Items in the class dict are *visible* to instances!
+
+examples of descriptors in-use today
+====================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + argument currying: methods, classmethods, staticmethods
+      + properties
+      + using descriptors for caching, even externally applied
+      + (back to diagram; show how placing a desc into class __dict__ goes *in front*)
+      + giving back a different method based on other state in the instance
+
+      + what can descriptors do?
+        staticmethod()
+        classmethod()
+        property()
+        methods fm functions
+        lazy properties
+        cached properties
+        super()
+
+Descriptor Machinery for Classes
+--------------------------------
+
+Implemented in *type.__getattribute__*
+
+Example: A.x
+
+::
+
+  descriptor = A.__class__.x
+  descriptor.__get__(instance=None, instance_type=self)
+
+  def __getattribute__(self, key):
+    v = object.__getattribute__(self, key)
+    if hasattr(v, '__get__'):
+      return v.__get__(None, self)
+    return v
+
+Descriptor Machinery for Instances
+----------------------------------
+
+Implemented in *object.__getattribute__*
+
+Example: a.x
+
+::
+
+  descriptor = a.__class__.x
+  descriptor.__get__(instance=a, instance_type=type(a))
+
+Use of Descriptors in property() builtin
+----------------------------------------
+
+::
+
+  class MyClass(object):
+    def x(self):
+      def get(self):
+        return self.__x
+      def set(self, value):
+        self.__x = value
+      def del(self):
+        del self.__x
+    x = property(x.get, x.set, x.del, "'x' property")
 
 
+Example 2 - Implementation of *property*
+----------------------------------------
 
-Modification to a Module's Namespace: What Can We Do?
+::
+
+  class Property(object):
+    def __init__(self, fget=None, fset=None, fdel=None, doc=None):
+      self.fget = fget
+      self.fset = fset
+      self.fdel = fdel
+      self.__doc__ = doc
+
+    def __get__(self, instance, instance_type=None):
+      if instance is None:
+        return self
+      if self.fget is None:
+        raise AttributeError, "unreadable attribute"
+      return self.fget(instance)
+
+(continued)
+
+Example 2 - cont'd
+------------------
+
+::
+
+    def __set__(self, instance, value):
+      if self.fset is None:
+        raise AttributeError, "can't set attribute"
+      self.fset(instance, value)
+
+    def __delete__(self, instance):
+      if self.fdel is None:
+        raise AttributeError, "can't delete attribute"
+      self.fdel(instance)
+
+Example 3 - Implementation of Python Methods
+--------------------------------------------
+
+Python is built upon a function-based environment.  Non-data descriptors add
+the object-oriented features by binding functions into methods.
+
+Class __dict__ store methods as functions.
+
+::
+
+  class FunctionDesc(object):
+    def __get__(self, instance, instance_type=None):
+      return types.MethodType(self, instance, instance_type)
+
+::
+
+  class D(object):
+    def f(self, x): # implicit f = FunctionDesc(codeblock)
+        return x
+  d = D()
+
+  # D.__dict__['f']
+  <function f>
+
+  # D.f   (unbound method)
+  type(D).__dict__['f'].__get__(None, self)
+
+  # d.f   (bound method)
+  type(d).__dict__['f'].__get__(d, type(d))
+
+Example 4 - Implementation of StaticMethod builtin
+--------------------------------------------------
+
+Lack any reference to the class or instance.
+
+::
+
+  class StaticMethod(object):
+    def __init__(self, f):
+      self.f = f
+
+    def __get__(self, instance, instance_type=None):
+      return self.f
+
+Example 4 - Implementation of ClassMethod builtin
+-------------------------------------------------
+
+Lack any reference to the instance *but* has one to the class.
+
+Useful for alternate class constructors, such as Dict.fromkeys().
+
+::
+
+  class ClassMethod(object):
+    def __init__(self, f):
+      self.f = f
+
+    def __get__(self, instance, instance_type=None):
+      if instance_type is None:
+         instance_type = type(instance)
+
+      def newfunc(*args):
+         return self.f(instance_type, *args)
+      return newfunc
+
+Sample Problem #3: ??? recording state changes
+==============================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + ???
+
+A Solution to #3: ??? descriptors
+=================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + ???
+
+Extra
+=====
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + extra1 - making an attribute readonly
+      + extra2 - making an attribute private
+
+How Do Decorators Work?  the 3-things a decorator can do
+========================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + registering *username* with some entity::
+
+         def export(func):
+             api_register(func)
+             return func
+
+      + tagging *username* with additional metadata::
+
+         def export(func):
+             func.__export__ = True
+             return func
+
+      + inserting code between the caller and callee::
+
+         def export(func):
+             def trace(*args, **kw):
+                 rc = func(*args, **kw)
+                 print args, kw, rc
+                 return rc
+             return trace
+
+Sample Problem #4: ??? finding out who is opening a file!
+=========================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + ???
+
+A Solution to #4: ??? external decorating __builtin__
 =====================================================
 
- + (first teach descriptors)
- + record creation of instances
- + make attributes private or readonly
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + can filter on path, name, caller
+      + can hook the .close method of a specific instance???
+
+      + applying function decorators from outside
+      + applying class decorators from outside
+
+      + more descriptors; using get-overrides to catch file opens, in order to understand a complex pgm
+        but maybe just for opens of files in a specific directory or a particular name
+
+        + (talk about fstozodb.log or fax/ directory that keeps popping up; show traceback)
+        + (talk about *changing* the name or directory of a file being opened)
+
+Sample Problem #5: ??? tracing the cause of a slowdown
+======================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + in-out phase checking
+
+        + (use it to measure time for a call)
+        + (use it to toggle logging on/off)
+
+A Solution to #5: hooking the operation, measuring the time and saving the log -if- the problem showed up
+=========================================================================================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + ???
+
+      + can filter on details of events, not just the overall event
+        + import of a specific module
+        + call to a function -from- a specific module
+        + make attrs read-only or invisible outside their creator
+        + record their performance
+
+     + catch file opens, in a specific directory
+     + toggle logging on/off only within a specific section of code or when something looks wrong
+
+Summarizing the Benefits of Metaprogramming
+===========================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + adopting a more declarative style
+        + less programmer work, less human error
+        + hiding necessary magic
+      + adapting to negotiated protocols
+        + XML-based
+        + capability-adjusted for security, performance
+      + better control of unchangable legacy programs
+        + monkeypatching, hooking into control flows
+      + tracking down difficult runtime problems
+        + protecting readonly, private attributes
+        + capturing changes in state
+        + limiting the quantity of logging needed (just-in-time)
+      + testing your knowledge of a complex system
+        + what modules or files are used?
+        + probing for expensive operations
+      + trying out experimental changes
+        + new caching algorithms
+
+Sumarizing the The Drawbacks of Metaprogramming
+===============================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + influences not visible in code, hard to understand
+      + requires a different perspective on programming
+      + can interfere with pgm performance, correctness
 
 
-Receiving Notification When an Import Occurs (the Nth time)
-===========================================================
+A Few Ideas for Metaprogramming (show code as time is available; else skip)
+===========================================================================
 
+.. container:: slide-display
 
+   .. class:: incremental
 
-  the metaprogramming we do consider often focuses on static initialization of pgms
-  - like decorators and metaclasses
-  let's look at how
+      + @atomic, @immuitable, @trackexceptions, @trackinstances
+      + detect in SQL if any inserts took place; and the slowest 10 operations
+      + detect the most number of threads running concurrently
+      + log all calls from module X to function Y
 
+      ::
 
-applying function decorators from outside
-applying class decorators from outside
+        @atomic
+        def func(...):
 
+        @secure(LDAP)
+        def func(...):
 
+        @immutable
+        (some attr)
 
+        @addtoclass(Moonbase)  # operates at import time
+        def hello(self, code, priormeth=xxx):
+          print "Hello"
+          self.greeting(68)
 
-metaprogramming
-  how do we get our metapgm wrapped around another pgm?
-  - run 2nd as arg to 1st?
-  - change site.py
-  - use -m <module>?
+        @trackexceptions
+        def func(...):
 
-  3) more descriptors; using get-overrides to catch file opens, in order to understand a complex pgm
-     but maybe just for opens of files in a specific directory or a particular name
-     (talk about fstozodb.log or fax/ directory that keeps popping up; show traceback)
-     (talk about *changing* the name or directory of a file being opened)
+        @trackexceptions(methpatt="get_")
+        class C(...):
 
-  4) in-out phase checking
-     (use it to measure time for a call)
-     (use it to toggle logging on/off)
+        @internalmethod
+        def greetings(self, x):
 
-  5) sliding a delegate in
-     (replace a method that takes a self, with a delegate that has its own self)
-     (and maybe a closure arg of the prior method that was replaced)
-
-
-patching functions
-- in the class space
-- in the instance space
-
-use Ctrl-C trick to drop into a running pgm
-- and import a metapgm that logs only the IP addr of a problem browser
-
-detect in SQL if any inserts took place; and the slowest 10 operations
-
-detect the most number of threads running concurrently
-
-
-
-1) subclassing can be treated as a registration
-of an object with the parent class, and the body of the cubslclass being the
-particular registration data.  Think media handlers.
-
-2) attach a special meaning to certain attributes; when they are present, do
-something with them.
-
-
-
->>> int.__subclasses__()
-[<type 'bool'>]
-
-
-
-AOP?
-delegation?
-likeness to plugboard logic analyzer
-
-can filter on details of events, not just the overall event
-- import of a specific module
-- call to a function -from- a specific module
-- make attrs read-only or invisible outside their creator
-- record their performance
-
-catch file opens, in a specific directory
-toggle logging on/off only within a specific section of code or when something looks wrong
-
+        @trackinstances(checker=myfunc)
+        class C(...):
 
 Questions?
 ==========
@@ -265,6 +967,109 @@ Questions?
    .. class:: huge
 
       `Questions?`
+
+
+
+::
+
+  What are Some Examples of Metaprogramming?
+
+   + protocol negotiation
+   + ORMs ala SQLAlchemyDA
+
+  consider - how can I walk across the attrs of a class?  an instance?
+
+
+  as a demo, create a class equivalent to a function, with default args.
+
+  def func(...):
+
+  class C(...):
+    def meth(...):
+
+
+  for (1) debugging or (2) changing code you do not own/control
+
+
+  Callability: Benefits of Decorators
+
+  .. container:: slide-display
+
+     .. class:: incremental
+
+  username = mkfunction(globalspace, formalparameters, codeobject)
+  username = export(username)  # must return a callable
+  ... (major separation in time)   a decorator is NOT the wrapper; a decorator DOES the wrapping
+              i.e. the gift wrapper clerk and the wrapping paper itself
+  username('Jeff')
+
+
+
+
+  metaprogramming
+    how do we get our metapgm wrapped around another pgm?
+    - run 2nd as arg to 1st?
+    - change site.py
+    - use -m <module>?
+
+
+    5) sliding a delegate in
+       (replace a method that takes a self, with a delegate that has its own self)
+       (and maybe a closure arg of the prior method that was replaced)
+
+
+    patching functions
+  - in the class space
+  - in the instance space
+
+  use Ctrl-C trick to drop into a running pgm
+  - and import a metapgm that logs only the IP addr of a problem browser
+
+
+
+  1) subclassing can be treated as a registration
+  of an object with the parent class, and the body of the cubslclass being the
+  particular registration data.  Think media handlers.
+
+
+   ? can I subclass a module
+   ? can I make a module's dict read-only?
+
+
+  >>> int.__subclasses__()
+  [<type 'bool'>]
+
+
+
+  AOP?
+  delegation?
+  likeness to plugboard logic analyzer
+
+
+  Looking Behind the Walls (the secret passages)
+  In Python's Attic
+  In Python's Basement
+
+  ?? reasons for swapping out class methods at runtime??
+
+
+
+  mix-in classes are a way to produce a class from fragments of a class
+   - awkward, multiple-inheritance
+   - hard to pickle
+
+
+
+  what does this do?   python -m mymod helper.py
+
+
+  even with multiple inheritance, an instance knows of its one true __class__
+
+  __metaclass__ does not have to be a class, just a callable taking (name, bases, dict)
+      metaclass(name, bases, dict)  ===>  metaclass.__class__.__call__(name, bases, dict)
+                        invokes metaclass.__new__  and  metaclass.__init__
+
+
 
 ..
    XXLocal Variables:
