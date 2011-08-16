@@ -3,24 +3,22 @@ import inspect
 
 class AspectTracker(object):
 
-    def __init__(self, attrname, orig_value):
+    def __init__(self, tgt_cls, attrname):
         self.attrname = attrname
-        self.orig_value = orig_value
-        self.value = orig_value
-        self.history = [self.value]
+        self.history = []
+        setattr(tgt_cls, attrname, self)
 
-    @classmethod
-    def attach(cls, tgt, attrname):
-        orig_value = getattr(tgt, attrname)
-        at = cls(attrname, orig_value)
-        setattr(tgt, attrname, at)
-        return at
+#    @classmethod
+#    def attach(cls, tgt, attrname):
+#        at = cls(attrname)
+#        setattr(tgt, attrname, at)
+#        return at
 
-    def __get__(self, obj, type=None):
-        return self.value
+    def __get__(self, instance, type=None):
+        return instance.__dict__[self.attrname]
 
-    def __set__(self, obj, value):
-        self.value = value
+    def __set__(self, instance, value):
+        instance.__dict__[self.attrname] = value
 
         frame = sys._getframe(1)
         finfo = inspect.getframeinfo(frame)
@@ -33,11 +31,12 @@ class AspectTracker(object):
 
 if __name__ == "__main__":
 
-    pgm = sys.argv[1]
+    pgm = 'target_trackstate' # pgm = sys.argv[1]
 
     m = __import__(pgm, globals(), locals())
 
-    at = AspectTracker.attach(m.StateMachine, 'count')
+    #at = AspectTracker.attach(m.StateMachine, 'count')
+    at = AspectTracker(m.StateMachine, 'count')
     m.main()
 
     for h in at.history:

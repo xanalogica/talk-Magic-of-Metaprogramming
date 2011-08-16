@@ -4,6 +4,10 @@
  The Magic of Metaprogramming
 ==============================
 
+.. class:: sidebox boxed incremental
+
+   .. image:: graphics/coordinator-of-pgms.jpg
+
 :Author: Jeff Rush <jeff@taupro.com>
 :Copyright: 2011 Tau Productions Inc.
 :License: Creative Commons Attribution-ShareAlike 3.0
@@ -19,8 +23,6 @@ reads/writes, place automatic type checking over your object attributes and
 use stack peeking to make selected attributes private to their owning class.
 We'll cover import hacking, metaclasses, descriptors and decorators and how
 they work internally.
-
-(photo of a logic analyzer)
 
 .. |bullet| unicode:: U+02022
 .. footer:: Kiwi PyCon 2011 |bullet| Wellington
@@ -88,8 +90,8 @@ Tools At Our Disposal
 
       + I cover only Python 2.x, new-style classes.
 
-The Big Picture
-===============
+Orientation Diagram: What is Metaprogramming
+============================================
 
 .. container:: slide-display animation
 
@@ -319,633 +321,671 @@ Some Benefits of Subclassing Modules
       >>> TheAnswer
       42
 
-Orientation Diagram -- Instances, Classes and Metaclasses
-=========================================================
+Lull After Import Hooking, Before Metaclasses
+=============================================
+
+.. container:: slide-display center
+
+   .. image:: graphics/after-imports-breathing.jpg
+
+   + (pause - take a deep breath...)
+
+Orientation Diagram: Instances, Classes and Metaclasses
+=======================================================
+
+.. container:: slide-display animation
+
+   .. class:: incremental
+
+      .. container:: handout
+
+         seq-hc-justbits-X
+            title 'a fable (literary licence) of objects'
+            in the beginning there was just 1's and 0's  (show a heap of them)
+
+         seq-hc-funcs-vars-X
+            they separated into code (functions) and data (variables); a function could
+            reach out and change any variable and each variable had to have a unique
+            name.  It was unclear which vars went with which functions.
+
+         seq-hc-vargroups-X
+            Vars got grouped together, int C structs or Pascal records.  But functions
+            were still separate.
+
+         seq-hc-groupings-X
+            Functions became got added into the var groupings.
+
+         seq-hc-group-ctor-X
+            There was a 'constructor' function that created each var grouping, according
+            to what was needed each time.
+
+         seq-hc-protos-X
+            Then instead of rebuilding, a var group was used as a 'prototype object' to stamp out
+            copies of itself.  The copier was the constructor of copies, named __call__.
+
+         seq-hc-groupsplit-X
+            Lots of duplicated code, excess copying of things that are common.  Decided to
+            make two var groups, one for the shared stuff and one constructed for each
+            instance.  The shared stuff represented a 'class of similar objects', shortened
+            to 'class'.  No inheritance yet.
+
+         seq-hc-groups-grow-X
+            But the stuff shared among instances grew in size, and there was common code
+            btw classes,
+
+         seq-hc-delegating-X
+            so inheritance was born; factoring vertically.
+
+         seq-hc-new-axis-X
+            One-dimension of creation just got a second dimension of delegation/inheritance.
+
+         seq-hc-multi-inherit-X
+            Assembly of classes was still complex, wanted more freedom to mix-and-match.
+            Multiple inheritance was born.
+
+         seq-hc-metaclass-X
+            All these classes had code to create them, buried in the interpreter.  The
+            code got exposed into a class-like object called metaclasses.
+
+         seq-hc-meta-as-ctor-X
+            Since classes
+            are objects, their constructor, named __call__ resides in the metaclass.  One
+            metaclass created all classes, since they were all alike in behavior.  Just
+            containers of methods mostly.
+
+         seq-hc-submetas-X
+            But then the metaclass is subclassable, making it possible to create new kinds
+            of classes.
+
+      .. image:: graphics/hc-justbits.gif
+      .. image:: graphics/hc-funcs-vars.gif
+      .. image:: graphics/hc-vargroups.gif
+      .. image:: graphics/hc-groupings.gif
+      .. image:: graphics/hc-group-ctor.gif
+      .. image:: graphics/hc-protos.gif
+      .. image:: graphics/hc-groupsplit.gif
+      .. image:: graphics/hc-groups-grow.gif
+      .. image:: graphics/hc-delegating.gif
+      .. image:: graphics/hc-new-axis.gif
+      .. image:: graphics/hc-multi-inherit.gif
+      .. image:: graphics/hc-metaclass.gif
+      .. image:: graphics/hc-meta-as-ctor.gif
+      .. image:: graphics/hc-submetas.gif
+
+Facts About Metaclasses
+=======================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + ??? big diagram ???
+      + a metaclass implements a "kind of class"
+      + almost always you only need one kind
+      + defining your own metaclass creates a "new kind"
+      + smarter classes, more than "containers of methods"
 
-About Metaclasses
-=================
+      ..
 
-.. container:: slide-display
+      + new kinds are useful for
 
-   .. class:: incremental
+        .. class:: incremental
 
-      + metaclasses enable new programming metaphors
-        + aspect-oriented
-        + interface-oriented
-        + prototype-based
-      + a way of wrapping complexity for use other programmers more focused on a problem domain
-        + defining a domain-specific language
-      + the uses of metaclasses can be replaced by
-        + factory classes
-        + client classes ...
-        + function calls to postprocess classes after they are created
-        + additional function calls to register features with the system
-      + but two things ONLY metaclasses can do are
-        + meta-methods
-        + meta-properties
+           + wrapping complexity for other programmers to use
+           + i.e. a domain-specific language
+           + generate classes/methods dynamically e.g. XML DTDs:
 
-        + metamethods    -- class descriptor for applying a function to the target (a *class*)
-        + classmethods   -- instance descriptors for applying a function to the target (a *class*)
-        + staticmethods
-        + methods        -- instance descriptors for applying a function to the target (an *instance*)
+      ..
 
-      + classes/types are not particulary active things
+      + metaclasses do not (directly) affect instance's:
 
-      + the inheritance pattern is a programmer labor-saving mechanism that seeks to
-        minimize code duplication among object-types
+        .. class:: incremental
 
-      + metaclasses do not
-        + affect namespace lookup
-        + affect method-resolution order
-        + affect descriptor retrieval
+           + namespace lookup
+           + method-resolution order
+           + descriptor retrieval
 
-Sample Problem #2: ??? validation of class definitions and attribute types
-==========================================================================
+Example #2: Define a Class from an SQL Table Definition
+=======================================================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      +  ??? validation of class definitions and attribute types
-      + attach a special meaning to certain attributes; when they are present, do something with them.
-      + tagging attrs with type/value constraints
+      | class Member(object):
+      |     __metaclass__ = DatabaseTable
+      |
+      |     `dbtable = 'Members'  # a declaration`
 
-      + final classes are a form of definition constraint
-      + check classes for conformance to your requirements
-        find all classes using object.__subclasses__()
-      + defer such checking to unit tests?  something at import time
+      | class DatabaseTable(type):
+      |
+      |     `def __init__(cls, name, bases, class_dict):`
+      |         `#from dbsetup import dbconn`
+      |         `col_defs = dbconn.query_cols(table=class_dict['dbtable'])`
+      |         `for col_def in col_defs:`
+      |             `dbcolumn = wrap_col_rdwr(col_def) # a descriptor`
+      |             `setattr(cls, col_def.name, dbcolumn)`
 
-A Solution to #2: ??? metaclasses
-=================================
+      + "process human-friendly decls into machine-friendly"
 
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + the metaprogramming we do consider often focuses on static initialization of pgms
-      + like decorators and metaclasses
-
-      + instance.__class__.__class__     (a metaclass)
-      + named 'type'
-      + a class is a factory for instances
-      + a metaclass is a factory for classes
-
-      + a class captures common functionality among a group of instances
-        + shared (instance) methods
-        + default attributes
-        + shared storage
-      + a metaclass captures common functionality among a group of classes
-        + shared (class) methods
-        + ???
-
-      + an instance knows its class solely by __class__, which can be changed.
-
-      + "the interpreter asks questions about the class to answer questions about the instance"
-
-      + metaclass hooks for attribute access ONLY intercept class-object lookups, NOT instance-object lookups.
-
-      + the API for a class:
-        __name__, __bases__, __module__, __dict__, __mro__, etc.
-
-      + metaclass execution focuses on initialization of the class; runs at import time.
-
-      + metaclasses intercepts statement completion:
-      +   cls = metaclass(name, bases, dict)
-      + metaclass's __call__ is invoked, which itself then calls __new__ and __init__
-
-      + extending the language with new "types of classes"
-
-      + "This conforms to/implements one of those."
-      + "This is persistent."
-      + "This is thread-sensitive."
-
-      + Find all classes representing storable elements and use them during I/O.
-      + Find all caches in system.
-
-      + enforce coding standards
-        + must have docstring
-        + method names
-        + inheritance depth
-        + complain about missing security declarations
-        + ensure all abstract methods of the parent are defined in the child class
-      +  (beware of middle abstract classes)
-
-      + "process human-friendly declarative structures (security) into machine-friendly structures)
-
-      + create classes/methods from:
-        + XML DTDs
-        + VRML PROTOs
-        + DB Connections
-        + IDL
-
-Solution 2a: (scenario: each class wraps one SQL table; set up the attributes from the DB)
-==========================================================================================
+Example Problem #2 (cont'd)
+===========================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + someone declares their class wraps an SQL table; introspect the columns of
-        that table and provide descriptors for each one, including type contraints.
+      | def wrap_col_rdwr(col_def):
+      |
+      |     `def get_dbcol_value(self):`
+      |         `return self.__dict__.get(col_def.name, None)`
+      |
+      |     `def set_dbcol_value(self, value):`
+      |         `value = col_def.validate(value)`
+      |         `self.__dict__[col_def.name] = value`
+      |
+      |     return property(get_dbcol_value, set_dbcol_value)
 
-      + class/instance  ::  table/row     a shared context
-        a useful example of class methods and instance methods i.e. Members
-          nrecs = len(Members)
-          m = Members.load(...)
-          m = Members(...)
-          m.save()
+      + tag attrs with type/value constraints
+      + check class for conformance to your requirements
 
-Contrasting Metaclasses with Class Decorators (briefly) and their benefits
-==========================================================================
+        .. class:: incremental
+
+           + must have docstring
+           + spelling of method names
+           + max inheritance depth
+           + insure abstract methods of superclass are defined
+
+Metaclasses versus Class Decorators
+===================================
 
 .. container:: slide-display
 
    .. class:: incremental
 
       + metaclasses?  class decorators?
-        + the latter are much simpler
-        + anything you can do with the latter you can do with the former
-        + only a metaclass can add methods to the class itself
-        + @classmethods provide class-level services -to- instances
-        + metaclass methods provide class-services to the class itself
 
-      + class decorators are NOT inherited, metaclasses are.
-      + class decorators can be (easily) stacked, metaclasses are more difficult to stack.
+        .. class:: incremental
 
-      + class decorators can be used for:
-        - interface/definition verification
-        - transform methods (remove docstrings)
-        - register class
-        - decorate methods for logging, authorization
-        - add new methods, e.e. for rich comparison
+           + the latter are much simpler
+           + the latter can do almost everything the former can
+           + only a metaclass can add methods to the class itself
 
-      + meta-properties
-        properties of class objects accessed via class.name
-        - let you attach stuff to classes without cluttering the instance namespace
+           ..
 
-      + meta-methods
-        methods which can be called on the class object but are NOT visible to instances
+           + class-level services (methods):
 
-treating classes as more than containers of methods
-===================================================
+             .. class:: incremental
+
+                + @classmethods provide them -to- instances
+                + metaclass methods provide them to the class itself
+
+      + ONLY a metaclass can add to class attrs not visible to *self*:
+
+        1. meta-methods
+        2. meta-properties
+
+      + class decorators can be (more easily) stacked
+      + class decorators are NOT inherited (metaclasses are)
+
+About Meta-Inheritance
+======================
+
+.. container:: slide-display animation
+
+   .. class:: incremental
+
+      .. container:: handout
+
+         |                                    |      class TagClass(type):
+         | def TagClass(cls):                 |          def __init__(cls, name, bases, class_dict):
+         |     cls.__special__ = True         |              cls.__special__ = True
+         |     return cls
+
+         | @TagClass
+         | class Alpha(object):               |      class Alpha(object):
+         |     pass                           |          __metaclass__ = TagClass
+
+         | '__special__' in Alpha.__dict__    |      '__special__' in Alpha.__dict__
+         | >>> True                           |      >>> True
+
+         | class Beta(Alpha):                 |      class Beta(Alpha):
+         |     pass                           |          pass
+
+         | '__special__' in Beta.__dict__     |       '__special__' in Beta.__dict__
+         | >>> False                          |        >>> False
+
+      .. image:: graphics/mcd-defns.gif
+      .. image:: graphics/mcd-use1.gif
+      .. image:: graphics/mcd-use1-test.gif
+      .. image:: graphics/mcd-use2.gif
+      .. image:: graphics/mcd-use2-test.gif
+
+
+Example #3: Log the Arguments/Return Value of Method Calls
+==========================================================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + about __subclasses__(); use to tell a metaclass to flush each caching class?
-      + at unittest time, tell metaclasses to verify each of their classes
-      + how to walk all classes in a program, in order to validate things about them
-      + can I find all nested classes?  are they missing a __module__ or __file__?
+      |  @tracecalls
+      |  class Paragraph(object):
+      |
+      |      def lead_in(self, count, char='*'):
+      |          return char * count
 
-      + metaclasses let you share code among multiple meta*classes*.  Treats classes
-        more like objects -- they come and go, are duplicated, collected, iterated
-        over.  A custom class appears for each domain object found.
+      |  >>> x = Paragraph()
+      |  >>> x.lead_in(4)
+      |  Called <bound method Paragraph.lead_in of <\__main__.Paragraph object at> 0xb7162c4c>> args=(4,), kw={} got '\*\*\*\*'
+      |  '\*\*\*\*'
 
-        Good for modeling systems with class-like behavior?
+Example #3 (cont'd)
+===================
 
-        Domain objects show up in pgms as classes and instances.
-
-Diagram - The Mechanism of Attribute Lookup (the call chain)
-============================================================
-
-.. container:: slide-display
+.. container:: slide-display animation
 
    .. class:: incremental
 
-      #. data descriptors
-      #. instance variables via __dict__
-      #. non-data descriptors
-      #. __getattr__ method
-
-      + But What About The Old Way?
-
-        + __getattr__(name) -> value
-        +   still there in new-style classes
-
-        + __getattribute__(name) -> value
-        +   added for new-style classes
-
-        + __getattribute__ is **always** called; __getattr__ is only called if the name
-        + is not found in the instance dictionary.
-
-      + Making a Read-Only Data Descriptor
-
-        + define both __get__ and __set_
-        + have __set__ raise an AttributeError
-
-      + differs between classes, instances and super()
-      + search the instance __dict__
-      + then the class's __dict__
-      + then each base class __dict__
-      + *excludes* metaclasses
-      + overriding __getattribute__ breaks descriptors
-
-      + __getattr__ is perfect for delegation, since it only gets called if not found elsewhere!
-
-How Descriptors Work
-====================
-
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + a thing you place into an object __dict__
-      + that intercepts the dot-attribute mechanism
-      + ? there is one per attribute you override
-      + ? wait, how does it tell whether the value is to be returned or is a desc
-        (answer: if the thing has __get__)
-      + creating one of these is expensive in time, and takes up space in each instance
-      + ! therefore it goes into the class __dict__, not the instance __dict__
-      + ! which means, since it is shared across all instances, the desc has to be passed a ref to the instance __dict__
-      + ? where does a descriptor store the actual value then?  if it doesn't compute it of course.
-
-      + a descriptor does NOT know the name of the attribute it sits on!
-      + a descriptor is SHARED across all instances of the class to which it is attached!
-
-      + intercept the 'dot' operator of attribute lookup
-      + come in two flavors
-
-        + data descriptor?
-        + method descriptor?
-
-      + Data descriptors have both a __get__ and a __set__ attribute. Examples are
-        properties (defined in Python), getsets, and members. The latter two are
-        defined in C and there are more specific tests available for those types,
-        which is robust across Python implementations. Typically, data descriptors
-        will also have __name__ and __doc__ attributes (properties, getsets, and
-        members have both of these attributes), but this is not guaranteed.
-
-      ::
-        __name__   # attribute's name
-        __doc__    # attribute's docstring
-        [descriptor].__get__(self, obj, type=None) -> value
-        [descriptor].__set__(self, obj, value) -> None
-        [descriptor].__delete__(self, obj) -> None
-
-        If both __get__ and __set__ are defined
-          then it is a **data descriptor** (like simple attributes)
-
-        If just __get__ are defined
-          then it is a **non-data-descriptor** (like methods)
-
-      1. Properties normally store their data in their instance dict.
-      2. For classes, the dict of their properties is the dict of the class.
-      3. Items in the class dict are *visible* to instances!
-
-examples of descriptors in-use today
-====================================
-
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + argument currying: methods, classmethods, staticmethods
-      + properties
-      + using descriptors for caching, even externally applied
-      + (back to diagram; show how placing a desc into class __dict__ goes *in front*)
-      + giving back a different method based on other state in the instance
-
-      + what can descriptors do?
-        staticmethod()
-        classmethod()
-        property()
-        methods fm functions
-        lazy properties
-        cached properties
-        super()
-
-Descriptor Machinery for Classes
---------------------------------
-
-Implemented in *type.__getattribute__*
-
-Example: A.x
-
-::
-
-  descriptor = A.__class__.x
-  descriptor.__get__(instance=None, instance_type=self)
-
-  def __getattribute__(self, key):
-    v = object.__getattribute__(self, key)
-    if hasattr(v, '__get__'):
-      return v.__get__(None, self)
-    return v
-
-Descriptor Machinery for Instances
-----------------------------------
-
-Implemented in *object.__getattribute__*
-
-Example: a.x
-
-::
-
-  descriptor = a.__class__.x
-  descriptor.__get__(instance=a, instance_type=type(a))
-
-Use of Descriptors in property() builtin
-----------------------------------------
-
-::
-
-  class MyClass(object):
-    def x(self):
-      def get(self):
-        return self.__x
-      def set(self, value):
-        self.__x = value
-      def del(self):
-        del self.__x
-    x = property(x.get, x.set, x.del, "'x' property")
-
-
-Example 2 - Implementation of *property*
-----------------------------------------
-
-::
-
-  class Property(object):
-    def __init__(self, fget=None, fset=None, fdel=None, doc=None):
-      self.fget = fget
-      self.fset = fset
-      self.fdel = fdel
-      self.__doc__ = doc
-
-    def __get__(self, instance, instance_type=None):
-      if instance is None:
-        return self
-      if self.fget is None:
-        raise AttributeError, "unreadable attribute"
-      return self.fget(instance)
-
-(continued)
-
-Example 2 - cont'd
-------------------
-
-::
-
-    def __set__(self, instance, value):
-      if self.fset is None:
-        raise AttributeError, "can't set attribute"
-      self.fset(instance, value)
-
-    def __delete__(self, instance):
-      if self.fdel is None:
-        raise AttributeError, "can't delete attribute"
-      self.fdel(instance)
-
-Example 3 - Implementation of Python Methods
---------------------------------------------
-
-Python is built upon a function-based environment.  Non-data descriptors add
-the object-oriented features by binding functions into methods.
-
-Class __dict__ store methods as functions.
-
-::
-
-  class FunctionDesc(object):
-    def __get__(self, instance, instance_type=None):
-      return types.MethodType(self, instance, instance_type)
-
-::
-
-  class D(object):
-    def f(self, x): # implicit f = FunctionDesc(codeblock)
-        return x
-  d = D()
-
-  # D.__dict__['f']
-  <function f>
-
-  # D.f   (unbound method)
-  type(D).__dict__['f'].__get__(None, self)
-
-  # d.f   (bound method)
-  type(d).__dict__['f'].__get__(d, type(d))
-
-Example 4 - Implementation of StaticMethod builtin
---------------------------------------------------
-
-Lack any reference to the class or instance.
-
-::
-
-  class StaticMethod(object):
-    def __init__(self, f):
-      self.f = f
-
-    def __get__(self, instance, instance_type=None):
-      return self.f
-
-Example 4 - Implementation of ClassMethod builtin
--------------------------------------------------
-
-Lack any reference to the instance *but* has one to the class.
-
-Useful for alternate class constructors, such as Dict.fromkeys().
-
-::
-
-  class ClassMethod(object):
-    def __init__(self, f):
-      self.f = f
-
-    def __get__(self, instance, instance_type=None):
-      if instance_type is None:
-         instance_type = type(instance)
-
-      def newfunc(*args):
-         return self.f(instance_type, *args)
-      return newfunc
-
-Sample Problem #3: ??? recording state changes
-==============================================
-
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + ???
-
-A Solution to #3: ??? descriptors
+      .. container:: handout
+
+         | def CaptureCalls(orig_cls):
+         |
+         |     def my__getattribute__(self, name):
+         |         attr = super(orig_cls, self).__getattribute__(name)
+         |         return attr if not callable(attr) else CallWrapper(attr)
+         |
+         |     orig_cls.__getattribute__ = my__getattribute__
+         |     return orig_cls
+
+         | def CallWrapper(func):  # as a closure
+         |
+         |     def whencalled(*args, **kw):
+         |         rc = func(*args, **kw)
+         |         print "Called %s args=%r, kw=%r got %r" % (func, args, kw, rc)
+         |         return rc
+         |
+         |    return whencalled
+
+         | class CallWrapper(object):  # as a class
+         |
+         |     def __init__(self, func):
+         |         self.func = func
+         |
+         |     def __call__(self, *args, **kw):
+         |         rc = self.func(*args, **kw)
+         |         print "Called %s args=%r, kw=%r got %r" % (self.func, args, kw, rc)
+         |         return rc
+
+      .. image:: graphics/tr-bare.gif
+      .. image:: graphics/tr-getattr.gif
+      .. image:: graphics/tr-super.gif
+      .. image:: graphics/tr-callable.gif
+      .. image:: graphics/tr-wrapper.gif
+      .. image:: graphics/tr-cls-wrapper.gif
+
+Lull After Metaclasses, Before Descriptors
+==========================================
+
+.. container:: slide-display center
+
+   .. image:: graphics/after-metaclasses-breathing.jpg
+
+   + (pause - take a deep breath...)
+
+The Mechanism of Attribute Lookup
 =================================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + ???
+      | def __getattribute__(self, name):  # symbolic, not actual
+      |
+      |     `inst_v = self.__dict__.get(name, Missing)`
+      |     `if inst_v is not Missing:`
+      |         `return inst_v                               # return the instance attr value`
+      |
+      |     `cls_v = lookthrough__dict__s(self.__class__, name, Missing)`
+      |     `if cls_v is not Missing:`
+      |         `return cls_v                                # return the class attr value`
+      |
+      |     `meth = lookthrough__dict__s(self.__class__, '__getattr__', Missing)`
+      |     `if meth is not Missing:`
+      |         `return meth(name)`
+      |
+      |     raise AttributeError
 
-Extra
-=====
+When to Use Which Lookup Mechanism
+==================================
+
+.. container:: slide-display
+
+   + if you want to see
+
+   .. class:: incremental
+
+      + every attribute lookup, override **__getattribute__**
+      + many attribute lookups, add your own **__getattr__**
+
+        .. class:: incremental
+
+           + doesn't see all because only called as a last resort
+           + therefore perfect for delegation
+
+      + one attribute lookup, add a **descriptor**
+
+      ..
+
+      + __setattr__(self, name, value)  # to override storing value into self.__dict__
+      + __delattr__(self, name)
+
+Example 4: Overriding __getattr__
+=================================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + extra1 - making an attribute readonly
-      + extra2 - making an attribute private
+      + a wrapper around a bitmap element with a width and height
+      + internally measured in pixels, but externally as inches
 
-How Do Decorators Work?  the 3-things a decorator can do
-========================================================
+      | class Page(Bitmap):
+      |
+      |     def __getattr__(self, name):
+      |         if name == 'width':  return self.__dict__['_width'] / 600 #dpi
+      |         if name == 'height': return self.__dict__['_height'] / 600 #dpi
+      |         raise AttributeError, name
+      |
+      |     def __setattr__(self, name, value):
+      |         if name == 'width':  self.__dict__['_width'] = value * 600 #dpi
+      |         if name == 'height': self.__dict__['_height'] = value * 600) #dpi
+      |
+      |     def __repr__(self):
+      |         return "Page(%d x %d inches" % (self.width, self.height)
 
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + registering *username* with some entity::
-
-         def export(func):
-             api_register(func)
-             return func
-
-      + tagging *username* with additional metadata::
-
-         def export(func):
-             func.__export__ = True
-             return func
-
-      + inserting code between the caller and callee::
-
-         def export(func):
-             def trace(*args, **kw):
-                 rc = func(*args, **kw)
-                 print args, kw, rc
-                 return rc
-             return trace
-
-Sample Problem #4: ??? finding out who is opening a file!
-=========================================================
+Example 4: Using a Descriptor
+=============================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + ???
+      | class Page(Bitmap):
+      |
+      |     `width = DimensionInches('width')   # a descriptor`
+      |     `height = DimensionInches('height') # a descriptor`
+      |
+      |     def __repr__(self):
+      |         return "Page(%d x %d inches)" % (self.width, self.height)
 
-A Solution to #4: ??? external decorating __builtin__
-=====================================================
+      | class DimensionInches(object):
+      |     def __init__(self, attrname):
+      |         self.attrname = attrname
+      |     `def __get__(self, instance, owner):   # gives 'binding behavior'`
+      |         `return instance.__dict__[self.attrname] / 600 #dpi`
+      |     `def __set__(self, instance, value):`
+      |         `instance.__dict__[self.attrname] = value * 600 #dpi`
+      |     `def __delete__(self, instance):`
+      |         `del instance.__dict__[self.attrname]`
 
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + can filter on path, name, caller
-      + can hook the .close method of a specific instance???
-
-      + applying function decorators from outside
-      + applying class decorators from outside
-
-      + more descriptors; using get-overrides to catch file opens, in order to understand a complex pgm
-        but maybe just for opens of files in a specific directory or a particular name
-
-        + (talk about fstozodb.log or fax/ directory that keeps popping up; show traceback)
-        + (talk about *changing* the name or directory of a file being opened)
-
-Sample Problem #5: ??? tracing the cause of a slowdown
-======================================================
-
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + in-out phase checking
-
-        + (use it to measure time for a call)
-        + (use it to toggle logging on/off)
-
-A Solution to #5: hooking the operation, measuring the time and saving the log -if- the problem showed up
-=========================================================================================================
-
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + ???
-
-      + can filter on details of events, not just the overall event
-        + import of a specific module
-        + call to a function -from- a specific module
-        + make attrs read-only or invisible outside their creator
-        + record their performance
-
-     + catch file opens, in a specific directory
-     + toggle logging on/off only within a specific section of code or when something looks wrong
-
-Summarizing the Benefits of Metaprogramming
-===========================================
-
-.. container:: slide-display
-
-   .. class:: incremental
-
-      + adopting a more declarative style
-        + less programmer work, less human error
-        + hiding necessary magic
-      + adapting to negotiated protocols
-        + XML-based
-        + capability-adjusted for security, performance
-      + better control of unchangable legacy programs
-        + monkeypatching, hooking into control flows
-      + tracking down difficult runtime problems
-        + protecting readonly, private attributes
-        + capturing changes in state
-        + limiting the quantity of logging needed (just-in-time)
-      + testing your knowledge of a complex system
-        + what modules or files are used?
-        + probing for expensive operations
-      + trying out experimental changes
-        + new caching algorithms
-
-Sumarizing the The Drawbacks of Metaprogramming
+The Mechanism of Attribute Lookup (descriptors)
 ===============================================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + influences not visible in code, hard to understand
-      + requires a different perspective on programming
-      + can interfere with pgm performance, correctness
+      | def __getattribute__(self, name):
+      |     cls_v = lookthrough__dict__s(self.__class__, name, Missing)
+      |
+      |     `if hasattr(cls_v, '__get__') and hasattr(cls_v, '__set__'):`
+      |        `return cls_v.__get__(self, self.__class__)   # invoke data descriptor`
+      |
+      |     inst_v = self.__dict__.get(name, Missing)
+      |     if inst_v is not Missing:
+      |         return inst_v                               # return the instance attr value
+      |
+      |     `if hasattr(cls_v, '__get__'):`
+      |         `return cls_v.__get__(self, self.__class__)  # invoke non-data descriptor`
+      |
+      |     if cls_v is not Missing: return cls_v            # return the class attr value
+      |     if hasattr(cls, '__getattr__'): return cls.__getattr__(name)
+      |     raise AttributeError
 
-
-A Few Ideas for Metaprogramming (show code as time is available; else skip)
-===========================================================================
+What is a descriptor?
+=====================
 
 .. container:: slide-display
 
    .. class:: incremental
 
-      + @atomic, @immuitable, @trackexceptions, @trackinstances
-      + detect in SQL if any inserts took place; and the slowest 10 operations
-      + detect the most number of threads running concurrently
-      + log all calls from module X to function Y
+      + an object you place into the class attributes
+      + a plug-in to the lookup mechanism
+      + is shared by all instances, passed the 'instance' at each use
+
+      ..
+
+      + recognized by having a __get__ method, not by its class
+      + does not know its name (hence reusable)
+      + there is one per attribute to be overridden
+
+      ..
+
+      + may store its value in:
+
+        .. class:: incremental
+
+           + the instance __dict__ (perhaps a different name)
+           + some other place
+           + or just compute it as needed
+
+Who uses descriptors?
+=====================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      + argument currying (non-data descriptors; __get__ only)
+
+      .. class:: monospaced
+
+         + method objects:  self.display(a, b)   ==>  cls.display(self, a, b)
+         + classmethods:    self.display(a, b)   ==>  cls.display(cls, a, b)
+         + staticmethods:   self.display(a, b)   ==>  cls.display(a, b)
+
+      + Python properties (data descriptors; __get__ and __set__)
+
+        + attrname = property(fget, fset, fdel, doc)
+
+      ..
+
+      + recalculation after a setattr()
+
+      ..
+
+      + caching/lazy computation of a value
+
+Caching an Attribute Value
+==========================
+
+.. container:: slide-display
+
+   .. container:: sidebox boxed
+
+      >>> p = Photo()
+      >>> p.thumbnail    # computes thumbnail
+      >>> p.thumbnail    # fetched from self.__dict__
+      >>>
+      >>> del p.__dict__['thumbnail']
+      >>> p.thumbnail    # computes again
+      >>> p.thumbnail    # already cached again
+
+   .. class:: incremental
+
+      | class ThumbnailBuilder(object):
+      |
+      |     def __init__(self, attrname, filename):
+      |         self.attrname = attrname
+      |         self.filename = filename
+      |
+      |     # non-data descriptor **behind** self.__dict__
+      |     def __get__(self, instance, owner):
+      |         with file(self.filename) as f:
+      |             data = f.read()
+      |             instance.__dict__[self.attrname] = data
+      |             return data
+
+      | class Photo(object):
+      |     thumbnail = ThumbnailBuilder('thumbnail.gif')
+
+Declare an Attribute Private to a Class
+=======================================
+
+.. container:: slide-display
+
+   .. container:: sidebox boxed
+
+      | def _ck_owner(self, obj):
+      |
+      |     caller_locals = sys._getframe(2).f_locals
+      |
+      |     if 'self' in caller_locals and caller_locals['self'] == obj:
+      |         return
+      |
+      |     raise NameError("Attr %r of class %r is private." % (
+      |         self.attrname, obj))
+
+   .. class:: incremental
+
+      | import sys
+      |
+      | class private(object):
+      |
+      |     def __init__(self, attrname):
+      |         self.attrname = attrname
+      |
+      |     def __get__(self, obj, type=None):
+      |         self._ck_owner(obj)
+      |         return obj.__dict__[self.attrname]
+      |
+      |     def __set__(self, obj, value):
+      |         self._ck_owner(obj)
+      |         obj.__dict__[self.attrname] = value
+
+For Unit Testing, Tracking Changes in a Value
+=============================================
+
+.. container:: slide-display
+
+   .. container:: sidebox boxed
+
+      >>> from parser import StateMachine
+      >>> vt = ValueTracker(StateMachine, 'state')
+
+      >>> main()
+
+      >>> for h in vt.history:
+      >>>     print h
+      (0, 'target_trackstate.py', 6, '__init__')
+      (1, 'target_trackstate.py', 9, 'advance')
+      (2, 'target_trackstate.py', 9, 'advance')
+      (3, 'target_trackstate.py', 9, 'advance')
+
+   .. class:: incremental
+
+      | import sys, import inspect
+      | class ValueTracker(object):
+      |
+      |     def __init__(self, tgt_cls, attrname):
+      |         self.attrname = attrname
+      |         self.history = []
+      |         setattr(tgt_cls, attrname, self)
+      |
+      |     def __get__(self, obj, type=None):
+      |         return instance.__dict__[self.attrname]
+      |
+      |     def __set__(self, obj, value):
+      |         instance.__dict__[self.attrname] = value
+      |
+      |         finfo = inspect.getframeinfo( sys._getframe(1) )
+      |         self.history.append((value, finfo.filename,  finfo.lineno, finfo.function))
+
+Questions?
+==========
+
+.. container:: slide-display center
+
+   .. image:: graphics/questions-relaxation.jpg
+
+   Metaprogramming is fun!
+
+   .. class:: huge
+
+      `Questions?`
+
+Sample Code - A Randomizing Descriptor
+======================================
+
+.. container:: slide-display
+
+   .. class:: incremental
+
+      | import random
+      |
+      | class Die(object):
+      |     def __init__(self, sides=6):
+      |         self.sides = sides
+      |
+      |     def __get__(self, instance, owner):
+      |         return int(random.random() * self.sides) + 1
+
+      | class Game(object):
+      |     strike = Die()        # random 6-sized die for odds of striking
+      |     save = Die(sizes=10)  # random 10-sized die for odds of saving
+
+For Debugging, Catching Writes to an Attribute
+==============================================
+
+.. container:: slide-display
+
+   .. container:: sidebox boxed
+
+      >>> Trouble.total = immutable('total')  # outside
+
+      + any writes will give us a traceback to the culprit!
+
+      >>> del Trouble.total
+
+      + immutable trigger removed, instance value still there
+
+   .. class:: incremental
+
+      | class immutable(object):
+      |
+      |     def __init__(self, attrname):
+      |         self.attrname = attrname
+      |
+      |     def __get__(self, instance, owner):
+      |         return instance.__dict__[self.attrname]
+      |
+      |     # data descriptor **in-front-of** self.__dict__
+      |     def __set__(self, instance, value):
+      |         raise AttributeError, "Writing to immutable %s" % self.attrname
+
+      | class Trouble(object):
+      |
+      |     def compute(self):
+      |         self.total = (a.bal for a in ledger)
+
+A Few More Ideas for Metaprogramming
+====================================
+
+.. container:: slide-display
+
+   .. class:: incremental
 
       ::
-
-        @atomic
-        def func(...):
-
-        @secure(LDAP)
-        def func(...):
-
-        @immutable
-        (some attr)
-
-        @addtoclass(Moonbase)  # operates at import time
-        def hello(self, code, priormeth=xxx):
-          print "Hello"
-          self.greeting(68)
 
         @trackexceptions
         def func(...):
@@ -953,21 +993,98 @@ A Few Ideas for Metaprogramming (show code as time is available; else skip)
         @trackexceptions(methpatt="get_")
         class C(...):
 
+      ::
+
+        @trackinstances
+        class C(...):
+
+      ::
+
         @internalmethod
         def greetings(self, x):
 
-        @trackinstances(checker=myfunc)
-        class C(...):
+      + detect the most number of threads running concurrently
+      + log all calls from module X to function Y
 
-Questions?
-==========
+      ::
+
+        @addtoclass(Moonbase)  # at import time
+        def hello(self, code, priormeth=None):
+          print "Hello"
+          self.greeting(68)
+
+
+
+
+
+
+
+Sample Code - Binding of Functions into Methods
+===============================================
 
 .. container:: slide-display
 
-   .. class:: huge
+Class __dict__ store methods as functions.
 
-      `Questions?`
+Python is built upon a function-based environment.  Non-data descriptors add
+the object-oriented features by binding functions into methods.
 
+   .. class:: incremental
+
+      | class MethodDescriptor(object):
+      |     def __get__(self, instance, instance_type=None):
+      |         return types.MethodType(self, instance, instance_type)
+
+      | class D(object):
+      |     def func(self, x):
+      |         return x
+
+      >>> D.__dict__['f']
+      <function func at 0xb73ebf7c>
+
+      >>> D.f                 # type(D).__dict__['func'].__get__(None, self)
+      <unbound method D.func>
+
+      >>> d = D()
+      >>> d.f                 # type(d).__dict__['f'].__get__(d, type(d))
+      <bound method D.func of <__main__.D object at 0xb71c794c>>
+
+
+
+
+  Monitor Who is Opening Which Files
+
+  .. container:: slide-display
+
+     .. class:: incremental
+
+
+
+
+
+
+
+  A Solution to #8: ??? external decorating __builtin__
+
+  .. container:: slide-display
+
+     .. class:: incremental
+
+        + can filter on path, name, caller
+        + can hook the .close method of a specific instance???
+
+        + applying function decorators from outside
+        + applying class decorators from outside
+
+        + more descriptors; using get-overrides to catch file opens, in order to understand a complex pgm
+          but maybe just for opens of files in a specific directory or a particular name
+
+          + (talk about fstozodb.log or fax/ directory that keeps popping up; show traceback)
+          + (talk about *changing* the name or directory of a file being opened)
+
+
+No More
+=======
 
 
 ::
@@ -1069,6 +1186,470 @@ Questions?
       metaclass(name, bases, dict)  ===>  metaclass.__class__.__call__(name, bases, dict)
                         invokes metaclass.__new__  and  metaclass.__init__
 
+      + final classes are a form of definition constraint
+        find all classes using object.__subclasses__()
+      + defer such checking to unit tests?  something at import time
+
+      + someone declares their class wraps an SQL table; introspect the columns of
+        that table and provide descriptors for each one, including type contraints.
+
+      + class/instance  ::  table/row     a shared context
+        a useful example of class methods and instance methods i.e. Members
+          nrecs = len(Members)
+          m = Members.load(...)
+          m = Members(...)
+          m.save()
+
+      + about __subclasses__(); use to tell a metaclass to flush each caching class?
+      + at unittest time, tell metaclasses to verify each of their classes
+      + how to walk all classes in a program, in order to validate things about them
+      + can I find all nested classes?  are they missing a __module__ or __file__?
+
+      + metaclasses let you share code among multiple meta*classes*.  Treats classes
+        more like objects -- they come and go, are duplicated, collected, iterated
+        over.  A custom class appears for each domain object found.
+
+        Good for modeling systems with class-like behavior?
+
+        Domain objects show up in pgms as classes and instances.
+
+
+  object.__getattribute__(name)
+    b.x
+    type(b).__dict__['x'].__get__(b, type(b))
+
+  data descriptors
+  instance variables
+  non-data descriptors
+  __getattr__
+
+  type.__getattribute__(name)
+    B.x
+    B.__dict__['x'].__get__(None, B)
+
+    def __getattribute__(self, key):
+      "Emulate type_getattro() in Objects/typeobject.c"
+      v = object.__getattribute__(self, key)
+      if hasattr(v, '__get__'):
+         return v.__get__(None, self)
+      return v
+
+   + descriptors are invoked by the __getattribute__ method (override it and they break)
+
+
+  a.x
+  a.__dict__['x'
+  type(a).__dict__['x'
+  (then base classes)
+
+  direct call:       a.x =>                      x.__get__(a)
+  instance binding:  a.x =>  type(a).__dict__['x'].__get__(a, type(a))
+    (has a precendence)
+    if no __get__, return the descriptor object itself, unless there is a value in the __dict__
+    if has __set__ and/or __delete__, then it is a data descriptor
+    if has neither __set__ nor __delete__, then it is a non-data descriptor
+      hence data descriptors override a redefinition in the instance
+      and non-data descriptors can be overridden by instances
+
+
+  class binding:     A.x =>        A.__dict__['x'].__get__(None, A)
+
+  object.__getattribute__(self, name)  # ALWAYS CALLED  (MAY BE BYPASSED BY IMPLICIT
+
+    "Special Method Lookup"   (for performance reasons)
+        len(x)  <==> type(x).__len__(x)   # looks up via metaclass __getattribute__
+        x.__len__()                       # looks up via class __getattribute__
+        len(x)                            # bypasses __getattribute__ and uses __len__ method defined in the class
+              (none of these ever look in the instance __dict__)
+
+
+  object.__getattr__(self, name)   # called when name has not been found in the usual places
+
+  object.__setattr__(self, name, value)  # called instead of storing value into __dict__
+
+  object.__delattr__(self, name)
+
+
+  (show 'binding behavior', i.e. a value stored WITHOUT __get__/__set__ and a value stored WITH them)
+
+
+      + except when it finds an object with a __get__/__set__
+
+  object.__get__(self, instance, owner)  # return value or AttributeError
+  object.__set__(self, instance, value)
+  object.__delete__(self, instance)
+
+      + neither 'type' nor 'object have a '__getattr__' method.
+
+  type
+  (__dict__/(dictproxy)
+    __call__                                  'type'  slot_tp_call?    x(...)  <==>  x.__call__(...)
+       lookup_method(self, '__call__') ==> _PyType_Lookup(mytype, attrname)
+    __delattr__               OBJECT?         'object'
+    __eq__                                    'type'
+    __ge__                                    'object'
+    __getattribute__          OBJECT?         'type'                   x.name  <==>  x.__getattribute__(name)
+
+           NAME                SLOT         FUNCTION              WRAPPER          DOC
+    TPSLOT("__getattribute__", tp_getattro, slot_tp_getattr_hook, wrap_binaryfunc, ""),
+    TPSLOT("__getattribute__", tp_getattr,  NULL,                 NULL,            ""),
+      slot_tp_getattro       used when __getattribute__ is overridden but no    __getattr__ is present
+      slot_tp_getattr_hook   used when a __getattr__ hook is present
+
+    __gt__                                    'object'
+    __hash__                  OBJECT?         'type'
+    __init__                  OBJECT?         'type'
+    __le__                                    'object'
+    __lt__                                    'object'
+    __ne__                                    'type'
+    __new__                   OBJECT?         'type'
+    __repr__                  OBJECT?         'type'
+    __setattr__               OBJECT?         'type'
+  (members)
+    __base__
+    __basicsize__
+    __dictoffset__
+    __flags__
+    __itemsize__
+    __mro__
+    __weakrefoffset__
+  (getsets)
+    __abstractmethods__ (R/W)
+    __bases__           (R/W)
+    __dict__            (R/O)
+    __doc__             (R/O)
+    __module__          (R/W)
+    __name__            (R/W)
+  (methods)
+    __instancecheck__
+    __subclasscheck__
+    __subclasses__
+    mro
+
+  (interesting)
+    tp_call ::= type_call()
+      obj = type->tp_new(type, args, kwds)
+      type->tp_init(obj, args, kwds)
+      return obj
+
+  tp_getattro ::= type_getattro(type, name)
+    metatype = Py_TYPE(type)
+
+    meta_attribute = _PyType_Lookup(metatype, name)         # look in the metatype
+    if meta_attribute:
+      meta_get = Py_TYPE(meta_attribute)->tp_descr_get
+      if meta_get and PyDescr_IsData(meta_attribute):       # use data desc in metatype
+          return meta_get(meta_attribute, type, metatype)
+
+    attribute = _PyType_Lookup(type, name)                  # look in tp_dict of this type *and* bases
+    if attribute:
+      local_get = Py_TYPE(attribute)->tp_desc_get
+      if local_get:
+          return local_get(attribute, NULL, type)
+      return attribute
+
+    if meta_get:                                            # use non-data desc in metatype
+      return meta_get(meta_attribute, type, metatype)
+
+    if meta_attribute:
+      return meta_attribute
+
+    raise AttributeError
+
+  tp_setattro ::= type_setattro()
+  tp_new ::= type_new()
+  tp_init ::= type_init()
+
+  object_new()
+  object_init()
+
+
+  call_method()
+  call_maybe()
+  PyObject_CallMethod()
+  _PyType_Lookup(type, '__dict__')
+  lookup_maybe()
+  lookup_method()
+  _PyObject_LookupSpecial()
+
+
+  Does a 'type' have its own internal dictionary?  Really?
+
+
+  type.__base__  ---> object
+  type           <--- object.__class__
+  None           <--- object.__base__
+  type.__class__ ---> type
+
+
+  object
+    (__dict__)
+      __delattr__                             'object'
+      __doc__
+      __getattribute__                        'object'
+      __hash__                                'object'
+      __init__                                'object'
+      __new__                                 'type'
+      __repr__                                'object'
+      __setattr__                             'object'
+      __str__                                 'object'
+    (getsets)
+      __class__       (R/W)
+    (methods)
+      __format__
+      __reduce__
+      __reduce_ex__
+      __sizeof__
+      __subclasshook__
+    (members)
+      EMPTY
+
+  tp_getattro ::= PyObject_GenericGetAttr
+  tp_setattro ::= PyObject_GenericSetAttr
+  tp_new      ::= object_new(type, args, kwds)
+  tp_init     ::= object_init # NOP
+
+
+  PyObject_GetAttrString(obj, name)
+    if Py_TYPE(obj)->tp_getattr:
+        return Py_TYPE(obj)->tp_getattr(obj, name)
+    return PyObject_GetAttr(obj, name)
+
+  PyObject_GetAttr(obj, name)
+    tp = Py_TYPE(obj)
+    if tp->tp_getattro:
+        return tp->tp_getattro(obj, name)
+    if tp->tp_GETATTR:
+        return tp->tp_getattr(obj, name)
+    raise AttributeError
+
+
+  Descriptor Machinery for Classes
+  --------------------------------
+
+  Implemented in *type.__getattribute__*
+
+  Example: A.x
+
+  ::
+
+    descriptor = A.__class__.x
+    descriptor.__get__(instance=None, instance_type=self)
+
+    def __getattribute__(self, key):
+      v = object.__getattribute__(self, key)
+      if hasattr(v, '__get__'):
+        return v.__get__(None, self)
+      return v
+
+  Descriptor Machinery for Instances
+  ----------------------------------
+
+  Implemented in *object.__getattribute__*
+
+  Example: a.x
+
+  ::
+
+    descriptor = a.__class__.x
+    descriptor.__get__(instance=a, instance_type=type(a))
+
+
+  How Do Decorators Work?  the 3-things a decorator can do
+
+  .. container:: slide-display
+
+     .. class:: incremental
+
+        + registering *username* with some entity::
+
+           def export(func):
+               api_register(func)
+               return func
+
+        + tagging *username* with additional metadata::
+
+           def export(func):
+               func.__export__ = True
+               return func
+
+        + inserting code between the caller and callee::
+
+           def export(func):
+               def trace(*args, **kw):
+                   rc = func(*args, **kw)
+                   print args, kw, rc
+                   return rc
+               return trace
+
+  Sample Problem #9: ??? tracing the cause of a slowdown
+
+  .. container:: slide-display
+
+     .. class:: incremental
+
+        + in-out phase checking
+
+          + (use it to measure time for a call)
+          + (use it to toggle logging on/off)
+
+  A Solution to #9: hooking the operation, measuring the time and saving the log -if- the problem showed up
+
+  .. container:: slide-display
+
+     .. class:: incremental
+
+        + ???
+
+        + can filter on details of events, not just the overall event
+          + import of a specific module
+          + call to a function -from- a specific module
+          + make attrs read-only or invisible outside their creator
+          + record their performance
+
+       + catch file opens, in a specific directory
+       + toggle logging on/off only within a specific section of code or when something looks wrong
+
+
+      + special methods: __XXX__ bypass descriptors, for performance, avoid recursion
+      + there are two kinds of descriptors; data and non-data
+        + non-data: methods, staticmethod, classmethod
+        + data: property
+      + to make a data descriptor read-only
+        + define both __get__ and __set_
+        + have __set__ raise an AttributeError
+      + neither 'type' nor 'object have a '__getattr__' method.
+
+      + implementor of descriptor behavior for
+        + classes, type.__getattribute__
+        + instances, object.__getattribute__
+
+  Use of Descriptors in property() builtin
+  ----------------------------------------
+
+  ::
+
+    class MyClass(object):
+      def x(self):
+        def get(self):
+          return self.__x
+        def set(self, value):
+          self.__x = value
+        def del(self):
+          del self.__x
+      x = property(x.get, x.set, x.del, "'x' property")
+
+  Example 4 - Implementation of *property*
+  ----------------------------------------
+
+  ::
+
+    class Property(object):
+      def __init__(self, fget=None, fset=None, fdel=None, doc=None):
+        self.fget = fget
+        self.fset = fset
+        self.fdel = fdel
+        self.__doc__ = doc
+
+      def __get__(self, instance, instance_type=None):
+        if instance is None:
+          return self
+        if self.fget is None:
+          raise AttributeError, "unreadable attribute"
+        return self.fget(instance)
+
+  (continued)
+
+  Example 4 - cont'd
+  ------------------
+
+   ::
+
+      def __set__(self, instance, value):
+        if self.fset is None:
+          raise AttributeError, "can't set attribute"
+        self.fset(instance, value)
+
+      def __delete__(self, instance):
+        if self.fdel is None:
+          raise AttributeError, "can't delete attribute"
+        self.fdel(instance)
+
+
+Example 5 - Implementation of StaticMethod builtin
+--------------------------------------------------
+
+Lack any reference to the class or instance.
+
+::
+
+  class StaticMethod(object):
+    def __init__(self, f):
+      self.f = f
+
+    def __get__(self, instance, instance_type=None):
+      return self.f
+
+Example 6 - Implementation of ClassMethod builtin
+-------------------------------------------------
+
+Lack any reference to the instance *but* has one to the class.
+
+Useful for alternate class constructors, such as Dict.fromkeys().
+
+::
+
+  class ClassMethod(object):
+    def __init__(self, f):
+      self.f = f
+
+    def __get__(self, instance, instance_type=None):
+      if instance_type is None:
+         instance_type = type(instance)
+
+      def newfunc(*args):
+         return self.f(instance_type, *args)
+      return newfunc
+
+
+  Summary: Benefits of Metaprogramming
+
+  .. container:: slide-display
+
+     .. class:: incremental
+
+       + adopt a more declarative style
+
+          + less programmer work, less human error
+          + hiding necessary magic
+
+        + adapt to negotiated protocols
+        + better control of unchangable legacy programs
+
+        + track down difficult runtime problems
+
+          + protect readonly, private attributes
+          + capture changes-in-state
+          + limit the logging needed (just-in-time)
+
+        + test your knowledge of a complex system
+
+          + what modules or files are used?
+          + probe for expensive operations
+
+        + try out experimental changes
+
+          + new caching algorithms
+
+  Summary: Drawbacks of Metaprogramming
+
+  .. container:: slide-display
+
+     .. class:: incremental
+
+        + influences not visible in code, hard to understand
+        + requires a different perspective on programming
+        + can interfere with pgm performance, correctness
 
 
 ..

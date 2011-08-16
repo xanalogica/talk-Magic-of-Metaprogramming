@@ -8,15 +8,29 @@ class MetaServices(ihooks.Hooks):
     def __init__(self):
         ihooks.Hooks.__init__(self)
         self.import_watchers = {}
+        self.import_subclasses = {}
 
         #m.open = m.file = self.r_open
 
-        self.loader = ihooks.FancyModuleLoader(self)
+        self.loader = ihooks.FancyModuleLoader(hooks=self)
         self.importer = ihooks.ModuleImporter(self.loader)
 
     def __import__(self, modname, globals={}, locals={}, fromlist=[]):
 
-        m = self.importer.import_module(modname, globals, locals, fromlist)
+        if modname in self.import_subclasses:
+            mod_cls = self.import_subclasses[modname]
+
+            class SubclassingHooks(ihooks.Hooks):
+                def new_module(self, name):
+                    return mod_cls(name)   # instead of imp.new_module(name)
+            loader = ihooks.FancyModuleLoader(hooks=SubclassingHooks())
+            importer = ihooks.ModuleImporter(loader)
+        else:
+            importer = self.importer
+
+        globals['jeff'] = 1234567
+        m = importer.import_module(modname, globals, locals, fromlist)
+        print "Import module %r of type %r" % (modname, type(m))
 
         if modname in self.import_watchers: # call post-import handlers
             callfunc, filepatt = self.import_watchers[modname]
@@ -25,9 +39,13 @@ class MetaServices(ihooks.Hooks):
             importing_file = inspect.getsourcefile(frame) or inspect.getfile(frame)
 
             if filepatt is None or fnmatch.fnmatch(importing_file, filepatt):
-                callfunc(m)
+                m = callfunc(m) or m
 
+#        print "Returning from __import__ module %r" % (m, )
         return m
+
+    def subclass_module(self, modname, cls):
+        self.import_subclasses[modname] = cls
 
     def call_after_import_of(self, modname, callfunc, from_filepatt=None):
 
