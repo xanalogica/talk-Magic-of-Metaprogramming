@@ -9,21 +9,12 @@ Slide-advance to see your animation sequences one-by-one.
 
    .. class:: incremental slide-display
 
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-code-data.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-datacomp.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-uievents.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-convpgm.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-metacode.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-plumbing.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-addattrs.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-register.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-tagstuff.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-codeevents.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-modimport.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-classdef.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-dotted-rdwr.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-callnret.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/mp-metapgm.gif
+      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-bare.gif
+      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-getattr.gif
+      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-super.gif
+      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-callable.gif
+      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-wrapper.gif
+      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-cls-wrapper.gif
 
 Next Slide After Animation
 ==========================
