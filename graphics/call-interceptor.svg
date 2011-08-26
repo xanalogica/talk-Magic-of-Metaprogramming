@@ -30,15 +30,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="641.8699"
-     inkscape:cy="460.04727"
+     inkscape:cx="527.02139"
+     inkscape:cy="570.71959"
      inkscape:document-units="px"
-     inkscape:current-layer="layer37"
+     inkscape:current-layer="layer33"
      showgrid="false"
      inkscape:showpageshadow="false"
-     inkscape:window-width="1195"
-     inkscape:window-height="1046"
-     inkscape:window-x="2384"
+     inkscape:window-width="801"
+     inkscape:window-height="600"
+     inkscape:window-x="256"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      showguides="true"
@@ -180,7 +180,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -223,7 +223,7 @@
          y="89.884598"
          x="153.52139"
          id="tspan15944"
-         sodipodi:role="line">def tracecalls(cls):</tspan><tspan
+         sodipodi:role="line">def tracecalls(cls):  # defining a class decorator</tspan><tspan
          id="tspan15946"
          y="109.8846"
          x="153.52139"
@@ -275,7 +275,7 @@
          sodipodi:role="line"
          id="tspan16040"
          x="153.52139"
-         y="89.884598">def tracecalls(cls):</tspan><tspan
+         y="89.884598">def tracecalls(cls):  # defining a class decorator</tspan><tspan
          sodipodi:role="line"
          x="153.52139"
          y="109.8846"
@@ -331,7 +331,7 @@
          y="89.884598"
          x="153.52139"
          id="tspan16136"
-         sodipodi:role="line">def tracecalls(cls):</tspan><tspan
+         sodipodi:role="line">def tracecalls(cls):  # defining a class decorator</tspan><tspan
          id="tspan16138"
          y="109.8846"
          x="153.52139"
@@ -345,7 +345,7 @@
          x="153.52139"
          sodipodi:role="line">        attr = <tspan
    style="fill:#ff0000"
-   id="tspan16606">super(orig_cls, self)</tspan>.__getattribute__(name)</tspan><tspan
+   id="tspan16606">super(cls, self)</tspan>.__getattribute__(name)</tspan><tspan
          id="tspan16144"
          y="169.8846"
          x="153.52139"
@@ -385,7 +385,7 @@
          sodipodi:role="line"
          id="tspan16232"
          x="153.52139"
-         y="89.884598">def tracecalls(cls):</tspan><tspan
+         y="89.884598">def tracecalls(cls):  # defining a class decorator</tspan><tspan
          sodipodi:role="line"
          x="153.52139"
          y="109.8846"
@@ -397,7 +397,7 @@
          sodipodi:role="line"
          x="153.52139"
          y="149.8846"
-         id="tspan16238">        attr = super(orig_cls, self).__getattribute__(name)</tspan><tspan
+         id="tspan16238">        attr = super(cls, self).__getattribute__(name)</tspan><tspan
          sodipodi:role="line"
          x="153.52139"
          y="169.8846"
@@ -446,7 +446,7 @@
          y="89.884598"
          x="153.52139"
          id="tspan16328"
-         sodipodi:role="line">def tracecalls(cls):</tspan><tspan
+         sodipodi:role="line">def tracecalls(cls):  # defining a class decorator</tspan><tspan
          id="tspan16330"
          y="109.8846"
          x="153.52139"
@@ -458,7 +458,7 @@
          id="tspan16334"
          y="149.8846"
          x="153.52139"
-         sodipodi:role="line">        attr = super(orig_cls, self).__getattribute__(name)</tspan><tspan
+         sodipodi:role="line">        attr = super(cls, self).__getattribute__(name)</tspan><tspan
          id="tspan16336"
          y="169.8846"
          x="153.52139"
@@ -525,7 +525,7 @@
      inkscape:groupmode="layer"
      id="layer37"
      inkscape:label="seq-tr-cls-wrapper-A"
-     style="display:inline">
+     style="display:none">
     <rect
        y="240"
        x="481"
@@ -564,7 +564,7 @@
          y="89.884598"
          x="153.52139"
          id="tspan16520"
-         sodipodi:role="line">def tracecalls(cls):</tspan><tspan
+         sodipodi:role="line">def tracecalls(cls):  # defining a class decorator</tspan><tspan
          id="tspan16522"
          y="109.8846"
          x="153.52139"
@@ -576,7 +576,7 @@
          id="tspan16526"
          y="149.8846"
          x="153.52139"
-         sodipodi:role="line">        attr = super(orig_cls, self).__getattribute__(name)</tspan><tspan
+         sodipodi:role="line">        attr = super(cls, self).__getattribute__(name)</tspan><tspan
          id="tspan16528"
          y="169.8846"
          x="153.52139"
