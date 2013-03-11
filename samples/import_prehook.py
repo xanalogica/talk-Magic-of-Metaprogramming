@@ -43,6 +43,10 @@ class MetaServices(ihooks.Hooks):
         return m
 
     def subclass_module(self, modname, cls):
+        if sys.modules['__builtin__'].__import__ != self.__import__:
+            sys.modules['__builtin__'].__import__ = self.__import__
+            print "Hooking sys.modules"
+
         self.import_subclasses[modname] = cls
 
     def call_after_import_of(self, modname, callfunc, from_filepatt=None):

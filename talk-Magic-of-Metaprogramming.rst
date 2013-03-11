@@ -7,11 +7,11 @@
 .. class:: sidebox boxed incremental
 
    .. image:: graphics/coordinator-of-pgms.jpg
+      :scale: 150 %
 
 :Author: Jeff Rush <jeff\@taupro.com>
 :Copyright: 2011 Tau Productions Inc.
 :License: Creative Commons Attribution-ShareAlike 3.0
-:Date: March 9th, 2012
 :Duration: 45-minutes
 :Difficulty: Advanced
 :Keywords: metaprogramming, data structures, language, techniques
@@ -24,8 +24,10 @@ use stack peeking to make selected attributes private to their owning class.
 We'll cover import hacking, metaclasses, descriptors and decorators and how
 they work internally.
 
+\https://github.com/xanalogica/talk-Magic-of-Metaprogramming.git
+
 .. |bullet| unicode:: U+02022
-.. footer:: PyCon 2012 |bullet| Santa Clara, California
+.. footer:: Tau Productions Inc. |bullet| 2013
 
 .. role:: altway
    :class: altway
@@ -80,7 +82,7 @@ Tools At Our Disposal
 Orientation Diagram: What is Metaprogramming
 ============================================
 
-.. container:: slide-display animation
+.. container:: slide-display center animation
 
    .. class:: incremental
 
@@ -314,19 +316,20 @@ Some Benefits of Subclassing Modules
       >>> TheAnswer
       42
 
-Lull After Import Hooking, Before Metaclasses
-=============================================
+Moving from Import Hooking to Metaclasses
+=========================================
 
 .. container:: slide-display center
 
    .. image:: graphics/after-imports-breathing.jpg
+      :width: 800
 
    + (pause - take a deep breath...)
 
 Orientation Diagram: Instances, Classes and Metaclasses
 =======================================================
 
-.. container:: slide-display animation
+.. container:: slide-display center animation
 
    .. class:: incremental
 
@@ -401,28 +404,72 @@ Orientation Diagram: Instances, Classes and Metaclasses
             to create new kinds of classes.
 
       .. image:: graphics/hc-welcome.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-justbits.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-funcs-vars.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-vargroups.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-vargroups2.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-groupings.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-group-ctor.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-protos.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-protos2.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-protos3.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-protos4.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-protos5.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-groupsplit.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-groupsplit2.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-groupsplit3.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-groups-grow.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-delegating.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-new-axis.gif
+         :scale: 100 %
+         :align: center
 
       .. image:: graphics/hc-multi-inherit.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-metaclass.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-meta-as-ctor.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/hc-submetas.gif
+         :scale: 100 %
+         :align: center
 
 Facts About Metaclasses
 =======================
@@ -466,7 +513,7 @@ Example #2: Define a Class from an SQL Table Definition
       | class Member(object):
       |     __metaclass__ = DatabaseTable
       |
-      |     `dbtable = 'Members'  # a declaration`
+      |     `dbtable = 'Members'  # an input to the metaclass`
 
       | class DatabaseTable(type):
       |
@@ -477,7 +524,7 @@ Example #2: Define a Class from an SQL Table Definition
       |             `dbcolumn = wrap_col_rdwr(col_def) # (next slide)`
       |             `setattr(cls, col_def.name, dbcolumn)`
 
-      + "process human-friendly decls into machine-friendly"
+      + "process human-friendly decls into machine-friendly code"
 
 Example Problem #2 (cont'd)
 ===========================
@@ -542,7 +589,7 @@ Metaclasses versus Class Decorators
 About Meta-Inheritance
 ======================
 
-.. container:: slide-display animation
+.. container:: slide-display center animation
 
    .. class:: incremental
 
@@ -569,11 +616,20 @@ About Meta-Inheritance
          | >>> False                          |        >>> False
 
       .. image:: graphics/mcd-defns.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/mcd-use1.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/mcd-use1-test.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/mcd-use2.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/mcd-use2-test.gif
-
+         :scale: 100 %
+         :align: center
 
 Example #3: Log the Arguments/Return Value of Method Calls
 ==========================================================
@@ -596,7 +652,7 @@ Example #3: Log the Arguments/Return Value of Method Calls
 Example #3 (cont'd)
 ===================
 
-.. container:: slide-display animation
+.. container:: slide-display center animation
 
    .. class:: incremental
 
@@ -633,18 +689,31 @@ Example #3 (cont'd)
          |         return rc
 
       .. image:: graphics/tr-bare.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/tr-getattr.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/tr-super.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/tr-callable.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/tr-wrapper.gif
+         :scale: 100 %
+         :align: center
       .. image:: graphics/tr-cls-wrapper.gif
+         :scale: 100 %
+         :align: center
 
-Lull After Metaclasses, Before Descriptors
-==========================================
+Moving from Metaclasses into Descriptors
+========================================
 
 .. container:: slide-display center
 
    .. image:: graphics/after-metaclasses-breathing.jpg
+      :width: 800
 
    + (pause - take a deep breath...)
 
@@ -941,19 +1010,10 @@ Questions?
 .. container:: slide-display center
 
    .. image:: graphics/questions-relaxation.jpg
+      :width: 800
 
    Metaprogramming is fun!
 
    .. class:: huge
 
       `Questions?`
-
-
-
-
-
-..
-   XXLocal Variables:
-   mode: rst
-   mode: outline-minor
-   End:

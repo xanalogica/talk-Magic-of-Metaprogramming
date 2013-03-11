@@ -344,7 +344,7 @@ ul.auto-toc {
 </div>
 <div id="footer">
 <h1>The Magic of Metaprogramming</h1>
-<h2>PyCon 2012 • Santa Clara, California</h2>
+<h2>Tau Productions Inc. • 2013</h2>
 </div>
 </div>
 <div class="presentation">
@@ -367,7 +367,7 @@ ul.auto-toc {
 ============================ -->
 <!-- Incremental Display
 =================== -->
-<img alt="graphics/coordinator-of-pgms.jpg" class="sidebox boxed incremental" src="graphics/coordinator-of-pgms.jpg" />
+<img alt="graphics/coordinator-of-pgms.jpg" class="sidebox boxed incremental" src="graphics/coordinator-of-pgms.jpg" style="width: 450.0px; height: 582.0px;" />
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -377,8 +377,6 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Copyright:</th><td class="field-body">2011 Tau Productions Inc.</td>
 </tr>
 <tr class="field"><th class="field-name">License:</th><td class="field-body">Creative Commons Attribution-ShareAlike 3.0</td>
-</tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">March 9th, 2012</td>
 </tr>
 <tr class="field"><th class="field-name">Duration:</th><td class="field-body">45-minutes</td>
 </tr>
@@ -395,6 +393,7 @@ reads/writes, place automatic type checking over your object attributes and
 use stack peeking to make selected attributes private to their owning class.
 We'll cover import hacking, metaclasses, descriptors and decorators and how
 they work internally.</p>
+<p>https://github.com/xanalogica/talk-Magic-of-Metaprogramming.git</p>
 
 </div>
 <div class="slide" id="what-is-metaprogramming">
@@ -441,7 +440,7 @@ they work internally.</p>
 </div>
 <div class="slide" id="orientation-diagram-what-is-metaprogramming">
 <h1>Orientation Diagram: What is Metaprogramming</h1>
-<div class="slide-display animation container">
+<div class="slide-display center animation container">
 <div class="handout incremental container">
 <p>graphics/what-is-metaprogramming.svg  (source material)</p>
 <p>seq-mp-code-data-X   (walk 'Code' and 'Data' blocks onto screen-center)
@@ -714,10 +713,10 @@ seq-mp-metapgm-X     (slide shade over upper system and add label along top)</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="lull-after-import-hooking-before-metaclasses">
-<h1>Lull After Import Hooking, Before Metaclasses</h1>
+<div class="slide" id="moving-from-import-hooking-to-metaclasses">
+<h1>Moving from Import Hooking to Metaclasses</h1>
 <div class="slide-display center container">
-<img alt="graphics/after-imports-breathing.jpg" src="graphics/after-imports-breathing.jpg" />
+<img alt="graphics/after-imports-breathing.jpg" src="graphics/after-imports-breathing.jpg" style="width: 800px;" />
 <ul class="simple">
 <li>(pause - take a deep breath...)</li>
 </ul>
@@ -725,7 +724,7 @@ seq-mp-metapgm-X     (slide shade over upper system and add label along top)</p>
 </div>
 <div class="slide" id="orientation-diagram-instances-classes-and-metaclasses">
 <h1>Orientation Diagram: Instances, Classes and Metaclasses</h1>
-<div class="slide-display animation container">
+<div class="slide-display center animation container">
 <div class="handout incremental container">
 <p>graphics/history-of-objects.svg  (source material)</p>
 <ul class="simple">
@@ -788,28 +787,28 @@ containers of methods mostly.</dd>
 to create new kinds of classes.</dd>
 </dl>
 </div>
-<img alt="graphics/hc-welcome.gif" class="incremental" src="graphics/hc-welcome.gif" />
-<img alt="graphics/hc-justbits.gif" class="incremental" src="graphics/hc-justbits.gif" />
-<img alt="graphics/hc-funcs-vars.gif" class="incremental" src="graphics/hc-funcs-vars.gif" />
-<img alt="graphics/hc-vargroups.gif" class="incremental" src="graphics/hc-vargroups.gif" />
-<img alt="graphics/hc-vargroups2.gif" class="incremental" src="graphics/hc-vargroups2.gif" />
-<img alt="graphics/hc-groupings.gif" class="incremental" src="graphics/hc-groupings.gif" />
-<img alt="graphics/hc-group-ctor.gif" class="incremental" src="graphics/hc-group-ctor.gif" />
-<img alt="graphics/hc-protos.gif" class="incremental" src="graphics/hc-protos.gif" />
-<img alt="graphics/hc-protos2.gif" class="incremental" src="graphics/hc-protos2.gif" />
-<img alt="graphics/hc-protos3.gif" class="incremental" src="graphics/hc-protos3.gif" />
-<img alt="graphics/hc-protos4.gif" class="incremental" src="graphics/hc-protos4.gif" />
-<img alt="graphics/hc-protos5.gif" class="incremental" src="graphics/hc-protos5.gif" />
-<img alt="graphics/hc-groupsplit.gif" class="incremental" src="graphics/hc-groupsplit.gif" />
-<img alt="graphics/hc-groupsplit2.gif" class="incremental" src="graphics/hc-groupsplit2.gif" />
-<img alt="graphics/hc-groupsplit3.gif" class="incremental" src="graphics/hc-groupsplit3.gif" />
-<img alt="graphics/hc-groups-grow.gif" class="incremental" src="graphics/hc-groups-grow.gif" />
-<img alt="graphics/hc-delegating.gif" class="incremental" src="graphics/hc-delegating.gif" />
-<img alt="graphics/hc-new-axis.gif" class="incremental" src="graphics/hc-new-axis.gif" />
-<img alt="graphics/hc-multi-inherit.gif" class="incremental" src="graphics/hc-multi-inherit.gif" />
-<img alt="graphics/hc-metaclass.gif" class="incremental" src="graphics/hc-metaclass.gif" />
-<img alt="graphics/hc-meta-as-ctor.gif" class="incremental" src="graphics/hc-meta-as-ctor.gif" />
-<img alt="graphics/hc-submetas.gif" class="incremental" src="graphics/hc-submetas.gif" />
+<img alt="graphics/hc-welcome.gif" class="incremental align-center" src="graphics/hc-welcome.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-justbits.gif" class="incremental align-center" src="graphics/hc-justbits.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-funcs-vars.gif" class="incremental align-center" src="graphics/hc-funcs-vars.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-vargroups.gif" class="incremental align-center" src="graphics/hc-vargroups.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-vargroups2.gif" class="incremental align-center" src="graphics/hc-vargroups2.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-groupings.gif" class="incremental align-center" src="graphics/hc-groupings.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-group-ctor.gif" class="incremental align-center" src="graphics/hc-group-ctor.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-protos.gif" class="incremental align-center" src="graphics/hc-protos.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-protos2.gif" class="incremental align-center" src="graphics/hc-protos2.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-protos3.gif" class="incremental align-center" src="graphics/hc-protos3.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-protos4.gif" class="incremental align-center" src="graphics/hc-protos4.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-protos5.gif" class="incremental align-center" src="graphics/hc-protos5.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-groupsplit.gif" class="incremental align-center" src="graphics/hc-groupsplit.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-groupsplit2.gif" class="incremental align-center" src="graphics/hc-groupsplit2.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-groupsplit3.gif" class="incremental align-center" src="graphics/hc-groupsplit3.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-groups-grow.gif" class="incremental align-center" src="graphics/hc-groups-grow.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-delegating.gif" class="incremental align-center" src="graphics/hc-delegating.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-new-axis.gif" class="incremental align-center" src="graphics/hc-new-axis.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-multi-inherit.gif" class="incremental align-center" src="graphics/hc-multi-inherit.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-metaclass.gif" class="incremental align-center" src="graphics/hc-metaclass.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-meta-as-ctor.gif" class="incremental align-center" src="graphics/hc-meta-as-ctor.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/hc-submetas.gif" class="incremental align-center" src="graphics/hc-submetas.gif" style="width: 1020.0px; height: 660.0px;" />
 </div>
 </div>
 <div class="slide" id="facts-about-metaclasses">
@@ -849,7 +848,7 @@ to create new kinds of classes.</dd>
 <div class="line-block">
 <div class="line">__metaclass__ = DatabaseTable</div>
 <div class="line"><br /></div>
-<div class="line"><span class="incremental">dbtable = 'Members'  # a declaration</span></div>
+<div class="line"><span class="incremental">dbtable = 'Members'  # an input to the metaclass</span></div>
 </div>
 </div>
 <div class="incremental line-block">
@@ -869,7 +868,7 @@ to create new kinds of classes.</dd>
 </div>
 </div>
 <ul class="incremental simple">
-<li>&quot;process human-friendly decls into machine-friendly&quot;</li>
+<li>&quot;process human-friendly decls into machine-friendly code&quot;</li>
 </ul>
 </div>
 </div>
@@ -940,7 +939,7 @@ to create new kinds of classes.</dd>
 </div>
 <div class="slide" id="about-meta-inheritance">
 <h1>About Meta-Inheritance</h1>
-<div class="slide-display animation container">
+<div class="slide-display center animation container">
 <div class="handout incremental container">
 <p>graphics/meta-inheritance.svg  (source material)</p>
 <div class="line-block">
@@ -975,11 +974,11 @@ to create new kinds of classes.</dd>
 <div class="line">&gt;&gt;&gt; False                          |        &gt;&gt;&gt; False</div>
 </div>
 </div>
-<img alt="graphics/mcd-defns.gif" class="incremental" src="graphics/mcd-defns.gif" />
-<img alt="graphics/mcd-use1.gif" class="incremental" src="graphics/mcd-use1.gif" />
-<img alt="graphics/mcd-use1-test.gif" class="incremental" src="graphics/mcd-use1-test.gif" />
-<img alt="graphics/mcd-use2.gif" class="incremental" src="graphics/mcd-use2.gif" />
-<img alt="graphics/mcd-use2-test.gif" class="incremental" src="graphics/mcd-use2-test.gif" />
+<img alt="graphics/mcd-defns.gif" class="incremental align-center" src="graphics/mcd-defns.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/mcd-use1.gif" class="incremental align-center" src="graphics/mcd-use1.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/mcd-use1-test.gif" class="incremental align-center" src="graphics/mcd-use1-test.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/mcd-use2.gif" class="incremental align-center" src="graphics/mcd-use2.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/mcd-use2-test.gif" class="incremental align-center" src="graphics/mcd-use2-test.gif" style="width: 1020.0px; height: 660.0px;" />
 </div>
 </div>
 <div class="slide" id="example-3-log-the-arguments-return-value-of-method-calls">
@@ -1006,7 +1005,7 @@ to create new kinds of classes.</dd>
 </div>
 <div class="slide" id="example-3-cont-d">
 <h1>Example #3 (cont'd)</h1>
-<div class="slide-display animation container">
+<div class="slide-display center animation container">
 <div class="handout incremental container">
 <p>graphics/call-interceptor.svg  (source material)</p>
 <div class="line-block">
@@ -1057,18 +1056,18 @@ to create new kinds of classes.</dd>
 </div>
 </div>
 </div>
-<img alt="graphics/tr-bare.gif" class="incremental" src="graphics/tr-bare.gif" />
-<img alt="graphics/tr-getattr.gif" class="incremental" src="graphics/tr-getattr.gif" />
-<img alt="graphics/tr-super.gif" class="incremental" src="graphics/tr-super.gif" />
-<img alt="graphics/tr-callable.gif" class="incremental" src="graphics/tr-callable.gif" />
-<img alt="graphics/tr-wrapper.gif" class="incremental" src="graphics/tr-wrapper.gif" />
-<img alt="graphics/tr-cls-wrapper.gif" class="incremental" src="graphics/tr-cls-wrapper.gif" />
+<img alt="graphics/tr-bare.gif" class="incremental align-center" src="graphics/tr-bare.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/tr-getattr.gif" class="incremental align-center" src="graphics/tr-getattr.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/tr-super.gif" class="incremental align-center" src="graphics/tr-super.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/tr-callable.gif" class="incremental align-center" src="graphics/tr-callable.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/tr-wrapper.gif" class="incremental align-center" src="graphics/tr-wrapper.gif" style="width: 1020.0px; height: 660.0px;" />
+<img alt="graphics/tr-cls-wrapper.gif" class="incremental align-center" src="graphics/tr-cls-wrapper.gif" style="width: 1020.0px; height: 660.0px;" />
 </div>
 </div>
-<div class="slide" id="lull-after-metaclasses-before-descriptors">
-<h1>Lull After Metaclasses, Before Descriptors</h1>
+<div class="slide" id="moving-from-metaclasses-into-descriptors">
+<h1>Moving from Metaclasses into Descriptors</h1>
 <div class="slide-display center container">
-<img alt="graphics/after-metaclasses-breathing.jpg" src="graphics/after-metaclasses-breathing.jpg" />
+<img alt="graphics/after-metaclasses-breathing.jpg" src="graphics/after-metaclasses-breathing.jpg" style="width: 800px;" />
 <ul class="simple">
 <li>(pause - take a deep breath...)</li>
 </ul>
@@ -1438,14 +1437,10 @@ to create new kinds of classes.</dd>
 <div class="slide" id="questions">
 <h1>Questions?</h1>
 <div class="slide-display center container">
-<img alt="graphics/questions-relaxation.jpg" src="graphics/questions-relaxation.jpg" />
+<img alt="graphics/questions-relaxation.jpg" src="graphics/questions-relaxation.jpg" style="width: 800px;" />
 <p>Metaprogramming is fun!</p>
 <p class="huge"><span class="incremental">Questions?</span></p>
 </div>
-<!-- XXLocal Variables:
-mode: rst
-mode: outline-minor
-End: -->
 </div>
 </div>
 </body>
