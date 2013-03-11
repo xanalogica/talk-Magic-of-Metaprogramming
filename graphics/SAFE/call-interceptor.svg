@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1024"
+   height="768"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="call-interceptor.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0"
+   style="display:inline">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="527.02139"
+     inkscape:cy="570.71959"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer33"
+     showgrid="false"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="801"
+     inkscape:window-height="600"
+     inkscape:window-x="256"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="TriangleInM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInM"
+       style="overflow:visible">
+      <path
+         id="path3977"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="scale(-0.4,-0.4)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path3843"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleInL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInL"
+       style="overflow:visible">
+      <path
+         id="path3974"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="scale(-0.8,-0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutL"
+       style="overflow:visible">
+      <path
+         id="path3983"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="scale(0.8,0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         id="path4813"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient6082">
+      <stop
+         style="stop-color:#adadff;stop-opacity:1;"
+         offset="0"
+         id="stop6084" />
+      <stop
+         style="stop-color:#adadff;stop-opacity:0;"
+         offset="1"
+         id="stop6086" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path4792"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6082"
+       id="linearGradient6187"
+       gradientUnits="userSpaceOnUse"
+       x1="193.16429"
+       y1="580.85718"
+       x2="308.26428"
+       y2="580.85718" />
+    <inkscape:perspective
+       id="perspective14697"
+       inkscape:persp3d-origin="281.25 : 130.41667 : 1"
+       inkscape:vp_z="562.5 : 195.625 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 195.625 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective15134"
+       inkscape:persp3d-origin="360 : 106.25 : 1"
+       inkscape:vp_z="720 : 159.375 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 159.375 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="background"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#000000;stroke-width:1.34950686;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+       id="backcolor"
+       width="798.65051"
+       height="598.65051"
+       x="110.17472"
+       y="49.889027"
+       rx="7.5373559"
+       ry="18.163509"
+       inkscape:label="#rect2544" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer31"
+     inkscape:label="seq-tr-bare-A"
+     style="display:none">
+    <rect
+       y="73"
+       x="146"
+       height="162"
+       width="637"
+       id="rect15936"
+       style="opacity:0.5;fill:#ffff00;fill-opacity:1;stroke:#003380;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text15942"
+       y="89.884598"
+       x="153.52139"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="89.884598"
+         x="153.52139"
+         id="tspan15944"
+         sodipodi:role="line">def tracecalls(cls):  # defining a class decorator</tspan><tspan
+         id="tspan15946"
+         y="109.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan15948"
+         y="129.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan15950"
+         y="149.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan15952"
+         y="169.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan15954"
+         y="189.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan15956"
+         y="209.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan15958"
+         y="229.8846"
+         x="153.52139"
+         sodipodi:role="line">    return cls</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer32"
+     inkscape:label="seq-tr-getattr-A"
+     style="display:none">
+    <rect
+       style="opacity:0.5;fill:#ffff00;fill-opacity:1;stroke:#003380;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline"
+       id="rect16032"
+       width="637"
+       height="162"
+       x="146"
+       y="73" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       x="153.52139"
+       y="89.884598"
+       id="text16038"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan16040"
+         x="153.52139"
+         y="89.884598">def tracecalls(cls):  # defining a class decorator</tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="109.8846"
+         id="tspan16042" /><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="129.8846"
+         id="tspan16044">    def <tspan
+   style="fill:#ff0000"
+   id="tspan16608">my__getattribute__</tspan>(self, name):</tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="149.8846"
+         id="tspan16046" /><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="169.8846"
+         id="tspan16048">        return ...</tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="189.8846"
+         id="tspan16050" /><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="209.8846"
+         id="tspan16052">    cls.__getattribute__ = <tspan
+   style="fill:#ff0000"
+   id="tspan16610">my__getattribute__</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="229.8846"
+         id="tspan16054">    return cls</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer33"
+     inkscape:label="seq-tr-super-A"
+     style="display:none">
+    <rect
+       y="73"
+       x="146"
+       height="162"
+       width="637"
+       id="rect16128"
+       style="opacity:0.5;fill:#ffff00;fill-opacity:1;stroke:#003380;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text16134"
+       y="89.884598"
+       x="153.52139"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="89.884598"
+         x="153.52139"
+         id="tspan16136"
+         sodipodi:role="line">def tracecalls(cls):  # defining a class decorator</tspan><tspan
+         id="tspan16138"
+         y="109.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan16140"
+         y="129.8846"
+         x="153.52139"
+         sodipodi:role="line">    def my__getattribute__(self, name):</tspan><tspan
+         id="tspan16142"
+         y="149.8846"
+         x="153.52139"
+         sodipodi:role="line">        attr = <tspan
+   style="fill:#ff0000"
+   id="tspan16606">super(cls, self)</tspan>.__getattribute__(name)</tspan><tspan
+         id="tspan16144"
+         y="169.8846"
+         x="153.52139"
+         sodipodi:role="line">        return ...</tspan><tspan
+         id="tspan16146"
+         y="189.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan16148"
+         y="209.8846"
+         x="153.52139"
+         sodipodi:role="line">    cls.__getattribute__ = my__getattribute__</tspan><tspan
+         id="tspan16150"
+         y="229.8846"
+         x="153.52139"
+         sodipodi:role="line">    return cls</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer34"
+     inkscape:label="seq-tr-callable-A"
+     style="display:none">
+    <rect
+       style="opacity:0.5;fill:#ffff00;fill-opacity:1;stroke:#003380;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline"
+       id="rect16224"
+       width="637"
+       height="162"
+       x="146"
+       y="73" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       x="153.52139"
+       y="89.884598"
+       id="text16230"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan16232"
+         x="153.52139"
+         y="89.884598">def tracecalls(cls):  # defining a class decorator</tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="109.8846"
+         id="tspan16234" /><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="129.8846"
+         id="tspan16236">    def my__getattribute__(self, name):</tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="149.8846"
+         id="tspan16238">        attr = super(cls, self).__getattribute__(name)</tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="169.8846"
+         id="tspan16240">        return <tspan
+   style="fill:#ff0000"
+   id="tspan16612">attr if not callable(attr) else CallTracer(attr)</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="189.8846"
+         id="tspan16242" /><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="209.8846"
+         id="tspan16244">    cls.__getattribute__ = my__getattribute__</tspan><tspan
+         sodipodi:role="line"
+         x="153.52139"
+         y="229.8846"
+         id="tspan16246">    return cls</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer35"
+     inkscape:label="seq-tr-wrapper-A"
+     style="display:none">
+    <rect
+       y="73"
+       x="146"
+       height="162"
+       width="637"
+       id="rect16320"
+       style="opacity:0.5;fill:#ffff00;fill-opacity:1;stroke:#003380;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline" />
+    <rect
+       y="290"
+       x="138"
+       height="170"
+       width="346"
+       id="rect16322"
+       style="opacity:0.5;fill:#ffff00;fill-opacity:1;stroke:#003380;stroke-width:1.99999988;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text16326"
+       y="89.884598"
+       x="153.52139"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="89.884598"
+         x="153.52139"
+         id="tspan16328"
+         sodipodi:role="line">def tracecalls(cls):  # defining a class decorator</tspan><tspan
+         id="tspan16330"
+         y="109.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan16332"
+         y="129.8846"
+         x="153.52139"
+         sodipodi:role="line">    def my__getattribute__(self, name):</tspan><tspan
+         id="tspan16334"
+         y="149.8846"
+         x="153.52139"
+         sodipodi:role="line">        attr = super(cls, self).__getattribute__(name)</tspan><tspan
+         id="tspan16336"
+         y="169.8846"
+         x="153.52139"
+         sodipodi:role="line">        return attr if not callable(attr) else CallTracer(attr)</tspan><tspan
+         id="tspan16338"
+         y="189.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan16340"
+         y="209.8846"
+         x="153.52139"
+         sodipodi:role="line">    cls.__getattribute__ = my__getattribute__</tspan><tspan
+         id="tspan16342"
+         y="229.8846"
+         x="153.52139"
+         sodipodi:role="line">    return cls</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text16344"
+       y="313.61102"
+       x="137.45229"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="313.61102"
+         x="137.45229"
+         id="tspan16346"
+         sodipodi:role="line">def CallTracer(<tspan
+   style="fill:#ff0000"
+   id="tspan16614">func</tspan>):</tspan><tspan
+         id="tspan16348"
+         y="333.61102"
+         x="137.45229"
+         sodipodi:role="line" /><tspan
+         id="tspan16350"
+         y="353.61102"
+         x="137.45229"
+         sodipodi:role="line">    def whencalled(*args, **kw):</tspan><tspan
+         id="tspan16352"
+         y="373.61102"
+         x="137.45229"
+         sodipodi:role="line">        rc = <tspan
+   style="fill:#ff0000"
+   id="tspan16616">func</tspan>(*args, **kw)</tspan><tspan
+         id="tspan16354"
+         y="393.61102"
+         x="137.45229"
+         sodipodi:role="line">        logtrace(<tspan
+   style="fill:#ff0000"
+   id="tspan16618">func</tspan>, args, kw, rc)</tspan><tspan
+         id="tspan16356"
+         y="413.61102"
+         x="137.45229"
+         sodipodi:role="line">        return rc</tspan><tspan
+         id="tspan16358"
+         y="433.61102"
+         x="137.45229"
+         sodipodi:role="line" /><tspan
+         id="tspan16360"
+         y="453.61102"
+         x="137.45229"
+         sodipodi:role="line">    return whencalled</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer37"
+     inkscape:label="seq-tr-cls-wrapper-A"
+     style="display:none">
+    <rect
+       y="240"
+       x="481"
+       height="190"
+       width="398"
+       id="rect16510"
+       style="opacity:0.5;fill:#ff7f2a;fill-opacity:1;stroke:#003380;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline" />
+    <rect
+       y="73"
+       x="146"
+       height="162"
+       width="637"
+       id="rect16512"
+       style="opacity:0.5;fill:#ffff00;fill-opacity:1;stroke:#003380;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline" />
+    <rect
+       y="290"
+       x="138"
+       height="170"
+       width="346"
+       id="rect16514"
+       style="opacity:0.5;fill:#ffff00;fill-opacity:1;stroke:#003380;stroke-width:1.99999988;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline" />
+    <rect
+       y="337"
+       x="175.01277"
+       height="80"
+       width="697.98718"
+       id="rect16516"
+       style="opacity:0.5;fill:#00ffff;fill-opacity:1;stroke:#003380;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.99999997, 1.99999997;stroke-dashoffset:0;display:inline" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text16518"
+       y="89.884598"
+       x="153.52139"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="89.884598"
+         x="153.52139"
+         id="tspan16520"
+         sodipodi:role="line">def tracecalls(cls):  # defining a class decorator</tspan><tspan
+         id="tspan16522"
+         y="109.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan16524"
+         y="129.8846"
+         x="153.52139"
+         sodipodi:role="line">    def my__getattribute__(self, name):</tspan><tspan
+         id="tspan16526"
+         y="149.8846"
+         x="153.52139"
+         sodipodi:role="line">        attr = super(cls, self).__getattribute__(name)</tspan><tspan
+         id="tspan16528"
+         y="169.8846"
+         x="153.52139"
+         sodipodi:role="line">        return attr if not callable(attr) else CallTracer(attr)</tspan><tspan
+         id="tspan16530"
+         y="189.8846"
+         x="153.52139"
+         sodipodi:role="line" /><tspan
+         id="tspan16532"
+         y="209.8846"
+         x="153.52139"
+         sodipodi:role="line">    cls.__getattribute__ = my__getattribute__</tspan><tspan
+         id="tspan16534"
+         y="229.8846"
+         x="153.52139"
+         sodipodi:role="line">    return cls</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text16536"
+       y="313.61102"
+       x="137.45229"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="313.61102"
+         x="137.45229"
+         id="tspan16538"
+         sodipodi:role="line">def CallTracer(<tspan
+   style="fill:#ff0000"
+   id="tspan16620">func</tspan>):</tspan><tspan
+         id="tspan16540"
+         y="333.61102"
+         x="137.45229"
+         sodipodi:role="line" /><tspan
+         id="tspan16542"
+         y="353.61102"
+         x="137.45229"
+         sodipodi:role="line">    def whencalled(*args, **kw):</tspan><tspan
+         id="tspan16544"
+         y="373.61102"
+         x="137.45229"
+         sodipodi:role="line">        rc = func(*args, **kw)</tspan><tspan
+         id="tspan16546"
+         y="393.61102"
+         x="137.45229"
+         sodipodi:role="line">        logtrace(func, args, kw, rc)</tspan><tspan
+         id="tspan16548"
+         y="413.61102"
+         x="137.45229"
+         sodipodi:role="line">        return rc</tspan><tspan
+         id="tspan16550"
+         y="433.61102"
+         x="137.45229"
+         sodipodi:role="line" /><tspan
+         id="tspan16552"
+         y="453.61102"
+         x="137.45229"
+         sodipodi:role="line">    return whencalled</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text16554"
+       y="253.12576"
+       x="477.34082"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="253.12576"
+         x="477.34082"
+         id="tspan16556"
+         sodipodi:role="line">class CallTracer(object):</tspan><tspan
+         id="tspan16558"
+         y="273.12576"
+         x="477.34082"
+         sodipodi:role="line" /><tspan
+         id="tspan16560"
+         y="293.12576"
+         x="477.34082"
+         sodipodi:role="line">    def __init__(self, <tspan
+   style="fill:#ff0000"
+   id="tspan16622">func</tspan>):</tspan><tspan
+         id="tspan16562"
+         y="313.12576"
+         x="477.34082"
+         sodipodi:role="line">        self.<tspan
+   style="fill:#ff0000"
+   id="tspan16624">func</tspan> = func</tspan><tspan
+         id="tspan16564"
+         y="333.12576"
+         x="477.34082"
+         sodipodi:role="line" /><tspan
+         id="tspan16566"
+         y="353.12576"
+         x="477.34082"
+         sodipodi:role="line">    def __call__(self, *args, **kw):</tspan><tspan
+         id="tspan16568"
+         y="373.12576"
+         x="477.34082"
+         sodipodi:role="line">        rc = self.<tspan
+   style="fill:#ff0000"
+   id="tspan16626">func</tspan>(*args, **kw)</tspan><tspan
+         id="tspan16570"
+         y="393.12576"
+         x="477.34082"
+         sodipodi:role="line">        logtrace(self.<tspan
+   style="fill:#ff0000"
+   id="tspan16628">func</tspan>, args, kw, rc)</tspan><tspan
+         id="tspan16572"
+         y="413.12576"
+         x="477.34082"
+         sodipodi:role="line">        return rc</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="foreground"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="159.99998"
+       y="29.428572"
+       id="text2540"><tspan
+         sodipodi:role="line"
+         id="tspan2542"
+         x="159.99998"
+         y="29.428572"
+         style="font-size:28px">Template for Creating Animated Technical Drawings</tspan></text>
+    <rect
+       style="opacity:0.19396554;fill:#f3ff1d;fill-opacity:1;stroke:#ecf714;stroke-width:1.14145684;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.28291376, 1.14145689;stroke-dashoffset:1.48389395"
+       id="viewport"
+       width="748.85858"
+       height="398.85855"
+       x="133.83531"
+       y="64.783844"
+       inkscape:label="#rect2547" />
+  </g>
+</svg>

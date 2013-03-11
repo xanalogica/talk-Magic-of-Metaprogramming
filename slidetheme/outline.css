@@ -1,0 +1,71 @@
+/* This file has been placed in the public domain. */
+/* Don't change this unless you want the layout stuff to show up in the
+   outline view! */
+
+.layout div, #footer *, #controlForm * {
+  display:		none;
+}
+
+#footer, #controls, #controlForm, #navLinks, #toggle {
+  display:		block;
+  visibility:		visible;
+  margin:		0;
+  padding:		0;
+}
+
+#toggle {
+  float:		right;
+  padding:		0.5em;
+}
+
+html>body #toggle {
+  position:		fixed;
+  top:			0;
+  right:		0;
+}
+
+/* making the outline look pretty-ish */
+
+#slide0 h1, #slide0 h2, #slide0 h3, #slide0 h4 {
+  border:		none;
+  margin:		0;
+}
+
+#toggle {
+  border:		1px solid;
+  border-width:		0 0 1px 1px;
+  background:		#FFF;
+}
+
+.outline {
+  display:		inline !important;
+}
+
+/* jrr */
+
+/*
+set font to sans-serif.
+*/
+
+.slide { /* overall slide, including handout notes */
+  border:		2px solid black;
+  background:		#e8ffff;
+  padding:		6px;
+  margin:		2em 2em;
+}
+
+.slide h1 {
+  position:		relative;
+  margin-top:		0;
+  margin-bottom:	0;
+  color: 		red;
+  font:			bold 1.8em Verdana, Arial, Helvetica, sans-serif;
+}
+
+.handout {
+
+  background:		#e8e8e8;
+  border:		2px dotted black;
+  padding:		4px 6px 4px 6px;
+  margin:		0 1em 0 1em;
+}

@@ -1,0 +1,573 @@
+/* This file has been placed in the public domain. */
+
+/* Following are the presentation styles -- edit away! */
+
+/*
+ * Changes made from the "default" template:
+ *  - re-laid out source for easier navigation
+ *  - changed body font to san-serif, for a cleaner look in a screencast,
+ *    where high compression is used.
+ *  - changed background color of header/footer from dark blue to 'Python
+ *    blue', and brighten the text header/footer text color to compensate.
+ *    Also changed the h1 background for the slide header from dark blue
+ *    to transparent, so whatever background is chosen will show through.
+ *  - changed .slide h1 to use a specific set of fonts, not just sans-serif,
+ *    reduced size slightly, and changed kerning for a bit more space between
+ *    letters.  Also made the header/footer layout work as you zoom in/out.
+ *  - shrank the footer and enlarges the font for footer h1, h2.
+ *  - placed a Python logo onto an oval badge and added it to the header.
+ *  - enlarged size of slide counter in footer.
+ *  - vertically moved slide contents upward closer to header.
+ *  - added a .docinfo style to slide0 and resized the table smaller, and
+ *    also set it to automatically center itself.
+ *  - added a slide0 p style for tweaking the abstract on the first slide.
+ */
+
+html, body {
+  margin:		0;
+  padding:		0;
+  font-family:		Verdana, Arial, Helvetica, sans-serif;
+}
+
+body {
+  background:		white;
+  color:		black;
+}
+
+/*
+ *
+ */
+
+blockquote {
+/*  padding:		0 2em 0.5em; */
+/*  margin:		0 1.5em 0.5em; */
+
+  padding:		0 2em 0 2em;
+  margin:		0 1.5em 0 1.5em;
+ }
+
+blockquote p {
+  margin:		0;
+  padding:		0;
+}
+
+/* HEADER/FOOTER
+ * Each slide has a header and footer bar, across the entire the top and
+ * bottom of each slide.
+ *
+ * The header consists of one line of text on all but the first slide.
+ *
+ * The footer consists of two lines of text, of style h1 and h2 respectively.
+ * Within the footer is an optional (and barely visible) current slide
+ * counter, so the speaker can judge his progress through his talk.  The
+ * counter does not appear on the first slide.
+ *
+ */
+
+div#header, div#footer {
+  color:		#ffcd10 /* PyCon Gold */ ;
+  font-family:		sans-serif;
+}
+
+div#header {
+  background:		black /* PyCon Black */ /* url(pycon2009-logo-badge.png) no-repeat */;
+  background-position:	98% 11px;
+  border-bottom:	4px solid #ffcd10 /* PyCon Gold */;
+
+  height:		30px; /* make the header smaller than default */
+}
+
+div#footer {
+  background:           black /* PyCon Black */;
+  font-size:		0.7em;
+  font-weight:		bold;
+  padding:		0 0 0.4em 0;
+  border-top:		4px solid #ffcd10 /* PyCon Gold */;
+  line-height:		0.9em;
+}
+
+#footer h1 {
+  display:		block;
+  padding-left:		1em;
+  padding-top:		0.40em;
+  margin:		0;
+}
+
+#footer h2 {
+  display:		block;
+  padding-left:		1em;
+  padding-top:		0.3em;
+  margin:		0;
+}
+
+#currentSlide {
+  text-align:		center;
+  font-size:		0.7em;
+  color:		grey;
+  font-family:		Verdana, Arial, Helvetica, sans-serif;
+  font-weight:		bold;
+}
+
+/*
+ * FIRST SLIDE
+ *
+ */
+
+#slide0 {
+  padding-top:		1.5em;
+  background:		#f0f8fd /* url(pycon2009-skyline.png) */ repeat-x;
+  background-position:	0% 0%;
+}
+
+#slide0 h1 { /* title in body of first slide */
+  position:		static;
+  margin:		4.25em 0 0 0;
+  padding:		0;
+  color:		#d0a010 /* PyCon Gold */ /*black*/;
+  font:			bold 1.1em Verdana, Arial, Helvetica, sans-serif;
+  white-space:		normal;
+  background:		transparent;
+}
+
+#slide0 h2 {
+  font:			bold italic 1em sans-serif;
+  margin:		0.25em;
+}
+
+#slide0 h3 {
+  margin-top:		1.5em;
+  font-size:		1.5em;
+}
+
+#slide0 h4 {
+  margin-top:		0;
+  font-size:		1em;
+}
+
+#slide0 table.docinfo {
+  margin:		0.5em auto 0.1em auto;
+  font-size:		85%;
+}
+
+#slide0 p {
+  font-size:		85%;
+
+  padding:		0;
+  margin:		2.2em auto 0 auto;
+  text-align:		center;
+}
+
+/*
+ * NON-FIRST SLIDE
+ *
+ */
+
+.slide {
+  font-size:		1.2em;
+}
+
+.slide h1 { /* title in header area of each slide but first */
+  z-index:		1;
+  position:		absolute;
+  top:			0;
+  margin:		0;
+  padding-left:		0.6em;
+
+  padding-top:		0.4em;
+  font:			bold 0.8em Verdana, Arial, Helvetica, sans-serif;
+
+  color:		#ffcd10 /* PyCon Gold */;
+  background:		transparent;
+
+  white-space:		nowrap;
+  letter-spacing:	0.05em;
+}
+
+.slide h2 {
+  font:			bold 120%/1em sans-serif;
+  padding-top:		0.5em;
+}
+
+.slide h3 {
+  font:			bold 100% sans-serif;
+  padding-top:		0.5em;
+}
+
+/*
+.slide-display ul {
+  margin-top: 0;
+  border: 2px solid green;
+}
+*/
+
+.slide-display {
+  padding:		0.25em 0em 0.5em 0.5em;
+  margin:		0 0.25em 0.5em 0.25em;
+
+/*  border: 1px solid red; */
+}
+
+.slide-display img {
+  padding-top:		0.5em;
+}
+
+.slide img.leader {
+  display:		block;
+  margin:		0 auto;
+}
+
+.slide table.docinfo {
+  margin:		0.8em 0 0.5em 2em;
+}
+
+.slide pre{
+  padding:		0;
+  margin-left:		0;
+  margin-right:		0;
+  font-size:		90%;
+}
+
+.slide li p {
+  margin:		0;
+  padding:		0;
+}
+
+.slide li {
+  margin-top:		0;
+  margin-bottom:	0;
+}
+
+.slide ul ul li {
+  list-style:		square;
+}
+
+.slide tt {
+  font-size:		90%;
+}
+
+
+
+/* LINK-STYLING
+ *
+ */
+
+html>body .external {
+  border-bottom:	none;
+}
+
+.external {
+  border-bottom:	1px dotted gray;
+}
+
+.external:after {
+  content:		" \274F";
+  font-size:		smaller;
+  color:		#77B;
+}
+
+:link, :visited {
+  text-decoration:	none;
+  color:		#00C; /*jrr: changed to #3770a0 */
+}
+
+ul.urls {
+  list-style:		none;
+  display:		inline;
+  margin:		0;
+}
+
+.urls li {
+  display:		inline;
+  margin:		0;
+}
+
+
+/*
+ * TEXT SIZE/POSITION/EMPHASIS STYLING
+ */
+
+.left {
+  text-align:		left !important;
+}
+
+.center {
+  text-align:		center !important;
+}
+
+.right {
+  text-align:		right !important;
+}
+
+.huge {
+  font-family:		sans-serif;
+  font-weight:		bold;
+  font-size:		150%;
+}
+
+.big {
+  font-family:		sans-serif;
+  font-weight:		bold;
+  font-size:		120%;
+}
+
+.medium {
+  font-size:		85%;
+}
+
+.small {
+  font-size:		75%;
+}
+
+.tiny {
+  font-size:		50%;
+}
+
+.huge tt, .big tt, .small tt, .tiny tt {
+  font-size:		115%;
+}
+
+.huge pre, .big pre, .small pre, .tiny pre {
+  font-size:		115%;
+}
+
+h1 abbr {
+  font-variant:		small-caps;
+}
+
+h1, h2, h3, h4 {
+  font-size:		100%;
+  margin:		0;
+  padding:		0;
+  font-weight:		inherit;
+}
+
+kbd {
+  font-weight:		bold;
+  font-size:		1em;
+}
+
+sup {
+  font-size:		smaller;
+  line-height:		1px;
+}
+
+pre.literal-block, pre.doctest-block {
+  background-color:	white;
+  font-weight:		bold;
+}
+
+tt.docutils {
+  background-color:	white;
+}
+
+
+/* SPECIAL ANIMATION EFFECTS
+ *
+ */
+
+.incremental, .incremental *, .incremental *:after {
+  visibility:		visible;
+  color:		white;
+  border:		0;
+}
+
+img.incremental {
+  visibility:		hidden;
+}
+
+.slide .current { /* highlight of the current incremental element */
+  color:		red;
+  border-bottom:	2px dotted red;
+}
+
+.animation {
+  position:		relative;
+  margin:		0em 0;
+  padding:		0;
+}
+
+.animation img {
+  position:		absolute;
+  left:			-16px; /* was 80 */
+  top:			0 /*jrr: 100px */;
+/*  width:		90%; */
+  width:		1020px;
+  height:		660px;
+
+  margin:		0 0 0 0;
+  padding:		0 0 0 0;
+/*  border:		1px solid blue; */
+  border:		none !important;
+}
+
+/* CONTROL-PANEL
+ * There is a hidden control panel in the lower-right corner of each
+ * slide, that appears when the mouse hovers over it.
+ */
+
+html>body div#controls {
+  position:		fixed;
+  padding:		0 0 1em 0;
+  top:			auto;
+}
+
+div#controls {
+  position:		absolute;
+  left:			50%;
+  bottom:		0;
+  width:		50%;
+  text-align:		right;
+  font:			bold 0.7em sans-serif;
+}
+
+div#controls form {
+  position:		absolute;
+  bottom:		0;
+  right:		0;
+  width:		100%;
+  margin:		0;
+  padding:		0;
+}
+
+#controls #navList {
+  height:		1em;
+}
+
+#controls #navLinks a {
+  padding:		0;
+  margin:		0 0.5em;
+  background:		transparent;
+  border:		none;
+  color:		white;
+  cursor:		pointer;
+}
+
+#controls #navList #jumplist {
+  position:		absolute;
+  bottom:		0;
+  right:		0;
+
+  color:		#227;
+  background:		#DDD;
+}
+
+#controls :active {
+  color:		#88A !important;
+}
+
+#controls :focus {
+  outline:		1px dotted #227;
+}
+
+/* AVAILABLE-COLORS
+ * The set of colors understood by docutils for use on slides.
+ */
+
+.maroon  { color: maroon; }
+.red     { color: red; }
+.magenta { color: magenta; }
+.fuchsia { color: fuchsia; }
+.pink    { color: #FAA; }
+.orange  { color: orange; }
+.yellow  { color: yellow; }
+.lime    { color: lime; }
+.green   { color: green; }
+.olive   { color: olive; }
+.teal    { color: teal; }
+.cyan    { color: cyan; }
+.aqua    { color: aqua; }
+.blue    { color: blue; }
+.navy    { color: navy; }
+.purple  { color: purple; }
+.black   { color: black; }
+.gray    { color: gray; }
+.silver  { color: silver; }
+.white   { color: white; }
+
+/* DIAGNOSTICS
+ *
+ */
+
+/*
+li:after {
+  content:		" [" attr(class) "]"; color: #F88;
+}
+
+div:before {
+  content:		"[" attr(class) "]"; color: #F88;
+}
+*/
+
+.boxed.incremental { /* boxed item not yet visible */
+  border:		none;
+  background-color:	white;
+  padding-left:		10px;
+}
+
+.boxed { /* boxed item is now visible */
+  border:		2px dashed black;
+  background-color:	#C2DFFF; /* Slate Gray */
+  padding-left:		10px;
+}
+
+.attrset.incremental { /* boxed item not yet visible */
+  border:		none;
+  background-color:	white;
+  padding-left:		10px;
+}
+
+.attrset { /* boxed item is now visible */
+  border:		2px dashed black;
+  background-color:	lightgrey;
+  padding-left:		10px;
+  margin-left:		50px;
+}
+
+.attrsetplain.incremental { /* boxed item not yet visible */
+  border:		none;
+  background-color:	white;
+  padding-left:		10px;
+}
+
+.attrsetplain { /* boxed item is now visible */
+  border:		2px dashed black;
+  background-color:	white;
+  padding-left:		10px;
+  margin-left:		50px;
+}
+
+.altway {
+  font:			italic 1em sans-serif;
+  color:		plum;
+}
+
+.sidebox {
+  float:		right;
+  border:		1px solid green;
+}
+
+.noborder {
+  border:		none !important;
+}
+
+.topside {
+  position:		absolute:
+  top:			0px;
+}
+
+.slidelogo {
+  float:		right;
+  border:		none;
+}
+
+.monospaced {
+  white-space:		pre;
+  font-family:		"Courier New", Courier, monospace;
+  display:		block;
+  font-weight:		bold;
+
+  margin-top:		0 ! important;
+  margin-bottom:	0 ! important;
+  padding-top:		0 ! important;
+  padding-bottom:	0 ! important;
+}

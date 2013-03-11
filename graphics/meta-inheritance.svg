@@ -36,11 +36,11 @@
      inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:showpageshadow="false"
-     inkscape:window-width="1249"
-     inkscape:window-height="1039"
-     inkscape:window-x="2486"
+     inkscape:window-width="1024"
+     inkscape:window-height="744"
+     inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      showguides="true"
      inkscape:guide-bbox="true" />
   <defs
@@ -174,7 +174,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

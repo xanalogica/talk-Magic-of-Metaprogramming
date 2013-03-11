@@ -1,0 +1,185 @@
+ n/* This file has been placed in the public domain. */
+/* The following rule is necessary to have all slides appear in print!
+   DO NOT REMOVE IT! */
+
+.slide, ul {
+  page-break-inside:	avoid;
+  visibility:		visible !important;
+}
+
+h1 {
+  page-break-after:	avoid;
+}
+
+body {
+  font-size:		11pt;
+  background:		white;
+}
+
+* {
+  color:		black;
+}
+
+#slide0 h1 {
+  font-size:		125%;
+  border:		none;
+  margin:		0.5em 0 0.25em;
+}
+
+#slide0 h3 {
+  margin:		0;
+  padding:		0;
+}
+
+#slide0 h4 {
+  margin:		0 0 0.5em;
+  padding:		0;
+}
+
+#slide0 {
+  margin-bottom:	3em;
+}
+
+#header {
+  display:		none;
+}
+
+#footer h1 {
+  margin:		0;
+  border-bottom:	1px solid;
+  color:		gray;
+  font-style:		italic;
+}
+
+#footer h2, #controls {
+  display:		none;
+}
+
+.print {
+  display:		inline !important;
+}
+
+/* The following rule keeps the layout stuff out of print.
+   Remove at your own risk! */
+
+.layout, .layout * {
+  display:		none !important;
+}
+
+/* jrr */
+
+.slide-display {
+  font-size:		15pt;
+}
+
+.presentation {
+  margin:		0;
+  padding:		0;
+}
+
+.slide {
+  border:		2pt solid black;
+  background:		#e8ffff;
+  padding:		6px;
+  margin:		0 0 /*jrr: 1.5em 1em*/;
+  page-break-after:	always;
+}
+
+.slide#slide0 {
+  page-break-after:	avoid;
+}
+
+.nopagebreak {
+  page-break-after:	avoid;
+}
+
+.slide#limitations-of-virtualenv,
+.slide#examples-of-invocation,
+.slide#invocation-building-a-binary-distribution,
+.slide#invocation-building-a-source-distribution,
+.slide#metadata-distribution-ownership,
+.slide#how-it-works-understanding-sys-path-cont-d,
+.slide#easy-install-controlling-downloads,
+.slide#new-command-the-setup-py-develop-cmd,
+.slide#entrypoints-exporting-your-entrypoints-example,
+.slide#entrypoints-referencing-external-entrypoints,
+.slide#new-script-mechanism-declaring,
+.slide#tagging-example-developing-with-subversion-tags
+{ /* unfortunate way to tweak pagebreaks */
+  page-break-after:	avoid;
+  margin-bottom:	3em;
+}
+
+.slide h1 {
+  position:		relative;
+  margin-top:		0;
+  margin-bottom:	0;
+  padding-top:		0;
+  font:			bold 1.4em Verdana, Arial, Helvetica, sans-serif;
+}
+
+.topside {
+  position:		absolute;
+  y-pos: 0;
+  x-pos: 0;
+}
+
+.animation img { /* put a border around printed images */
+  border:		4px solid black;
+  margin:		4px auto 4px 100px;
+  height:		70%;
+  width:		70%;
+}
+
+.handout {
+  background:		#e8e8e8;
+  border:		1pt dotted black;
+  padding:		2pt 6pt 2pt 6pt;
+  margin:		0 0 /*jrr: 0 2em*/;
+  font-size:		13pt;
+}
+
+a {
+  text-decoration:	none;
+}
+
+#slide0 table.docinfo {
+  font-size:		125%; /* was 85% */
+}
+
+#slide0 p {
+  font-size:		125%; /* was 85% */
+}
+
+.boxed {
+  border:		2px dashed black;
+  background-color:	#C2DFFF; /* Slate Gray */
+  padding-left:		10px;
+}
+
+.attrset {
+  border:		2px dashed black;
+  background-color:	#C2DFFF; /* Slate Gray */
+  padding-left:		10px;
+  margin-left:		40px;
+  margin-right:		40px;
+}
+
+.attrsetplain {
+  border:		2px dashed black;
+  background-color:	white;
+  padding-left:		10px;
+  margin-left:		40px;
+  margin-right:		40px;
+}
+
+.altway {
+  font:			italic 1em sans-serif;
+  text-decoration:	underline;
+  color:		plum;
+}
+
+.slide-only {
+/*  visibility:		hidden !important; */
+  display: none;
+}

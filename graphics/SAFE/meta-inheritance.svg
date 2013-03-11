@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1024"
+   height="768"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="meta-inheritance.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0"
+   style="display:inline">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="531.5625"
+     inkscape:cy="417.875"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer2"
+     showgrid="false"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1249"
+     inkscape:window-height="1039"
+     inkscape:window-x="2486"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="TriangleInM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInM"
+       style="overflow:visible">
+      <path
+         id="path3977"
+         d="M 5.77,0 L -2.88,5 L -2.88,-5 L 5.77,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="scale(-0.4,-0.4)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path3843"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleInL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInL"
+       style="overflow:visible">
+      <path
+         id="path3974"
+         d="M 5.77,0 L -2.88,5 L -2.88,-5 L 5.77,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="scale(-0.8,-0.8)" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutL"
+       style="overflow:visible">
+      <path
+         id="path3983"
+         d="M 5.77,0 L -2.88,5 L -2.88,-5 L 5.77,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="scale(0.8,0.8)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         id="path4813"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.97309,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient6082">
+      <stop
+         style="stop-color:#adadff;stop-opacity:1;"
+         offset="0"
+         id="stop6084" />
+      <stop
+         style="stop-color:#adadff;stop-opacity:0;"
+         offset="1"
+         id="stop6086" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path4792"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6082"
+       id="linearGradient6187"
+       gradientUnits="userSpaceOnUse"
+       x1="193.16429"
+       y1="580.85718"
+       x2="308.26428"
+       y2="580.85718" />
+    <inkscape:perspective
+       id="perspective14697"
+       inkscape:persp3d-origin="281.25 : 130.41667 : 1"
+       inkscape:vp_z="562.5 : 195.625 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 195.625 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective15134"
+       inkscape:persp3d-origin="360 : 106.25 : 1"
+       inkscape:vp_z="720 : 159.375 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 159.375 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="background"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#000000;stroke-width:1.34950686;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       id="backcolor"
+       width="798.65051"
+       height="598.65051"
+       x="110.17472"
+       y="49.889027"
+       rx="7.5373559"
+       ry="18.163509"
+       inkscape:label="#rect2544" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer20"
+     inkscape:label="seq-mcd-defns-A"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.80469"
+       y="111"
+       id="text15503"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15505"
+         x="140.80469"
+         y="111"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">def TagClass(cls):</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="131"
+         id="tspan15507"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ff0000;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    cls.__special__ = True</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="151"
+         id="tspan15509"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    return cls</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       x="537.03516"
+       y="91"
+       id="text15511"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15513"
+         x="537.03516"
+         y="91">class TagClass(type):</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="111"
+         id="tspan15515">    def __init__(cls, ...):</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="131"
+         id="tspan15517"
+         style="fill:#ff0000">        cls.__special__ = True</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer21"
+     inkscape:label="seq-mcd-use1-A"
+     style="display:none">
+    <text
+       sodipodi:linespacing="125%"
+       id="text15479"
+       y="111"
+       x="140.80469"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="111"
+         x="140.80469"
+         id="tspan15481"
+         sodipodi:role="line">def TagClass(cls):</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15483"
+         y="131"
+         x="140.80469"
+         sodipodi:role="line">    cls.__special__ = True</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15485"
+         y="151"
+         x="140.80469"
+         sodipodi:role="line">    return cls</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15487"
+       y="91"
+       x="537.03516"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="91"
+         x="537.03516"
+         id="tspan15489"
+         sodipodi:role="line">class TagClass(type):</tspan><tspan
+         id="tspan15491"
+         y="111"
+         x="537.03516"
+         sodipodi:role="line">    def __init__(cls, ...):</tspan><tspan
+         id="tspan15493"
+         y="131"
+         x="537.03516"
+         sodipodi:role="line">        cls.__special__ = True</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15593"
+       y="195.84277"
+       x="140.80469"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="195.84277"
+         x="140.80469"
+         id="tspan15595"
+         sodipodi:role="line">@TagClass</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ff0000;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15597"
+         y="215.84277"
+         x="140.80469"
+         sodipodi:role="line">class Alpha(object):</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15599"
+         y="235.84277"
+         x="140.80469"
+         sodipodi:role="line">    pass</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15601"
+       y="217"
+       x="537.03516"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ff0000;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="217"
+         x="537.03516"
+         id="tspan15603"
+         sodipodi:role="line">class Alpha(object):</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15605"
+         y="237"
+         x="537.03516"
+         sodipodi:role="line">    __metaclass__ = TagClass</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer22"
+     inkscape:label="seq-mcd-use1-test-A"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.80469"
+       y="111"
+       id="text15455"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15457"
+         x="140.80469"
+         y="111"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">def TagClass(cls):</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="131"
+         id="tspan15459"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    cls.__special__ = True</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="151"
+         id="tspan15461"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    return cls</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       x="537.03516"
+       y="91"
+       id="text15463"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15465"
+         x="537.03516"
+         y="91">class TagClass(type):</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="111"
+         id="tspan15467">    def __init__(cls, ...):</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="131"
+         id="tspan15469">        cls.__special__ = True</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.80469"
+       y="195.84277"
+       id="text15572"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15574"
+         x="140.80469"
+         y="195.84277"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">@TagClass</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="215.84277"
+         id="tspan15576"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">class Alpha(object):</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="235.84277"
+         id="tspan15578"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    pass</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="537.03516"
+       y="217"
+       id="text15580"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15582"
+         x="537.03516"
+         y="217"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">class Alpha(object):</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="237"
+         id="tspan15584"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    __metaclass__ = TagClass</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.11719"
+       y="270.21289"
+       id="text15632"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15634"
+         x="140.11719"
+         y="270.21289"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">&gt;&gt;&gt; '__special__' in Alpha.__dict__</tspan><tspan
+         sodipodi:role="line"
+         x="140.11719"
+         y="290.21289"
+         id="tspan15636"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ff0000;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">True</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15638"
+       y="270.21289"
+       x="536.34766"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="270.21289"
+         x="536.34766"
+         id="tspan15640"
+         sodipodi:role="line">&gt;&gt;&gt; '__special__' in Alpha.__dict__</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ff0000;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15642"
+         y="290.21289"
+         x="536.34766"
+         sodipodi:role="line">True</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer23"
+     inkscape:label="seq-mcd-use2-A"
+     style="display:none">
+    <text
+       sodipodi:linespacing="125%"
+       id="text15431"
+       y="111"
+       x="140.80469"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="111"
+         x="140.80469"
+         id="tspan15433"
+         sodipodi:role="line">def TagClass(cls):</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15435"
+         y="131"
+         x="140.80469"
+         sodipodi:role="line">    cls.__special__ = True</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15437"
+         y="151"
+         x="140.80469"
+         sodipodi:role="line">    return cls</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15439"
+       y="91"
+       x="537.03516"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       xml:space="preserve"><tspan
+         y="91"
+         x="537.03516"
+         id="tspan15441"
+         sodipodi:role="line">class TagClass(type):</tspan><tspan
+         id="tspan15443"
+         y="111"
+         x="537.03516"
+         sodipodi:role="line">    def __init__(cls, ...):</tspan><tspan
+         id="tspan15445"
+         y="131"
+         x="537.03516"
+         sodipodi:role="line">        cls.__special__ = True</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15551"
+       y="195.84277"
+       x="140.80469"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="195.84277"
+         x="140.80469"
+         id="tspan15553"
+         sodipodi:role="line">@TagClass</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15555"
+         y="215.84277"
+         x="140.80469"
+         sodipodi:role="line">class Alpha(object):</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15557"
+         y="235.84277"
+         x="140.80469"
+         sodipodi:role="line">    pass</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15559"
+       y="217"
+       x="537.03516"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="217"
+         x="537.03516"
+         id="tspan15561"
+         sodipodi:role="line">class Alpha(object):</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15563"
+         y="237"
+         x="537.03516"
+         sodipodi:role="line">    __metaclass__ = TagClass</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15614"
+       y="270.21289"
+       x="140.11719"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="270.21289"
+         x="140.11719"
+         id="tspan15616"
+         sodipodi:role="line">&gt;&gt;&gt; '__special__' in Alpha.__dict__</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15618"
+         y="290.21289"
+         x="140.11719"
+         sodipodi:role="line">True</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="536.34766"
+       y="270.21289"
+       id="text15620"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15622"
+         x="536.34766"
+         y="270.21289"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">&gt;&gt;&gt; '__special__' in Alpha.__dict__</tspan><tspan
+         sodipodi:role="line"
+         x="536.34766"
+         y="290.21289"
+         id="tspan15624"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">True</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15650"
+       y="362.62988"
+       x="140.80469"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="362.62988"
+         x="140.80469"
+         id="tspan15652"
+         sodipodi:role="line">class <tspan
+   style="fill:#ff0000"
+   id="tspan15668">Beta(Alpha)</tspan>:</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15654"
+         y="382.62988"
+         x="140.80469"
+         sodipodi:role="line">    pass</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="537.03516"
+       y="362.62988"
+       id="text15656"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15658"
+         x="537.03516"
+         y="362.62988"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">class <tspan
+   style="fill:#ff0000"
+   id="tspan15670">Beta(Alpha)</tspan>:</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="382.62988"
+         id="tspan15660"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    pass</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer24"
+     inkscape:label="seq-mcd-use2-test-A"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.80469"
+       y="111"
+       id="text15189"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15191"
+         x="140.80469"
+         y="111"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">def TagClass(cls):</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="131"
+         id="tspan15193"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    cls.__special__ = True</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="151"
+         id="tspan15195"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    return cls</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.80469"
+       y="195.84277"
+       id="text15197"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15199"
+         x="140.80469"
+         y="195.84277"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">@TagClass</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="215.84277"
+         id="tspan15201"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">class Alpha(object):</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="235.84277"
+         id="tspan15203"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    pass</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.11719"
+       y="270.21289"
+       id="text15205"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15207"
+         x="140.11719"
+         y="270.21289"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">&gt;&gt;&gt; '__special__' in Alpha.__dict__</tspan><tspan
+         sodipodi:role="line"
+         x="140.11719"
+         y="290.21289"
+         id="tspan15209"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">True</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.80469"
+       y="362.62988"
+       id="text15211"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15213"
+         x="140.80469"
+         y="362.62988"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">class Beta(Alpha):</tspan><tspan
+         sodipodi:role="line"
+         x="140.80469"
+         y="382.62988"
+         id="tspan15215"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    pass</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="140.11719"
+       y="419"
+       id="text15217"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15219"
+         x="140.11719"
+         y="419"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">&gt;&gt;&gt; '__special__' in Beta.__dict__</tspan><tspan
+         sodipodi:role="line"
+         x="140.11719"
+         y="439"
+         id="tspan15221"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">&gt;&gt;&gt; <tspan
+   style="fill:#ff0000"
+   id="tspan15672">False</tspan></tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15223"
+       y="270.21289"
+       x="536.34766"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="270.21289"
+         x="536.34766"
+         id="tspan15225"
+         sodipodi:role="line">&gt;&gt;&gt; '__special__' in Alpha.__dict__</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15227"
+         y="290.21289"
+         x="536.34766"
+         sodipodi:role="line">True</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15229"
+       y="419"
+       x="536.34766"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="419"
+         x="536.34766"
+         id="tspan15231"
+         sodipodi:role="line">&gt;&gt;&gt; '__special__' in Beta.__dict__</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15233"
+         y="439"
+         x="536.34766"
+         sodipodi:role="line">&gt;&gt;&gt; <tspan
+   style="fill:#ff0000"
+   id="tspan15674">True</tspan></tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text15235"
+       y="362.62988"
+       x="537.03516"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         y="362.62988"
+         x="537.03516"
+         id="tspan15237"
+         sodipodi:role="line">class Beta(Alpha):</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+         id="tspan15239"
+         y="382.62988"
+         x="537.03516"
+         sodipodi:role="line">    pass</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold"
+       x="537.03516"
+       y="91"
+       id="text15241"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15243"
+         x="537.03516"
+         y="91">class TagClass(type):</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="111"
+         id="tspan15245">    def __init__(cls, ...):</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="131"
+         id="tspan15247">        cls.__special__ = True</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:OCR"
+       x="537.03516"
+       y="217"
+       id="text15249"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan15251"
+         x="537.03516"
+         y="217"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">class Alpha(object):</tspan><tspan
+         sodipodi:role="line"
+         x="537.03516"
+         y="237"
+         id="tspan15253"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono Bold">    __metaclass__ = TagClass</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="foreground"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="159.99998"
+       y="29.428572"
+       id="text2540"><tspan
+         sodipodi:role="line"
+         id="tspan2542"
+         x="159.99998"
+         y="29.428572"
+         style="font-size:28px">Template for Creating Animated Technical Drawings</tspan></text>
+    <rect
+       style="opacity:0.19396554;fill:#f3ff1d;fill-opacity:1;stroke:#ecf714;stroke-width:1.14145684;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.28291376, 1.14145689;stroke-dashoffset:1.48389395"
+       id="viewport"
+       width="748.85858"
+       height="398.85855"
+       x="133.83531"
+       y="64.783844"
+       inkscape:label="#rect2547" />
+  </g>
+</svg>

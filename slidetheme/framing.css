@@ -1,0 +1,82 @@
+/* This file has been placed in the public domain. */
+
+/*
+ * The following styles size, place, and layer the slide components.
+ * Edit these if you want to change the overall slide layout.
+ * The commented lines can be uncommented (and modified, if necessary)
+ * to help you with the rearrangement process.
+ */
+
+/*
+ * Changes made from the "default" template:
+ *  - re-laid out syntax for easier source navigation
+ *  - widened the .slide style from 92% to 96%, with corresponding adjustments
+ *    to padding from 4% each to 2%.  This is to try to a bit more content on
+ *    each slide, without detracting from the overall appearance.
+ *  - reduced vertical size of header and footer, for a tighter fit.
+ *  - lowered the current slide counter, so it is vertically centered in the
+ *    footer.
+ */
+
+/* target = 800x600 for screencasting */
+
+div#header, div#footer, .slide {
+  width:		100%;
+  top:			0;
+  left:			0;
+}
+
+div#header {
+  position:		fixed;
+  top:			0;
+  height:		2.6em;
+  z-index:		1;
+}
+
+div#footer {
+  top:			auto;
+  bottom:		0;
+  height:		2.6em;
+  z-index:		5;
+}
+
+.slide {
+  top:			0;
+  width:		96%;
+  padding:		1.8em 2% 2%; /* distance from top of slide content */
+  z-index:		2;
+}
+
+div#controls {
+  left:			50%;
+  bottom:		0;
+  width:		50%;
+  z-index:		100;
+}
+
+div#controls form {
+  position:		absolute;
+  bottom:		0;
+  right:		0;
+  width:		100%;
+  margin:		0;
+}
+
+#currentSlide {
+  position:		absolute;
+  width:		10%;
+  left:			60%;
+  bottom:		0.4em;
+  z-index:		10;
+}
+
+html>body #currentSlide {
+  position:		fixed;
+}
+
+/*
+div#header {background: #FCC;}
+div#footer {background: #CCF;}
+div#controls {background: #BBD;}
+div#currentSlide {background: #FFC;}
+*/

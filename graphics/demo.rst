@@ -9,12 +9,12 @@ Slide-advance to see your animation sequences one-by-one.
 
    .. class:: incremental slide-display
 
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-bare.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-getattr.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-super.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-callable.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-wrapper.gif
-      .. image:: /Talks/TO-CREATE/talk-Magic-of-Metaprogramming/graphics/tr-cls-wrapper.gif
+      .. image:: /home/jrush/PyTexas2011/talk-Magic-of-Metaprogramming/graphics/tr-bare.gif
+      .. image:: /home/jrush/PyTexas2011/talk-Magic-of-Metaprogramming/graphics/tr-getattr.gif
+      .. image:: /home/jrush/PyTexas2011/talk-Magic-of-Metaprogramming/graphics/tr-super.gif
+      .. image:: /home/jrush/PyTexas2011/talk-Magic-of-Metaprogramming/graphics/tr-callable.gif
+      .. image:: /home/jrush/PyTexas2011/talk-Magic-of-Metaprogramming/graphics/tr-wrapper.gif
+      .. image:: /home/jrush/PyTexas2011/talk-Magic-of-Metaprogramming/graphics/tr-cls-wrapper.gif
 
 Next Slide After Animation
 ==========================

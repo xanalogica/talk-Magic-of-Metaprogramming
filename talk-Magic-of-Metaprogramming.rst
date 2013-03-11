@@ -11,7 +11,7 @@
 :Author: Jeff Rush <jeff\@taupro.com>
 :Copyright: 2011 Tau Productions Inc.
 :License: Creative Commons Attribution-ShareAlike 3.0
-:Date: August 27, 2011
+:Date: March 9th, 2012
 :Duration: 45-minutes
 :Difficulty: Advanced
 :Keywords: metaprogramming, data structures, language, techniques
@@ -25,7 +25,7 @@ We'll cover import hacking, metaclasses, descriptors and decorators and how
 they work internally.
 
 .. |bullet| unicode:: U+02022
-.. footer:: Kiwi PyCon 2011 |bullet| Wellington
+.. footer:: PyCon 2012 |bullet| Santa Clara, California
 
 .. role:: altway
    :class: altway
@@ -85,6 +85,8 @@ Orientation Diagram: What is Metaprogramming
    .. class:: incremental
 
       .. container:: handout
+
+         graphics/what-is-metaprogramming.svg  (source material)
 
          seq-mp-code-data-X   (walk 'Code' and 'Data' blocks onto screen-center)
          seq-mp-datacomp-X    (add dnarrow and 'Data Computation' box from left)
@@ -330,6 +332,8 @@ Orientation Diagram: Instances, Classes and Metaclasses
 
       .. container:: handout
 
+         graphics/history-of-objects.svg  (source material)
+
          * make numbers in instances different
 
          seq-hc-justbits-X
@@ -544,6 +548,8 @@ About Meta-Inheritance
 
       .. container:: handout
 
+         graphics/meta-inheritance.svg  (source material)
+
          |                                    |      class TagClass(type):
          | def TagClass(cls):                 |          def __init__(cls, name, bases, class_dict):
          |     cls.__special__ = True         |              cls.__special__ = True
@@ -595,6 +601,8 @@ Example #3 (cont'd)
    .. class:: incremental
 
       .. container:: handout
+
+         graphics/call-interceptor.svg  (source material)
 
          | def CaptureCalls(orig_cls):
          |

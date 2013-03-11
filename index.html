@@ -1,0 +1,1452 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>The Magic of Metaprogramming</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7434 2012-05-11 21:06:27Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { /* line numbers */
+  color: grey;
+}
+
+.code {
+  background-color: #eeeeee
+}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="visible" />
+<!-- style sheet links -->
+<script src="slidetheme/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="slidetheme/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="slidetheme/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="slidetheme/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="slidetheme/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>The Magic of Metaprogramming</h1>
+<h2>PyCon 2012 • Santa Clara, California</h2>
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">The Magic of Metaprogramming</h1>
+
+<!-- Definitions of interpreted text roles (classes) for S5/HTML data. -->
+<!-- This data file has been placed in the public domain. -->
+<!-- Colours
+======= -->
+<!-- Text Sizes
+========== -->
+<!-- Display in Slides (Presentation Mode) Only
+========================================== -->
+<!-- Display in Outline Mode Only
+============================ -->
+<!-- Display in Print Only
+===================== -->
+<!-- Display in Handout Mode Only
+============================ -->
+<!-- Incremental Display
+=================== -->
+<img alt="graphics/coordinator-of-pgms.jpg" class="sidebox boxed incremental" src="graphics/coordinator-of-pgms.jpg" />
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Jeff Rush &lt;jeff&#64;taupro.com&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Copyright:</th><td class="field-body">2011 Tau Productions Inc.</td>
+</tr>
+<tr class="field"><th class="field-name">License:</th><td class="field-body">Creative Commons Attribution-ShareAlike 3.0</td>
+</tr>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">March 9th, 2012</td>
+</tr>
+<tr class="field"><th class="field-name">Duration:</th><td class="field-body">45-minutes</td>
+</tr>
+<tr class="field"><th class="field-name">Difficulty:</th><td class="field-body">Advanced</td>
+</tr>
+<tr class="field"><th class="field-name">Keywords:</th><td class="field-body">metaprogramming, data structures, language, techniques</td>
+</tr>
+</tbody>
+</table>
+<p>Learn the magic of writing Python code that monitors, alters and reacts to
+module imports, changes to variables, calls to functions and invocations of
+the builtins.  Learn out to slide a class underneath a module to intercept
+reads/writes, place automatic type checking over your object attributes and
+use stack peeking to make selected attributes private to their owning class.
+We'll cover import hacking, metaclasses, descriptors and decorators and how
+they work internally.</p>
+
+</div>
+<div class="slide" id="what-is-metaprogramming">
+<h1>What is Metaprogramming?</h1>
+<div class="slide-display container">
+<p class="incremental"><span class="incremental">the writing of programming code that</span>
+<span class="incremental">writes, analyzes or adjusts other code,</span>
+<span class="incremental">using that other code's structure</span>
+<span class="incremental">as its data.</span></p>
+<!--  -->
+<ul class="incremental simple">
+<li>two general forms: manipulation from<ul class="incremental">
+<li>inside<ul>
+<li>stays in production</li>
+<li>reduces developer workload</li>
+</ul>
+</li>
+<li>outside<ul>
+<li>for debugging, testing</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="tools-at-our-disposal">
+<h1>Tools At Our Disposal</h1>
+<div class="slide-display container">
+<ul class="incremental simple">
+<li>makes use of<ul class="incremental">
+<li>metaclasses</li>
+<li>decorators (class and function)</li>
+<li>attribute lookups special functions</li>
+<li>descriptors (and properties)</li>
+</ul>
+</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>I cover only Python 2.x, new-style classes.</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="orientation-diagram-what-is-metaprogramming">
+<h1>Orientation Diagram: What is Metaprogramming</h1>
+<div class="slide-display animation container">
+<div class="handout incremental container">
+<p>graphics/what-is-metaprogramming.svg  (source material)</p>
+<p>seq-mp-code-data-X   (walk 'Code' and 'Data' blocks onto screen-center)
+seq-mp-datacomp-X    (add dnarrow and 'Data Computation' box from left)
+seq-mp-uievents-X    (add uparrow and 'UI Events' box from right)
+seq-mp-convpgm-X     (slide shade over system and add label along bottom)
+seq-mp-metacode-X    (slide entire arrangement down, and walk 'Metacode' box onto screen-center)
+seq-mp-plumbing-X    (add dnarrow and 'Plumbing Adjustments' box from left)
+seq-mp-addattrs-X    (walk out &quot;add/adjust attributes&quot;)
+seq-mp-register-X    (walk out &quot;register elements&quot;)
+seq-mp-tagstuff-X    (walk out &quot;tag elements&quot;)
+seq-mp-codeevents-X  (add uparrow and &quot;Code Events&quot;)
+seq-mp-modimport-X   (walk out &quot;import of a module&quot;)
+seq-mp-classdef-X    (walk out &quot;definition of a class/function&quot;)
+seq-mp-dotted-rdwr-X (walk out &quot;write to a dotted name&quot;)
+seq-mp-callnret-X    (walk out &quot;call and return&quot;)
+seq-mp-metapgm-X     (slide shade over upper system and add label along top)</p>
+</div>
+<img alt="graphics/mp-code-data.gif" class="incremental" src="graphics/mp-code-data.gif" />
+<img alt="graphics/mp-datacomp.gif" class="incremental" src="graphics/mp-datacomp.gif" />
+<img alt="graphics/mp-uievents.gif" class="incremental" src="graphics/mp-uievents.gif" />
+<img alt="graphics/mp-convpgm.gif" class="incremental" src="graphics/mp-convpgm.gif" />
+<img alt="graphics/mp-metacode.gif" class="incremental" src="graphics/mp-metacode.gif" />
+<img alt="graphics/mp-plumbing.gif" class="incremental" src="graphics/mp-plumbing.gif" />
+<img alt="graphics/mp-addattrs.gif" class="incremental" src="graphics/mp-addattrs.gif" />
+<img alt="graphics/mp-register.gif" class="incremental" src="graphics/mp-register.gif" />
+<img alt="graphics/mp-tagstuff.gif" class="incremental" src="graphics/mp-tagstuff.gif" />
+<img alt="graphics/mp-codeevents.gif" class="incremental" src="graphics/mp-codeevents.gif" />
+<img alt="graphics/mp-modimport.gif" class="incremental" src="graphics/mp-modimport.gif" />
+<img alt="graphics/mp-classdef.gif" class="incremental" src="graphics/mp-classdef.gif" />
+<img alt="graphics/mp-dotted-rdwr.gif" class="incremental" src="graphics/mp-dotted-rdwr.gif" />
+<img alt="graphics/mp-callnret.gif" class="incremental" src="graphics/mp-callnret.gif" />
+<img alt="graphics/mp-metapgm.gif" class="incremental" src="graphics/mp-metapgm.gif" />
+<ul class="handout">
+<li><p class="first">Diagram - data &lt;-&gt; code &lt;-&gt; metacode, app-events versus code-events</p>
+</li>
+<li><p class="first">Runtime Events</p>
+<ul class="simple">
+<li>class initialization</li>
+<li>function definition</li>
+<li>module import</li>
+<li>modification of a dotted name</li>
+<li>retrieval of a dotted name</li>
+<li>calling something</li>
+</ul>
+<!--  -->
+<ul>
+<li><p class="first">can be specific to a particular module or class</p>
+</li>
+<li><p class="first">execution events</p>
+<ol class="arabic">
+<li><p class="first">initialization of a class definition</p>
+<ul>
+<li><p class="first">read class attrs and act on them</p>
+</li>
+<li><p class="first">add/adjust methods
+- descriptors to control access to instance attrs
+- wrappers to hear about calls to both instance and class methods</p>
+<blockquote>
+<ul class="simple">
+<li>add a new instance to a registry</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">add the new class to a registry</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="sample-problem-1-subclassing-an-embedded-class">
+<h1>Sample Problem #1: Subclassing an Embedded Class</h1>
+<div class="slide-display container">
+<div class="sidebox boxed incremental line-block">
+<div class="line">class Request(object):</div>
+<div class="line-block">
+<div class="line">...</div>
+</div>
+<div class="line">class HTTPServer(object):</div>
+<div class="line-block">
+<div class="line">def handle_request(self, ...):</div>
+<div class="line-block">
+<div class="line">req = Request(...)</div>
+</div>
+<div class="line">...</div>
+</div>
+</div>
+<ul class="incremental simple">
+<li>Objective<ul>
+<li>subclass a class deep inside a module</li>
+</ul>
+</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>Challenges: They didn't<ul class="incremental">
+<li>use a public factory</li>
+<li>import from elsewhere</li>
+<li>take the class as a parameter</li>
+</ul>
+</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>A Metaprogramming Solution:<ul class="incremental">
+<li>catch a specific import, so we can</li>
+<li>redefine &quot;Request&quot; to be a subclass</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="a-solution-to-1-post-import-hooking">
+<h1>A Solution to #1: Post-Import Hooking</h1>
+<div class="slide-display container">
+<p><em>After import, rearrange content of module before others use it.</em></p>
+<div class="incremental line-block">
+<div class="line">old__import__ = sys.modules['__builtin__']</div>
+<div class="line">sys.modules['__builtin__'].__import__ = self.__import__</div>
+</div>
+<div class="incremental line-block">
+<div class="line">def __import__(modname):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">m = old__import__(modname)</div>
+<div class="line"><br /></div>
+<div class="line">if modname == 'webserver':  # every time</div>
+<div class="line-block">
+<div class="line"><span class="incremental">frame = sys._getframe(1)</span></div>
+<div class="line"><span class="incremental">importing_file = inspect.getsourcefile(frame) or inspect.getfile(frame)</span></div>
+<div class="line"><span class="incremental">if fnmatch.fnmatch(importing_file, &quot;*startup*&quot;):  # only at startup</span></div>
+<div class="line-block">
+<div class="line">rearrange(m)</div>
+</div>
+</div>
+<div class="line">return m</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="a-solution-to-1-packaged-up">
+<h1>A Solution to #1 (Packaged Up)</h1>
+<div class="slide-display container">
+<p><em>After import, rearrange content of module before others use it.</em></p>
+<div class="sidebox boxed line-block">
+<div class="line">class Request(object):</div>
+<div class="line-block">
+<div class="line">...</div>
+</div>
+<div class="line">class HTTPServer(object):</div>
+<div class="line-block">
+<div class="line">def handle_request(self, ...):</div>
+<div class="line-block">
+<div class="line">req = Request(...)</div>
+</div>
+<div class="line">...</div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">from tau.metaservices import MetaServices</div>
+</div>
+<div class="incremental line-block">
+<div class="line">def adjust(mod):</div>
+<div class="line-block">
+<div class="line">from replacements import Request</div>
+<div class="line">mod.Request = Request</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">ms = MetaServices()</div>
+<div class="line">ms.call_after_import_of(</div>
+<div class="line-block">
+<div class="line">'webserver', adjust <span class="incremental">, from_filepatt='*startup*'</span>)</div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">from webapp import main</div>
+<div class="line">main()</div>
+</div>
+</div>
+</div>
+<div class="slide" id="alternate-solution-pre-import-hooking">
+<h1>Alternate Solution: Pre-Import Hooking</h1>
+<div class="slide-display container">
+<p><em>Just before import, slip in a subclassed module object.</em></p>
+<div class="incremental line-block">
+<div class="line">def __import__(modname):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">if modname == 'webserver':</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line"><span class="incremental">class SubclassingHooks(ihooks.Hooks):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">def new_module(self, modname):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return YourModuleFixer(modname)   # &lt;--- your class</span></div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="line"><span class="incremental">loader = ihooks.FancyModuleLoader(hooks=SubclassingHooks())</span></div>
+<div class="line">importer = ihooks.ModuleImporter(loader)</div>
+</div>
+<div class="line">else:</div>
+<div class="line-block">
+<div class="line">importer = old__import__</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">return importer(modname)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="what-does-a-subclassed-module-look-like">
+<h1>What Does a Subclassed Module Look Like?</h1>
+<div class="slide-display container">
+<div class="incremental line-block">
+<div class="line">from types import ModuleType</div>
+<div class="line">class ModuleWatcher(ModuleType):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">def __init__(self, modname):</div>
+<div class="line-block">
+<div class="line">Moduletype.__init__(self, modname)</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">def __getattribute__(self, attrname):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line"><span class="incremental">modname = ModuleType.__getattribute__(self, '__name__')  # self.__name__</span></div>
+<div class="line"><span class="incremental">print &quot;__getattribute__ fetching %r of %r&quot; % (attrname, self)</span></div>
+<div class="line"><br /></div>
+<div class="line"><span class="incremental">if modname == 'webserver' and attrname == 'Request':</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">from replacements import Request</span></div>
+<div class="line"><span class="incremental">return Request</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line">return ModuleType.__getattribute__(self, attrname)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="some-benefits-of-subclassing-modules">
+<h1>Some Benefits of Subclassing Modules</h1>
+<div class="slide-display container">
+<ul class="incremental simple">
+<li>intercept attribute reads/writes</li>
+<li>prevent/log writes</li>
+<li>log timestamps and caller locations</li>
+<li>return different values to different callers</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>tip: you can put non-module stuff on sys.path</li>
+</ul>
+<pre class="incremental doctest-block">
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.modules['TheAnswer'] = 42
+&gt;&gt;&gt; import TheAnswer
+&gt;&gt;&gt; TheAnswer
+42
+</pre>
+</div>
+</div>
+<div class="slide" id="lull-after-import-hooking-before-metaclasses">
+<h1>Lull After Import Hooking, Before Metaclasses</h1>
+<div class="slide-display center container">
+<img alt="graphics/after-imports-breathing.jpg" src="graphics/after-imports-breathing.jpg" />
+<ul class="simple">
+<li>(pause - take a deep breath...)</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="orientation-diagram-instances-classes-and-metaclasses">
+<h1>Orientation Diagram: Instances, Classes and Metaclasses</h1>
+<div class="slide-display animation container">
+<div class="handout incremental container">
+<p>graphics/history-of-objects.svg  (source material)</p>
+<ul class="simple">
+<li>make numbers in instances different</li>
+</ul>
+<dl class="docutils">
+<dt>seq-hc-justbits-X</dt>
+<dd>title 'a fable (literary licence) of objects'
+in the beginning there was just 1's and 0's
+(show a heap of them)</dd>
+<dt>seq-hc-funcs-vars-X</dt>
+<dd>they separated into code (functions) and data (variables);
+a function could reach out and change any variable and
+each variable had to have a unique name.  It was unclear
+which vars went with which functions.</dd>
+<dt>seq-hc-vargroups-X</dt>
+<dd>Vars got grouped together, int C structs or Pascal
+records.  But functions were still separate.</dd>
+<dt>seq-hc-groupings-X</dt>
+<dd>Functions became got added into the var groupings.</dd>
+<dt>seq-hc-group-ctor-X</dt>
+<dd><blockquote class="first">
+There was a 'constructor' function that created each var
+grouping, according to what was needed each time.</blockquote>
+<dl class="last docutils">
+<dt>seq-hc-protos-X</dt>
+<dd>Then instead of rebuilding, a var group was used as a
+'prototype object' to stamp out copies of itself.  The
+copier was the constructor of copies, named __call__.</dd>
+</dl>
+</dd>
+<dt>seq-hc-groupsplit-X</dt>
+<dd>Lots of duplicated code, excess copying of things that are
+common.  Decided to make two var groups, one for the
+shared stuff and one constructed for each instance.  The
+shared stuff represented a 'class of similar objects',
+shortened to 'class'.  No inheritance yet.</dd>
+<dt>seq-hc-groups-grow-X</dt>
+<dd>But the stuff shared among instances grew in size, and
+there was common code btw classes,</dd>
+<dt>seq-hc-delegating-X</dt>
+<dd>so inheritance was born; factoring vertically.</dd>
+<dt>seq-hc-new-axis-X</dt>
+<dd>One-dimension of creation just got a second dimension of
+delegation/inheritance.</dd>
+<dt>seq-hc-multi-inherit-X</dt>
+<dd>Assembly of classes was still complex, wanted more
+freedom to mix-and-match.  Multiple inheritance was born.</dd>
+<dt>seq-hc-metaclass-X</dt>
+<dd>All these classes had code to create them, buried in the
+interpreter.  The code got exposed into a class-like
+object called metaclasses.</dd>
+<dt>seq-hc-meta-as-ctor-X</dt>
+<dd>Since classes are objects, their constructor, named
+__call__ resides in the metaclass.  One metaclass created
+all classes, since they were all alike in behavior.  Just
+containers of methods mostly.</dd>
+<dt>seq-hc-submetas-X</dt>
+<dd>But then the metaclass is subclassable, making it possible
+to create new kinds of classes.</dd>
+</dl>
+</div>
+<img alt="graphics/hc-welcome.gif" class="incremental" src="graphics/hc-welcome.gif" />
+<img alt="graphics/hc-justbits.gif" class="incremental" src="graphics/hc-justbits.gif" />
+<img alt="graphics/hc-funcs-vars.gif" class="incremental" src="graphics/hc-funcs-vars.gif" />
+<img alt="graphics/hc-vargroups.gif" class="incremental" src="graphics/hc-vargroups.gif" />
+<img alt="graphics/hc-vargroups2.gif" class="incremental" src="graphics/hc-vargroups2.gif" />
+<img alt="graphics/hc-groupings.gif" class="incremental" src="graphics/hc-groupings.gif" />
+<img alt="graphics/hc-group-ctor.gif" class="incremental" src="graphics/hc-group-ctor.gif" />
+<img alt="graphics/hc-protos.gif" class="incremental" src="graphics/hc-protos.gif" />
+<img alt="graphics/hc-protos2.gif" class="incremental" src="graphics/hc-protos2.gif" />
+<img alt="graphics/hc-protos3.gif" class="incremental" src="graphics/hc-protos3.gif" />
+<img alt="graphics/hc-protos4.gif" class="incremental" src="graphics/hc-protos4.gif" />
+<img alt="graphics/hc-protos5.gif" class="incremental" src="graphics/hc-protos5.gif" />
+<img alt="graphics/hc-groupsplit.gif" class="incremental" src="graphics/hc-groupsplit.gif" />
+<img alt="graphics/hc-groupsplit2.gif" class="incremental" src="graphics/hc-groupsplit2.gif" />
+<img alt="graphics/hc-groupsplit3.gif" class="incremental" src="graphics/hc-groupsplit3.gif" />
+<img alt="graphics/hc-groups-grow.gif" class="incremental" src="graphics/hc-groups-grow.gif" />
+<img alt="graphics/hc-delegating.gif" class="incremental" src="graphics/hc-delegating.gif" />
+<img alt="graphics/hc-new-axis.gif" class="incremental" src="graphics/hc-new-axis.gif" />
+<img alt="graphics/hc-multi-inherit.gif" class="incremental" src="graphics/hc-multi-inherit.gif" />
+<img alt="graphics/hc-metaclass.gif" class="incremental" src="graphics/hc-metaclass.gif" />
+<img alt="graphics/hc-meta-as-ctor.gif" class="incremental" src="graphics/hc-meta-as-ctor.gif" />
+<img alt="graphics/hc-submetas.gif" class="incremental" src="graphics/hc-submetas.gif" />
+</div>
+</div>
+<div class="slide" id="facts-about-metaclasses">
+<h1>Facts About Metaclasses</h1>
+<div class="slide-display container">
+<ul class="incremental simple">
+<li>a metaclass implements a &quot;kind of class&quot;</li>
+<li>almost always you only need one kind</li>
+<li>defining your own metaclass creates a &quot;new kind&quot;</li>
+<li>smarter classes, more than &quot;containers of methods&quot;</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>new kinds are useful for<ul class="incremental">
+<li>wrapping complexity for other programmers to use</li>
+<li>i.e. a domain-specific language</li>
+<li>generate classes/methods dynamically e.g. XML DTDs:</li>
+</ul>
+</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>metaclasses do not (directly) affect instance's:<ul class="incremental">
+<li>namespace lookup</li>
+<li>method-resolution order</li>
+<li>descriptor retrieval</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="example-2-define-a-class-from-an-sql-table-definition">
+<h1>Example #2: Define a Class from an SQL Table Definition</h1>
+<div class="slide-display container">
+<div class="incremental line-block">
+<div class="line">class Member(object):</div>
+<div class="line-block">
+<div class="line">__metaclass__ = DatabaseTable</div>
+<div class="line"><br /></div>
+<div class="line"><span class="incremental">dbtable = 'Members'  # a declaration</span></div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">class DatabaseTable(type):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line"><span class="incremental">def __init__(cls, name, bases, class_dict):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">#from dbsetup import dbconn</span></div>
+<div class="line"><span class="incremental">col_defs = dbconn.query_cols(table=class_dict['dbtable'])</span></div>
+<div class="line"><span class="incremental">for col_def in col_defs:</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">dbcolumn = wrap_col_rdwr(col_def) # (next slide)</span></div>
+<div class="line"><span class="incremental">setattr(cls, col_def.name, dbcolumn)</span></div>
+</div>
+</div>
+</div>
+</div>
+<ul class="incremental simple">
+<li>&quot;process human-friendly decls into machine-friendly&quot;</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="example-problem-2-cont-d">
+<h1>Example Problem #2 (cont'd)</h1>
+<div class="slide-display container">
+<div class="incremental line-block">
+<div class="line">def wrap_col_rdwr(col_def):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line"><span class="incremental">def get_dbcol_value(self):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return self.__dict__.get(col_def.name, None)</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental">def set_dbcol_value(self, value):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">value = col_def.validate(value)</span></div>
+<div class="line"><span class="incremental">self.__dict__[col_def.name] = value</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line">return property(get_dbcol_value, set_dbcol_value)</div>
+</div>
+</div>
+<ul class="incremental simple">
+<li>tag attrs with type/value constraints</li>
+<li>check class for conformance to your requirements<ul class="incremental">
+<li>must have docstring</li>
+<li>spelling of method names</li>
+<li>max inheritance depth</li>
+<li>insure abstract methods of superclass are defined</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="metaclasses-versus-class-decorators">
+<h1>Metaclasses versus Class Decorators</h1>
+<div class="slide-display container">
+<ul class="incremental">
+<li><p class="first">metaclasses?  class decorators?</p>
+<ul class="incremental simple">
+<li>the latter are much simpler</li>
+<li>the latter can do almost everything the former can</li>
+<li>only a metaclass can add methods to the class itself</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>class-level services (methods):<ul class="incremental">
+<li>&#64;classmethods provide them -to- instances</li>
+<li>metaclass methods provide them to the class itself</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">ONLY a metaclass can add to class attrs not visible to <em>self</em>:</p>
+<ol class="arabic simple">
+<li>meta-methods</li>
+<li>meta-properties</li>
+</ol>
+</li>
+<li><p class="first">class decorators can be (more easily) stacked</p>
+</li>
+<li><p class="first">class decorators are NOT inherited (metaclasses are)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="about-meta-inheritance">
+<h1>About Meta-Inheritance</h1>
+<div class="slide-display animation container">
+<div class="handout incremental container">
+<p>graphics/meta-inheritance.svg  (source material)</p>
+<div class="line-block">
+<div class="line-block">
+<div class="line">|      class TagClass(type):</div>
+</div>
+<div class="line">def TagClass(cls):                 |          def __init__(cls, name, bases, class_dict):</div>
+<div class="line-block">
+<div class="line">cls.__special__ = True         |              cls.__special__ = True</div>
+<div class="line">return cls</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">&#64;TagClass</div>
+<div class="line">class Alpha(object):               |      class Alpha(object):</div>
+<div class="line-block">
+<div class="line">pass                           |          __metaclass__ = TagClass</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">'__special__' in Alpha.__dict__    |      '__special__' in Alpha.__dict__</div>
+<div class="line">&gt;&gt;&gt; True                           |      &gt;&gt;&gt; True</div>
+</div>
+<div class="line-block">
+<div class="line">class Beta(Alpha):                 |      class Beta(Alpha):</div>
+<div class="line-block">
+<div class="line">pass                           |          pass</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">'__special__' in Beta.__dict__     |       '__special__' in Beta.__dict__</div>
+<div class="line">&gt;&gt;&gt; False                          |        &gt;&gt;&gt; False</div>
+</div>
+</div>
+<img alt="graphics/mcd-defns.gif" class="incremental" src="graphics/mcd-defns.gif" />
+<img alt="graphics/mcd-use1.gif" class="incremental" src="graphics/mcd-use1.gif" />
+<img alt="graphics/mcd-use1-test.gif" class="incremental" src="graphics/mcd-use1-test.gif" />
+<img alt="graphics/mcd-use2.gif" class="incremental" src="graphics/mcd-use2.gif" />
+<img alt="graphics/mcd-use2-test.gif" class="incremental" src="graphics/mcd-use2-test.gif" />
+</div>
+</div>
+<div class="slide" id="example-3-log-the-arguments-return-value-of-method-calls">
+<h1>Example #3: Log the Arguments/Return Value of Method Calls</h1>
+<div class="slide-display container">
+<div class="incremental line-block">
+<div class="line">&#64;tracecalls  # use of a class decorator</div>
+<div class="line">class Paragraph(object):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">def lead_in(self, count, char='*'):</div>
+<div class="line-block">
+<div class="line">return char * count</div>
+</div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">&gt;&gt;&gt; x = Paragraph()</div>
+<div class="line">&gt;&gt;&gt; x.lead_in(4)</div>
+<div class="line">Called &lt;bound method Paragraph.lead_in of &lt;__main__.Paragraph object at&gt; 0xb7162c4c&gt;&gt; args=(4,), kw={} got '****'</div>
+<div class="line">'****'</div>
+</div>
+</div>
+</div>
+<div class="slide" id="example-3-cont-d">
+<h1>Example #3 (cont'd)</h1>
+<div class="slide-display animation container">
+<div class="handout incremental container">
+<p>graphics/call-interceptor.svg  (source material)</p>
+<div class="line-block">
+<div class="line">def CaptureCalls(orig_cls):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">def my__getattribute__(self, name):</div>
+<div class="line-block">
+<div class="line">attr = super(orig_cls, self).__getattribute__(name)</div>
+<div class="line">return attr if not callable(attr) else CallWrapper(attr)</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">orig_cls.__getattribute__ = my__getattribute__</div>
+<div class="line">return orig_cls</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">def CallWrapper(func):  # as a closure</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line-block">
+<div class="line">def whencalled(*args, **kw):</div>
+<div class="line-block">
+<div class="line">rc = func(*args, **kw)</div>
+<div class="line">print &quot;Called %s args=%r, kw=%r got %r&quot; % (func, args, kw, rc)</div>
+<div class="line">return rc</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="line">return whencalled</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">class CallWrapper(object):  # as a class</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">def __init__(self, func):</div>
+<div class="line-block">
+<div class="line">self.func = func</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">def __call__(self, *args, **kw):</div>
+<div class="line-block">
+<div class="line">rc = self.func(*args, **kw)</div>
+<div class="line">print &quot;Called %s args=%r, kw=%r got %r&quot; % (self.func, args, kw, rc)</div>
+<div class="line">return rc</div>
+</div>
+</div>
+</div>
+</div>
+<img alt="graphics/tr-bare.gif" class="incremental" src="graphics/tr-bare.gif" />
+<img alt="graphics/tr-getattr.gif" class="incremental" src="graphics/tr-getattr.gif" />
+<img alt="graphics/tr-super.gif" class="incremental" src="graphics/tr-super.gif" />
+<img alt="graphics/tr-callable.gif" class="incremental" src="graphics/tr-callable.gif" />
+<img alt="graphics/tr-wrapper.gif" class="incremental" src="graphics/tr-wrapper.gif" />
+<img alt="graphics/tr-cls-wrapper.gif" class="incremental" src="graphics/tr-cls-wrapper.gif" />
+</div>
+</div>
+<div class="slide" id="lull-after-metaclasses-before-descriptors">
+<h1>Lull After Metaclasses, Before Descriptors</h1>
+<div class="slide-display center container">
+<img alt="graphics/after-metaclasses-breathing.jpg" src="graphics/after-metaclasses-breathing.jpg" />
+<ul class="simple">
+<li>(pause - take a deep breath...)</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="python-s-mechanism-of-attribute-lookup">
+<h1>Python's Mechanism of Attribute Lookup</h1>
+<div class="slide-display container">
+<div class="incremental line-block">
+<div class="line">def __getattribute__(self, name):  # symbolic, not actual</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line"><span class="incremental">inst_v = self.__dict__.get(name, Missing)</span></div>
+<div class="line"><span class="incremental">if inst_v is not Missing:</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return inst_v                               # return the instance attr value</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental">cls_v = lookthrough__dict__s(self.__class__, name, Missing)</span></div>
+<div class="line"><span class="incremental">if cls_v is not Missing:</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return cls_v                                # return the class attr value</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental">meth = lookthrough__dict__s(self.__class__, '__getattr__', Missing)</span></div>
+<div class="line"><span class="incremental">if meth is not Missing:</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return meth(name)</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line">raise AttributeError</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="when-to-use-which-lookup-mechanism">
+<h1>When to Use Which Lookup Mechanism</h1>
+<div class="slide-display container">
+<ul class="simple">
+<li>if you want to see</li>
+</ul>
+<ul class="incremental simple">
+<li>every attribute lookup, override <strong>__getattribute__</strong></li>
+<li>many attribute lookups, add your own <strong>__getattr__</strong><ul class="incremental">
+<li>doesn't see all because only called as a last resort</li>
+<li>therefore perfect for delegation</li>
+</ul>
+</li>
+<li>one attribute lookup, add a <strong>descriptor</strong></li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>__setattr__(self, name, value)<ul>
+<li>to override storing value into self.__dict__</li>
+</ul>
+</li>
+<li>__delattr__(self, name)</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="example-4-overriding-getattr">
+<h1>Example 4: Overriding __getattr__</h1>
+<div class="slide-display container">
+<ul class="incremental simple">
+<li>a wrapper around a bitmap element with a width and height</li>
+<li>internally measured in pixels, but externally as inches</li>
+</ul>
+<div class="incremental line-block">
+<div class="line">class Page(Bitmap):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line"><span class="incremental">def __getattr__(self, name):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">if name == 'width':  return self.__dict__['_width'] / 600 #dpi</span></div>
+<div class="line"><span class="incremental">if name == 'height': return self.__dict__['_height'] / 600 #dpi</span></div>
+<div class="line"><span class="incremental">raise AttributeError, name</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental">def __setattr__(self, name, value):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">if name == 'width':  self.__dict__['_width'] = value * 600 #dpi</span></div>
+<div class="line"><span class="incremental">if name == 'height': self.__dict__['_height'] = value * 600) #dpi</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line">def __repr__(self):</div>
+<div class="line-block">
+<div class="line">return &quot;Page(%d x %d inches&quot; % (self.width, self.height)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="example-4-using-a-descriptor-instead">
+<h1>Example 4: Using a Descriptor Instead</h1>
+<div class="slide-display container">
+<div class="incremental line-block">
+<div class="line">class Page(Bitmap):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line"><span class="incremental">width = DimensionInches('width')   # a descriptor</span></div>
+<div class="line"><span class="incremental">height = DimensionInches('height') # a descriptor</span></div>
+<div class="line"><br /></div>
+<div class="line">def __repr__(self):</div>
+<div class="line-block">
+<div class="line">return &quot;Page(%d x %d inches)&quot; % (self.width, self.height)</div>
+</div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">class DimensionInches(object):  # instance used in two places</div>
+<div class="line-block">
+<div class="line">def __init__(self, attrname):</div>
+<div class="line-block">
+<div class="line">self.attrname = attrname</div>
+</div>
+<div class="line"><span class="incremental">def __get__(self, instance, owner):   # gives 'binding behavior'</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return instance.__dict__[self.attrname] / 600 #dpi</span></div>
+</div>
+<div class="line"><span class="incremental">def __set__(self, instance, value):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">instance.__dict__[self.attrname] = value * 600 #dpi</span></div>
+</div>
+<div class="line"><span class="incremental">def __delete__(self, instance):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">del instance.__dict__[self.attrname]</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="python-s-mechanism-of-attribute-lookup-descriptors">
+<h1>Python's Mechanism of Attribute Lookup (descriptors)</h1>
+<div class="slide-display container">
+<div class="incremental line-block">
+<div class="line">def __getattribute__(self, name):  # how Python does it (rearranged)</div>
+<div class="line-block">
+<div class="line">cls_v = lookthrough__dict__s(self.__class__, name, Missing)</div>
+<div class="line"><br /></div>
+<div class="line"><span class="incremental">if hasattr(cls_v, '__get__') and hasattr(cls_v, '__set__'):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return cls_v.__get__(self, self.__class__)   # invoke data descriptor</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line">inst_v = self.__dict__.get(name, Missing)</div>
+<div class="line">if inst_v is not Missing:</div>
+<div class="line-block">
+<div class="line">return inst_v                               # return the instance attr value</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental">if hasattr(cls_v, '__get__'):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return cls_v.__get__(self, self.__class__)  # invoke non-data descriptor</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line">if cls_v is not Missing: return cls_v            # return the class attr value</div>
+<div class="line">if hasattr(cls, '__getattr__'): return cls.__getattr__(name)</div>
+<div class="line">raise AttributeError</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="so-what-is-a-descriptor-again">
+<h1>So What is a descriptor again?</h1>
+<div class="slide-display container">
+<ul class="incremental simple">
+<li>an object you place into the class attributes</li>
+<li>a plug-in to the lookup mechanism</li>
+<li>is shared by all instances, passed the 'instance' at each use</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>recognized by having a __get__ method, <strong>not by its class</strong></li>
+<li>does not know its name (hence reusable)</li>
+<li>there is one per attribute to be overridden</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>may store its value in:<ul class="incremental">
+<li>the instance __dict__ (perhaps a different name)</li>
+<li>some other place</li>
+<li>or just compute it as needed</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="where-are-descriptors-used">
+<h1>Where are descriptors used?</h1>
+<div class="slide-display container">
+<ul class="incremental">
+<li><p class="first">Python argument currying (non-data descriptors; __get__ only)</p>
+<blockquote>
+<ul class="simple">
+<li>method objects:  <span class="incremental">self.display(a, b)   ==&gt;  cls.display(self, a, b)</span></li>
+<li>classmethods:    <span class="incremental">self.display(a, b)   ==&gt;  cls.display(cls, a, b)</span></li>
+<li>staticmethods:   <span class="incremental">self.display(a, b)   ==&gt;  cls.display(a, b)</span></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>Python properties (data descriptors; __get__ and __set__)<ul>
+<li>attrname = property(fget, fset, fdel, doc)</li>
+</ul>
+</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>for internal recalc after setting an attribute</li>
+</ul>
+<!--  -->
+<ul class="incremental simple">
+<li>for caching/lazy computation of a value</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="example-5-caching-an-attribute-value">
+<h1>Example 5: Caching an Attribute Value</h1>
+<div class="slide-display container">
+<div class="sidebox boxed container">
+<pre class="doctest-block">
+&gt;&gt;&gt; p = Photo()
+&gt;&gt;&gt; p.thumbnail    # computes thumbnail
+&gt;&gt;&gt; p.thumbnail    # from self.__dict__
+&gt;&gt;&gt;
+&gt;&gt;&gt; del p.__dict__['thumbnail']
+&gt;&gt;&gt; p.thumbnail    # computes again
+&gt;&gt;&gt; p.thumbnail    # already cached again
+</pre>
+</div>
+<div class="incremental line-block">
+<div class="line">class ThumbnailBuilder(object):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">def __init__(self, aname, fname):</div>
+<div class="line-block">
+<div class="line">self.attrname = aname</div>
+<div class="line">self.filename = fname</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental"># non-data desc behind __dict__</span></div>
+<div class="line"><span class="incremental">def __get__(self, inst, owner):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">with file(self.filename) as f:</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">data = f.read()</span></div>
+<div class="line"><span class="incremental">instance.__dict__[self.attrname] = data</span></div>
+<div class="line"><span class="incremental">return data</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">class Photo(object):</div>
+<div class="line-block">
+<div class="line">thumbnail = ThumbnailBuilder('thumbnail', 'thumbnail.gif')</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="example-6-declare-an-attribute-private-to-a-class">
+<h1>Example 6: Declare an Attribute Private to a Class</h1>
+<div class="slide-display container">
+<div class="sidebox boxed medium container">
+<div class="line-block">
+<div class="line">class private(object): # a descriptor</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">def __init__(self, aname):</div>
+<div class="line-block">
+<div class="line">self.attrname = aname</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">def __get__(self, obj, type=None):</div>
+<div class="line-block">
+<div class="line"><span class="incremental">self._ck_owner(obj)</span></div>
+<div class="line">return obj.__dict__[self.attrname]</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">def __set__(self, obj, value):</div>
+<div class="line-block">
+<div class="line"><span class="incremental">self._ck_owner(obj)</span></div>
+<div class="line">obj.__dict__[self.attrname] = value</div>
+</div>
+</div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">import sys</div>
+<div class="line"><br /></div>
+<div class="line">def _ck_owner(self, obj):</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line"><span class="incremental">caller_locals = sys._getframe(2).f_locals</span></div>
+<div class="line"><br /></div>
+<div class="line"><span class="incremental">if 'self' in caller_locals</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">and caller_locals['self'] == obj:</span></div>
+<div class="line"><span class="incremental">return # internal access permitted</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental">raise NameError(&quot;Attr %r of class %r is private.&quot; % (</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">self.attrname, obj))</span></div>
+</div>
+</div>
+</div>
+<div class="incremental line-block">
+<div class="line">class Photo(object):</div>
+<div class="line-block">
+<div class="line">_cachedir = private('_cachedir')</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="example-7-tracking-changes-in-a-value">
+<h1>Example 7: Tracking Changes in a Value</h1>
+<div class="slide-display container">
+<div class="sidebox boxed medium container">
+<pre class="doctest-block">
+&gt;&gt;&gt; from parser import StateMachine
+&gt;&gt;&gt; vt = ValueTracker(StateMachine, 'state')
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; main()
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; for h in vt.history:
+&gt;&gt;&gt;     print h
+(0, 'target_trackstate.py', 6, '__init__')
+(1, 'target_trackstate.py', 9, 'advance')
+(2, 'target_trackstate.py', 9, 'advance')
+(3, 'target_trackstate.py', 9, 'advance')
+</pre>
+</div>
+<div class="incremental small line-block">
+<div class="line">import sys, inspect</div>
+<div class="line">class ValueTracker(object): # a descriptor</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">def __init__(self, tgt_cls, aname):</div>
+<div class="line-block">
+<div class="line">self.attrname = aname</div>
+<div class="line"><span class="incremental">self.history = []</span></div>
+<div class="line"><span class="incremental">setattr(tgt_cls, aname, self)</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental">def __get__(self, obj, type=None):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">return instance.__dict__[self.attrname]</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><span class="incremental">def __set__(self, obj, value):</span></div>
+<div class="line-block">
+<div class="line"><span class="incremental">instance.__dict__[self.attrname] = value</span></div>
+<div class="line"><br /></div>
+<div class="line"><span class="incremental">finfo = inspect.getframeinfo(sys._getframe(1) )</span></div>
+<div class="line"><br /></div>
+<div class="line"><span class="incremental">self.history.append((value, finfo.filename, finfo.lineno, finfo.function))</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide" id="questions">
+<h1>Questions?</h1>
+<div class="slide-display center container">
+<img alt="graphics/questions-relaxation.jpg" src="graphics/questions-relaxation.jpg" />
+<p>Metaprogramming is fun!</p>
+<p class="huge"><span class="incremental">Questions?</span></p>
+</div>
+<!-- XXLocal Variables:
+mode: rst
+mode: outline-minor
+End: -->
+</div>
+</div>
+</body>
+</html>
