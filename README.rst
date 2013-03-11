@@ -15,9 +15,11 @@ they work internally.
 History of Talk
 ---------------
 
-* ?????? 2012/09/15 `PyTexas 2012 Regional Conference`_ in College Station, Texas
+* 2011/08/27 `Kiwi PyCon 2011 Conference`_ in Wellington, New Zealand
+* 2012/03/09 PyCon 2012 Conference in Santa Clara, California (talk cancelled due to illness)
+* 2013/03/15 PyCon 2013 Conference in Santa Clara, California
 
-.. _PyTexas 2012 Regional Conference: http://www.youtube.com/watch?v=Xlz9Qwjn5Es&list=PLTjIzx6iy6PsunKpgkAffK1Bqda0K17cI&index=8
+.. _Kiwi PyCon 2011 Conference: http://nz.pycon.org/2011/aug/18/magic-metaprogramming/
 
 
 Playing the Slides
